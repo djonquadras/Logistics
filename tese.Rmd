@@ -1,0 +1,113 @@
+---
+params:
+  autor1: "Djonathan Luiz de Oliveira Quadras"
+  autor2: "Marcus Giovani Frighetto"
+  autor3: "Gabriel Garcia Nandi"
+  autor4: "Lucca Magri Zaghi"
+  autor5: "Rodrigo Clarindo da Silveira"
+  universidade: "Universidade Federal de Santa Catarina"
+  centro: "Centro Tecnológico"
+  departamento: "Departamento de Engenharia de Produção e Sistemas"
+  preambulo: "Preambulo"
+  linha_pesquisa: "Logíe Cadeia de Suprimentos"
+  area_concentracao: "Knowledge Representation"
+  orientador: "Carlos Manoel Taboada Rodrigues"
+  titulo: "Projeto de Canal Logístico"
+  resumo: "Resumo"
+  palavras_chave: "Logística"
+number_sections: true
+header-includes:
+  - \usepackage{indentfirst} # Indenta o primeiro parágrafo de cada seção.
+  - \usepackage{setspace}\onehalfspacing
+  - \usepackage{amsmath} # para inserção de equações
+  - \usepackage{afterpage}
+  - \usepackage{changepage} # customização de margens para trechos específicos
+  - \usepackage{float}
+  - \usepackage{pdfpages} #Inserir arquivo pdf como página da tese - Útil para inserir um anexo, a folha de aprovação e ficha catalográfica
+  - \usepackage{colortbl} #Habilita cores para tabelas
+  - \usepackage{tocloft}\tocloftpagestyle{empty} #Estilo da página do sumário sem rodapé, e principalmente, sem número de páginas.
+  - \usepackage{fancyhdr}
+  - \usepackage{lastpage}
+  - \usepackage[portuguese]{babel}
+
+fontsize: 12pt
+ident: true
+mainfont: Arial
+geometry: "paperheight=29.7cm,paperwidth=21cm,left=3cm,right=2cm,top=4cm,bottom=2cm"
+output: bookdown::pdf_document2
+toc: false
+---
+
+\clearpage\thispagestyle{empty}\addtocounter{page}{-1} 
+
+```{r echo=FALSE, child="capa.Rmd"}
+```
+
+\clearpage
+
+\pagestyle{empty}
+
+\newpage
+
+
+```{r echo=FALSE, child="resumo.Rmd"}
+```
+
+\newpage
+<!-- centralizando o título do sumário -->
+\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\Huge\bfseries} 
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
+<!-- centralizando título da lista de tabelas -->
+\renewcommand{\cftlottitlefont}{\hspace*{\fill}\Huge\bfseries}
+\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+<!-- centralizando título da lista de figuras -->
+\renewcommand{\cftloftitlefont}{\hspace*{\fill}\Huge\bfseries}
+\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+
+\listoffigures
+
+\newpage
+\listoftables
+
+\newpage
+\tableofcontents
+
+\newpage
+
+\setlength{\parindent}{1.5cm}
+
+<!--- Define Headers and Footers --->
+<!--- Define Headers and Footers --->
+\fancypagestyle{plain}{%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyhf{}%
+  \fancyhead[R]{\footnotesize \thepage\,}
+  \setlength\footskip{0pt}
+}
+
+
+\pagestyle{plain}
+```{r echo=FALSE, child="introdução.Rmd"}
+```
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="Revisao.Rmd"}
+```
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="Metodologia.Rmd"}
+```
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="Desenvolvimento.Rmd"}
+```
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="Conclusao.Rmd"}
+```
+
+

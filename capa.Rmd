@@ -1,0 +1,51 @@
+\centerline{`r toupper(params$universidade)`}
+\centerline{`r toupper(params$centro)`}
+\centerline{`r toupper(params$departamento)`}
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+\centerline{`r toupper(params$titulo)`}
+\centerline{`r params$sub_titulo`}
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+\centerline{`r toupper(params$autor1)`}
+\centerline{`r toupper(params$autor2)`}
+\centerline{`r toupper(params$autor3)`}
+\centerline{`r toupper(params$autor4)`}
+\centerline{`r toupper(params$autor5)`}
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+\centerline{Florianópolis}
+\centerline{2021}
+

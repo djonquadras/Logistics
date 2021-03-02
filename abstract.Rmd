@@ -1,0 +1,7 @@
+\centerline{\textbf{ABSTRACT}}
+
+`r params$abstract`
+
+&nbsp;
+
+**Keywords**: `r params$keywords`
