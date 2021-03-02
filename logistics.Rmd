@@ -9,7 +9,7 @@ params:
   centro: "Centro Tecnológico"
   departamento: "Departamento de Engenharia de Produção e Sistemas"
   preambulo: "Preambulo"
-  linha_pesquisa: "Logíe Cadeia de Suprimentos"
+  linha_pesquisa: "Logística e Cadeia de Suprimentos"
   area_concentracao: "Knowledge Representation"
   orientador: "Carlos Manoel Taboada Rodrigues"
   titulo: "Projeto de Canal Logístico"

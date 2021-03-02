@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.3.1)  1 MAR 2021 22:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.3.1)  1 MAR 2021 22:31
 entering extended mode
-**./tese.tex
-(tese.tex
+**./logistics.tex
+(logistics.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-01-09> xparse <2020-03-03> (D:\ProgramFiles\MiKTeX\t
 ex/latex/base\article.cls
@@ -512,8 +512,8 @@ Package babel Info: Making " an active character on input line 143.
 File: l3backend-pdftex.def 2021-01-09 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count302
 \l__pdf_internal_box=\box62
-) (tese.aux)
-\openout1 = `tese.aux'.
+) (logistics.aux)
+\openout1 = `logistics.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
 LaTeX Font Info:    ... okay on input line 92.
@@ -634,15 +634,15 @@ Package lastpage Info: Please have a look at the pageslts package at
 
 {C:/Users/djonq/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [1
 
-] (tese.lof)
+] (logistics.lof)
 \tf@lof=\write3
-\openout3 = `tese.lof'.
+\openout3 = `logistics.lof'.
 
-[2] (tese.lot)
+[2] (logistics.lot)
 \tf@lot=\write4
-\openout4 = `tese.lot'.
+\openout4 = `logistics.lot'.
 
-[3] (tese.toc
+[3] (logistics.toc
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
 .
 (D:\ProgramFiles\MiKTeX\tex/latex/lm\ot1lmr.fd
@@ -682,7 +682,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ))
 \tf@toc=\write5
-\openout5 = `tese.toc'.
+\openout5 = `logistics.toc'.
 
 [4]
 
@@ -715,20 +715,20 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[9] (tese.aux) ) 
+[9] (logistics.aux) ) 
 Here is how much of TeX's memory you used:
  15388 strings out of 479618
- 225026 string characters out of 2875411
- 576862 words of memory out of 3000000
+ 225126 string characters out of 2875411
+ 576877 words of memory out of 3000000
  32203 multiletter control sequences out of 15000+200000
  438833 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,11n,88p,511b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/Progra
-mFiles/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><D:/ProgramFiles/MiKTeX/fonts/ty
-pe1/public/lm/lmr10.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmr12.pfb
->
-Output written on tese.pdf (10 pages, 93074 bytes).
+ 85i,11n,88p,516b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/P
+rogramFiles/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><D:/ProgramFiles/MiKTeX/fon
+ts/type1/public/lm/lmr10.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmr1
+2.pfb>
+Output written on logistics.pdf (10 pages, 93074 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  21 named destinations out of 1000 (max. 500000)
