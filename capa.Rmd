@@ -14,9 +14,12 @@
 
 &nbsp;
 
+&nbsp;
+
+&nbsp;
+
 
 \centerline{`r toupper(params$titulo)`}
-\centerline{`r params$sub_titulo`}
 
 
 &nbsp;
@@ -46,6 +49,6 @@
 
 &nbsp;
 
-\centerline{Florianópolis}
-\centerline{2021}
+\centerline{`r toupper(params$cidade)`}
+\centerline{`r toupper(params$ano)`}
 

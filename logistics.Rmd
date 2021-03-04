@@ -1,16 +1,18 @@
 ---
 params:
+  universidade: "UNIVERSIDADE FEDERAL DE SANTA CATARINA"
+  centro: "CENTRO TECNOLÓGICO"
+  departamento: "DEPARTAMENTO DE ENGENHARIA DE PRODUÇÃO E SISTEMAS"
   autor1: "Djonathan Luiz de Oliveira Quadras"
   autor2: "Marcus Giovani Frighetto"
   autor3: "Gabriel Garcia Nandi"
   autor4: "Lucca Magri Zaghi"
   autor5: "Rodrigo Clarindo da Silveira"
-  universidade: "Universidade Federal de Santa Catarina"
-  centro: "Centro Tecnológico"
-  departamento: "Departamento de Engenharia de Produção e Sistemas"
+  cidade: "FLORIANÓPOLIS"
+  ano: "2021"
+
   preambulo: "Preambulo"
   linha_pesquisa: "Logística e Cadeia de Suprimentos"
-  area_concentracao: "Knowledge Representation"
   orientador: "Carlos Manoel Taboada Rodrigues"
   titulo: "Projeto de Canal Logístico"
   resumo: "Resumo"

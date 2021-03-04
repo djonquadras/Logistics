@@ -1,1 +1,38 @@
 # Desenvolvimento
+
+Gráfico de Demanda
+
+```{r,fig.align='center', echo=FALSE}
+library(tibble)
+library(readxl)
+source('forecasting.R')
+MO0021 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO0021.xlsx"))
+
+p <- graficoDemanda(MO0021)
+p
+
+```
+
+
+
+```{r echo=FALSE}
+library(tibble)
+library(readxl)
+source('forecasting.R')
+MO1401 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO1401.xlsx"))
+
+p <- graficoDemanda(MO1401)
+p
+
+```
+
+```{r echo=FALSE}
+library(tibble)
+library(readxl)
+source('forecasting.R')
+MO0091 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO0091.xlsx"))
+
+p <- graficoDemanda(MO0091)
+p
+
+```
