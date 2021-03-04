@@ -3,9 +3,9 @@
 
 # Importing datasets
 
-#MO0021 <- tibble(read_excel("D:/GoogleDrive/Acadêmico/UFSC/11º Semestre (2020.2)/Logística/Trabalho/Logistics/data/MO0021.xlsx"))
-#MO0091 <- read_excel("D:/GoogleDrive/Acadêmico/UFSC/11º Semestre (2020.2)/Logística/Trabalho/Logistics/data/MO0091.xlsx")
-#MO1401 <- read_excel("D:/GoogleDrive/Acadêmico/UFSC/11º Semestre (2020.2)/Logística/Trabalho/Logistics/data/MO1401.xlsx")
+# MO0021 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO0021.xlsx"))
+# MO0091 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO0091.xlsx"))
+# MO1401 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO1401.xlsx"))
 
 # Adjusts date
 

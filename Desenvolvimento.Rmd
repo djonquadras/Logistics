@@ -2,8 +2,8 @@
 
 Gráfico de Demanda
 
-```{r,fig.align='center', echo=FALSE}
-library(tibble)
+```{r, fig.align = 'center', echo=FALSE, message=FALSE, warning=FALSE, aling='center'}
+source("library.R")
 library(readxl)
 source('forecasting.R')
 MO0021 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO0021.xlsx"))
@@ -15,7 +15,8 @@ p
 
 
 
-```{r echo=FALSE}
+```{r, fig.align = 'center', echo=FALSE, message=FALSE, warning=FALSE}
+source("library.R")
 library(tibble)
 library(readxl)
 source('forecasting.R')
@@ -26,7 +27,8 @@ p
 
 ```
 
-```{r echo=FALSE}
+```{r, fig.align = 'center', echo=FALSE, message=FALSE, warning=FALSE}
+source("library.R")
 library(tibble)
 library(readxl)
 source('forecasting.R')
