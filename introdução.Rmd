@@ -1,3 +1,3 @@
 # Introdução
 
-Working on it :)
+O trabalho vigente tem por objetivo estudar os dados históricos de demanda para traçar um modelo preditivo de demanda para os próximos períodos. Dentro deste estudo, serão abordados tópicos referentes às metodologias utilizadas para a previsão desta respectiva demanda, a qual foi desenhada e projetada dentro da linguagem de programação R. São abordados ao todo 3 produtos, cada qual com 3 destinos diferentes, sendo eles Tocantins, São Paulo e Amazonas e portanto, temos 9 previsões distintas para serem abordadas. Ao fim do estudo, traremos a conclusão de como a demanda se comporta dentro dos próximos períodos para cada um dos produtos e em cada um de seus respectivos destinos.

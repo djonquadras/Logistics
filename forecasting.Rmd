@@ -1,0 +1,1057 @@
+# Previsão de Demanda
+
+A previsão de demanda irá isolar os produtos para realizar as previsões de forma isolada. Assim, essa seção será dividida entre os produtos MO0021, MO0091 e MO1401.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+source("library.R")
+# Importação dos dados do produto MO0021
+MO0021 <-  tibble(read_excel("data/MO0021.xlsx"))
+MO00211 <- MO0021 %>% mutate(Date = ymd(Date))
+
+# Importação dos dados do produto MO0091
+MO0091 <-  tibble(read_excel("data/MO0091.xlsx"))
+MO00911 <- MO0091 %>% mutate(Date = ymd(Date))
+
+# Importação dos dados do produto MO0021
+MO1401 <-  tibble(read_excel("data/MO1401.xlsx"))
+MO14011 <- MO1401 %>% mutate(Date = ymd(Date))
+MO1401AM <- MO1401$AM
+MO1401SP <- MO1401$SP
+MO1401TO <- MO1401$TO
+
+plot <- function(dados1, estado){
+
+  ggplot(dados1)+
+    geom_line(aes(x = Date, y = estado)) +
+    geom_point(aes(x = Date, y = estado),size = 1)+
+    xlab("Data")+
+    ylab("Demanda")+
+    scale_x_date(date_breaks = "4 month", date_labels = "%m/%Y")
+
+}
+
+```
+
+## Produto MO0021
+
+Será realizada uma previsão para cada um dos centros de distribuição: São Paulo, Tocantins e Amazonas.
+
+### Centro de São Paulo
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  
+  estado <- MO0021$SP
+
+  fig1 <- "images/P1/SP001.jpg"
+  fig2 <- "images/P1/SP002.jpg"
+  fig3 <- "images/P1/SP003.jpg"
+  fig4 <- "images/P1/SP004.jpg"
+
+  jpeg(filename= fig1)
+  plot(MO00211, estado)
+  dev.off()
+  
+  jpeg(filename= fig2)
+  serie <- ts(estado, start = c(2018, 3), frequency = 12)
+  autoplot(decompose(serie))
+  dev.off()
+  
+  modelo_ES <- ets(serie)
+  modelo_ARIMA <- auto.arima(serie)
+  modelo_NNAR <- nnetar(serie)
+  
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
+}
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+  bestModel <- modelo_NNAR
+}
+
+  jpeg(filename= fig3)
+  checkresiduals(bestModel)
+  dev.off()
+  previsao0021SP <- forecast(bestModel , h = 10)
+  
+  jpeg(filename= fig4)
+  autoplot(previsao0021SP)
+  dev.off()
+```
+
+A Figura \@ref(fig:MO0021SP001) apresenta o histórico de vendas para este centro.
+
+```{r MO0021SP001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO0021 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO0021SP002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma tendência negativa (queda da demanda ao longo do tempo), com uma sazonalidade bastante clara.
+
+
+```{r MO0021SP002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO0021 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO0021SP001).
+
+```{r TABMO0021SP001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o de Suavização Exponencial. Ademais, a Figura \@ref(fig:MO0021SP003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+```{r MO0021SP003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO0021 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO0021SP002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO0021SP002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao0021SP$mean[1],2),
+                         T02 = round(previsao0021SP$mean[2],2),
+                         T03 = round(previsao0021SP$mean[3],2),
+                         T04 = round(previsao0021SP$mean[4],2),
+                         T05 = round(previsao0021SP$mean[5],2),
+                         T06 = round(previsao0021SP$mean[6],2),
+                         T07 = round(previsao0021SP$mean[7],2),
+                         T08 = round(previsao0021SP$mean[8],2),
+                         T09 = round(previsao0021SP$mean[9],2),
+                         T10 = round(previsao0021SP$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO0021 para São Paulo")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO0021SP004).
+
+```{r MO0021SP004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO0021 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+### Centro de Tocantins
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  
+  estado <- MO0021$TO
+  
+  rm(bestModel,modelo_ES,modelo_ARIMA,modelo_NNAR)
+  fig1 <- "images/P1/TO001.jpg"
+  fig2 <- "images/P1/TO002.jpg"
+  fig3 <- "images/P1/TO003.jpg"
+  fig4 <- "images/P1/TO004.jpg"
+  data1 <- MO00211
+
+  jpeg(filename= fig1)
+  plot(data1, estado)
+  dev.off()
+  
+  jpeg(filename= fig2)
+  serie <- ts(estado, start = c(2018, 3), frequency = 12)
+  autoplot(decompose(serie))
+  dev.off()
+  
+  modelo_ES <- ets(serie)
+  modelo_ARIMA <- auto.arima(serie)
+  modelo_NNAR <- nnetar(serie)
+  
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
+}
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+  bestModel <- modelo_NNAR
+}
+
+  jpeg(filename= fig3)
+  checkresiduals(bestModel)
+  dev.off()
+  previsao0021TO <- forecast(bestModel , h = 10)
+  
+  jpeg(filename= fig4)
+  autoplot(previsao0021TO)
+  dev.off()
+```
+
+A Figura \@ref(fig:MO0021TO001) apresenta o histórico de vendas para este centro.
+
+```{r MO0021TO001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO0021 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO0021TO002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma tendência negativa (diminuição da demanda ao longo do tempo) com uma sazonalidade bastante clara.
+
+
+```{r MO0021TO002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO0021 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO0021TO001).
+
+```{r TABMO0021TO001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o de Redes Neurais Artificiais. Ademais, a Figura \@ref(fig:MO0021SP003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+```{r MO0021TO003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO0021 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO0021TO002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO0021TO002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao0021TO$mean[1],2),
+                         T02 = round(previsao0021TO$mean[2],2),
+                         T03 = round(previsao0021TO$mean[3],2),
+                         T04 = round(previsao0021TO$mean[4],2),
+                         T05 = round(previsao0021TO$mean[5],2),
+                         T06 = round(previsao0021TO$mean[6],2),
+                         T07 = round(previsao0021TO$mean[7],2),
+                         T08 = round(previsao0021TO$mean[8],2),
+                         T09 = round(previsao0021TO$mean[9],2),
+                         T10 = round(previsao0021TO$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO0021 para Tocantins")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO0021TO004).
+
+```{r MO0021TO004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO0021 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+### Centro do Amazonas
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  
+  estado <- MO0021$AM
+  fig1 <- "images/P1/AM001.jpg"
+  fig2 <- "images/P1/AM002.jpg"
+  fig3 <- "images/P1/AM003.jpg"
+  fig4 <- "images/P1/AM004.jpg"
+  data1 <- MO00211
+  serie <- ts(estado, start = c(2018, 3), frequency = 12)
+
+  jpeg(filename= fig1)
+  plot(data1, estado)
+  dev.off()
+  
+  jpeg(filename= fig2)
+  autoplot(decompose(serie))
+  dev.off()
+  
+  modelo_ES <- ets(serie)
+  modelo_ARIMA <- auto.arima(serie)
+  modelo_NNAR <- nnetar(serie)
+  
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
+}
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+  bestModel <- modelo_NNAR
+}
+
+  jpeg(filename= fig3)
+  checkresiduals(bestModel)
+  dev.off()
+  previsao0021AM <- forecast(bestModel , h = 10)
+  
+  jpeg(filename= fig4)
+  autoplot(previsao0021AM)
+  dev.off()
+```
+
+A Figura \@ref(fig:MO0021AM001) apresenta o histórico de vendas para este centro.
+
+```{r MO0021AM001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO0021 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO0021AM002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma tendência positiva (aumento da demanda ao longo do tempo) com uma sazonalidade bastante clara.
+
+
+```{r MO0021AM002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO0021 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO0021AM001).
+
+```{r TABMO0021AM001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o ARIMA. Ademais, a Figura \@ref(fig:MO0021AM003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+```{r MO0021AM003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO0021 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO0021AM002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO0021AM002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao0021AM$mean[1],2),
+                         T02 = round(previsao0021AM$mean[2],2),
+                         T03 = round(previsao0021AM$mean[3],2),
+                         T04 = round(previsao0021AM$mean[4],2),
+                         T05 = round(previsao0021AM$mean[5],2),
+                         T06 = round(previsao0021AM$mean[6],2),
+                         T07 = round(previsao0021AM$mean[7],2),
+                         T08 = round(previsao0021AM$mean[8],2),
+                         T09 = round(previsao0021AM$mean[9],2),
+                         T10 = round(previsao0021AM$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO0021 para Amazonas")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO0021AM004).
+
+```{r MO0021AM004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO0021 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+
+## Produto MO0091
+
+Será realizada uma previsão para cada um dos centros de distribuição: São Paulo, Tocantins e Amazonas.
+
+### Centro de São Paulo
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  
+estado <- MO0091$SP
+serie <- ts(estado, start = c(2018, 3), frequency = 12)
+
+modelo_ES <- ets(serie)
+modelo_ARIMA <- auto.arima(serie)
+modelo_NNAR <- nnetar(serie)
+  
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
+}
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+bestModel <- modelo_NNAR
+}
+
+previsao0091SP <- forecast(bestModel , h = 10)
+
+#Plotagens
+  
+fig1 <- "images/P2/SP001.jpg"
+fig2 <- "images/P2/SP002.jpg"
+fig3 <- "images/P2/SP003.jpg"
+fig4 <- "images/P2/SP004.jpg"
+  
+jpeg(filename= fig1)
+plot(MO00911, estado)
+dev.off()
+  
+jpeg(filename= fig2)
+autoplot(decompose(serie))
+dev.off()
+
+jpeg(filename= fig3)
+checkresiduals(bestModel)
+dev.off()
+
+jpeg(filename= fig4)
+autoplot(previsao0091SP)
+dev.off()
+```
+
+A Figura \@ref(fig:MO0091SP001) apresenta o histórico de vendas para este centro.
+
+```{r MO0091SP001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO0091 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO0091SP002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma tendência positiva (aumento da demanda ao longo do tempo) com uma sazonalidade bastante clara.
+
+
+```{r MO0091SP002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO0091 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO0091SP001).
+
+```{r TABMO0091SP001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o de Redes Neurais Artificiais. Ademais, a Figura \@ref(fig:MO0091SP003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+```{r MO0091SP003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO0091 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO0091SP002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO0091SP002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao0091SP$mean[1],2),
+                         T02 = round(previsao0091SP$mean[2],2),
+                         T03 = round(previsao0091SP$mean[3],2),
+                         T04 = round(previsao0091SP$mean[4],2),
+                         T05 = round(previsao0091SP$mean[5],2),
+                         T06 = round(previsao0091SP$mean[6],2),
+                         T07 = round(previsao0091SP$mean[7],2),
+                         T08 = round(previsao0091SP$mean[8],2),
+                         T09 = round(previsao0091SP$mean[9],2),
+                         T10 = round(previsao0091SP$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO0091 para São Paulo")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO0091SP004).
+
+```{r MO0091SP004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO0091 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+### Centro de Tocantins
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  rm(bestModel,modelo_ES,modelo_ARIMA,modelo_NNAR)
+  estado <- MO0091$TO
+  serie <- ts(estado, start = c(2018, 3), frequency = 12)
+ 
+  modelo_ES <- ets(serie)
+  modelo_ARIMA <- auto.arima(serie)
+  modelo_NNAR <- nnetar(serie)
+  
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
+}
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+  bestModel <- modelo_NNAR
+}
+previsao0091TO <- forecast(bestModel , h = 10)
+ 
+  #Plotagens
+  
+  fig1 <- "images/P2/TO001.jpg"
+  fig2 <- "images/P2/TO002.jpg"
+  fig3 <- "images/P2/TO003.jpg"
+  fig4 <- "images/P2/TO004.jpg"
+
+  jpeg(filename= fig1)
+  plot(MO00911, estado)
+  dev.off()
+  
+  jpeg(filename= fig2)
+  autoplot(decompose(serie))
+  dev.off()
+  
+  jpeg(filename= fig3)
+  checkresiduals(bestModel)
+  dev.off()
+  
+  
+  jpeg(filename= fig4)
+  autoplot(previsao0091TO)
+  dev.off()
+```
+
+A Figura \@ref(fig:MO0091TO001) apresenta o histórico de vendas para este centro.
+
+```{r MO0091TO001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO0091 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO0091TO002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma leve tendência positiva (aumento da demanda ao longo do tempo), sendo predominantemente linear, com uma sazonalidade bastante clara.
+
+```{r MO0091TO002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO0091 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO0091TO001).
+
+```{r TABMO0091TO001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o de Suavização Exponencial. Ademais, a Figura \@ref(fig:MO0091SP003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+
+```{r MO0091TO003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO0091 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO0091TO002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO0091TO002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao0091TO$mean[1],2),
+                         T02 = round(previsao0091TO$mean[2],2),
+                         T03 = round(previsao0091TO$mean[3],2),
+                         T04 = round(previsao0091TO$mean[4],2),
+                         T05 = round(previsao0091TO$mean[5],2),
+                         T06 = round(previsao0091TO$mean[6],2),
+                         T07 = round(previsao0091TO$mean[7],2),
+                         T08 = round(previsao0091TO$mean[8],2),
+                         T09 = round(previsao0091TO$mean[9],2),
+                         T10 = round(previsao0091TO$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO0091 para Tocantins")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO0091TO004).
+
+```{r MO0091TO004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO0091 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+### Centro do Amazonas
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  
+  estado <- MO0091$AM
+  serie <- ts(estado, start = c(2018, 3), frequency = 12)
+  
+  modelo_ES <- ets(serie)
+  modelo_ARIMA <- auto.arima(serie)
+  modelo_NNAR <- nnetar(serie)
+  
+  if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+    bestModel <- modelo_ES
+  }
+  if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+    bestModel <- modelo_ARIMA
+  }
+  if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+    bestModel <- modelo_NNAR
+  }
+
+  previsao0091AM <- forecast(bestModel , h = 10)
+  
+  # Plotagens
+  
+  fig1 <- "images/P2/AM001.jpg"
+  fig2 <- "images/P2/AM002.jpg"
+  fig3 <- "images/P2/AM003.jpg"
+  fig4 <- "images/P2/AM004.jpg"
+
+  jpeg(filename= fig1)
+  plot(MO00911, estado)
+  dev.off()
+  
+  jpeg(filename= fig2)
+  autoplot(decompose(serie))
+  dev.off()
+  
+  jpeg(filename= fig3)
+  checkresiduals(bestModel)
+  dev.off()
+  
+  
+  jpeg(filename= fig4)
+  autoplot(previsao0091AM)
+  dev.off()
+```
+
+A Figura \@ref(fig:MO0091AM001) apresenta o histórico de vendas para este centro.
+
+```{r MO0091AM001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO0091 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO0091AM002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma tendência positiva (aumento da demanda ao longo do tempo), com uma sazonalidade bastante clara.
+
+
+```{r MO0091AM002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO0091 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO0091AM001).
+
+```{r TABMO0091AM001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o de Redes Neurais Artificiais. Ademais, a Figura \@ref(fig:MO0091AM003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+```{r MO0091AM003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO0091 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO0091AM002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO0091AM002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao0091AM$mean[1],2),
+                         T02 = round(previsao0091AM$mean[2],2),
+                         T03 = round(previsao0091AM$mean[3],2),
+                         T04 = round(previsao0091AM$mean[4],2),
+                         T05 = round(previsao0091AM$mean[5],2),
+                         T06 = round(previsao0091AM$mean[6],2),
+                         T07 = round(previsao0091AM$mean[7],2),
+                         T08 = round(previsao0091AM$mean[8],2),
+                         T09 = round(previsao0091AM$mean[9],2),
+                         T10 = round(previsao0091AM$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO0091 para Amazonas")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO0091AM004).
+
+```{r MO0091AM004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO0091 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+
+## Produto MO1401
+
+Será realizada uma previsão para cada um dos centros de distribuição: São Paulo, Tocantins e Amazonas.
+
+### Centro de São Paulo
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  
+estado <- MO1401$SP
+serie <- ts(estado, start = c(2018, 3), frequency = 12)
+
+modelo_ES <- ets(serie)
+modelo_ARIMA <- auto.arima(serie)
+modelo_NNAR <- nnetar(serie)
+  
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
+}
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+bestModel <- modelo_NNAR
+}
+
+previsao1401SP <- forecast(bestModel , h = 10)
+
+#Plotagens
+  
+fig1 <- "images/P3/SP001.jpg"
+fig2 <- "images/P3/SP002.jpg"
+fig3 <- "images/P3/SP003.jpg"
+fig4 <- "images/P3/SP004.jpg"
+  
+jpeg(filename= fig1)
+plot(MO14011, estado)
+dev.off()
+  
+jpeg(filename= fig2)
+autoplot(decompose(serie))
+dev.off()
+
+jpeg(filename= fig3)
+checkresiduals(bestModel)
+dev.off()
+
+jpeg(filename= fig4)
+autoplot(previsao1401SP)
+dev.off()
+```
+
+A Figura \@ref(fig:MO1401SP001) apresenta o histórico de vendas para este centro.
+
+```{r MO1401SP001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO1401 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO1401SP002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma tendência negativa (queda da demanda ao longo do tempo), com uma sazonalidade bastante clara.
+
+
+```{r MO1401SP002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO1401 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO1401SP001).
+
+```{r TABMO1401SP001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o de Suavização Exponencial. Ademais, a Figura \@ref(fig:MO1401SP003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+```{r MO1401SP003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO1401 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO1401SP002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO1401SP002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao1401SP$mean[1],2),
+                         T02 = round(previsao1401SP$mean[2],2),
+                         T03 = round(previsao1401SP$mean[3],2),
+                         T04 = round(previsao1401SP$mean[4],2),
+                         T05 = round(previsao1401SP$mean[5],2),
+                         T06 = round(previsao1401SP$mean[6],2),
+                         T07 = round(previsao1401SP$mean[7],2),
+                         T08 = round(previsao1401SP$mean[8],2),
+                         T09 = round(previsao1401SP$mean[9],2),
+                         T10 = round(previsao1401SP$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO1401 para São Paulo")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO1401SP004).
+
+```{r MO1401SP004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO1401 em São Paulo', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+### Centro de Tocantins
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  rm(bestModel,modelo_ES,modelo_ARIMA,modelo_NNAR)
+  estado <- MO1401$TO
+  serie <- ts(estado, start = c(2018, 3), frequency = 12)
+ 
+  modelo_ES <- ets(serie)
+  modelo_ARIMA <- auto.arima(serie)
+  modelo_NNAR <- nnetar(serie)
+  
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
+}
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+  bestModel <- modelo_NNAR
+}
+previsao1401TO <- forecast(bestModel , h = 10)
+ 
+  #Plotagens
+  
+  fig1 <- "images/P3/TO001.jpg"
+  fig2 <- "images/P3/TO002.jpg"
+  fig3 <- "images/P3/TO003.jpg"
+  fig4 <- "images/P3/TO004.jpg"
+
+  jpeg(filename= fig1)
+  plot(MO14011, estado)
+  dev.off()
+  
+  jpeg(filename= fig2)
+  autoplot(decompose(serie))
+  dev.off()
+  
+  jpeg(filename= fig3)
+  checkresiduals(bestModel)
+  dev.off()
+  
+  
+  jpeg(filename= fig4)
+  autoplot(previsao1401TO)
+  dev.off()
+```
+
+A Figura \@ref(fig:MO1401TO001) apresenta o histórico de vendas para este centro.
+
+```{r MO1401TO001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO1401 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO1401TO002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma leve tendência positiva (queda da demanda ao longo do tempo), com uma sazonalidade bastante clara.
+
+```{r MO1401TO002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO1401 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO1401TO001).
+
+```{r TABMO1401TO001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o ARIMA. Por outro lado, a Figura \@ref(fig:MO1401SP003) apresenta a análise de resíduos que apresenta uma inconsistência no parâmetro ACF (fator de autocorrelação) mostrando um valor que apresenta autocorrelação (uma das linhas pretas extrapola os limites em azul). Como a extrapolação é pequena e nao apresenta grandes perdas ela será desconsiderada, uma vez que como esperado os resíduos variam em torno de zero sem tendência positiva ou negativa e os erros apresentam uma característica normal.
+
+
+```{r MO1401TO003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO1401 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO1401TO002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO1401TO002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao1401TO$mean[1],2),
+                         T02 = round(previsao1401TO$mean[2],2),
+                         T03 = round(previsao1401TO$mean[3],2),
+                         T04 = round(previsao1401TO$mean[4],2),
+                         T05 = round(previsao1401TO$mean[5],2),
+                         T06 = round(previsao1401TO$mean[6],2),
+                         T07 = round(previsao1401TO$mean[7],2),
+                         T08 = round(previsao1401TO$mean[8],2),
+                         T09 = round(previsao1401TO$mean[9],2),
+                         T10 = round(previsao1401TO$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO1401 para Tocantins")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO1401TO004).
+
+```{r MO1401TO004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO1401 em Tocantins', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+### Centro do Amazonas
+
+<!-- Cálculos  -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+  
+  estado <- MO1401$AM
+  serie <- ts(estado, start = c(2018, 3), frequency = 12)
+  
+  modelo_ES <- ets(serie)
+  modelo_ARIMA <- auto.arima(serie)
+  modelo_NNAR <- nnetar(serie)
+  
+  if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+    bestModel <- modelo_ES
+  }
+  if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+    bestModel <- modelo_ARIMA
+  }
+  if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+    bestModel <- modelo_NNAR
+  }
+
+  previsao1401AM <- forecast(bestModel , h = 10)
+  
+  # Plotagens
+  
+  fig1 <- "images/P3/AM001.jpg"
+  fig2 <- "images/P3/AM002.jpg"
+  fig3 <- "images/P3/AM003.jpg"
+  fig4 <- "images/P3/AM004.jpg"
+
+  jpeg(filename= fig1)
+  plot(MO14011, estado)
+  dev.off()
+  
+  jpeg(filename= fig2)
+  autoplot(decompose(serie))
+  dev.off()
+  
+  jpeg(filename= fig3)
+  checkresiduals(bestModel)
+  dev.off()
+  
+  
+  jpeg(filename= fig4)
+  autoplot(previsao1401AM)
+  dev.off()
+```
+
+A Figura \@ref(fig:MO1401AM001) apresenta o histórico de vendas para este centro.
+
+```{r MO1401AM001, echo=FALSE, fig.align='center', fig.cap='Histório do produto MO1401 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig1, dpi = NA)
+```
+
+A Figura \@ref(fig:MO1401AM002) apresenta a série de forma decomposta em tendência, sazonalidade e restante. Percebe-se pela figura que há uma leve tendência aparentemente linear (nem queda nem aumento na demanda), com uma sazonalidade bastante clara. De fato a tendência se apresenta linear nos últimos meses, mas se recupera de uma tendência de queda no ano de 2019.
+
+
+```{r MO1401AM002, echo=FALSE, fig.align='center', fig.cap='Série decomposta do produto MO1401 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig2, dpi = NA)
+```
+
+A aplicação dos métodos Suavização Exponencial (SE), ARIMA e Redes Neurais Autoregresivas (RNA) retornou os MAPE’s apresentados na Tabela \@ref(tab:TABMO1401AM001).
+
+```{r TABMO1401AM001, echo=FALSE}
+
+resultados <- data.frame(T1 = "MAPE",
+                         T2 = round(accuracy(modelo_ES)[,"MAPE"],2),
+                         T3 = round(accuracy(modelo_ARIMA)[,"MAPE"],2),
+                         T4 = round(accuracy(modelo_NNAR)[,"MAPE"],2))
+colnames(resultados) <- c("Método", "SE", "ARIMA", "RNA")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Comparação entre os modelos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Portanto, por ter o menor MAPE, o método utilizado para a previsão é o de Redes Neurais Artificiais. Ademais, a Figura \@ref(fig:MO1401AM003) apresenta a análise de resíduos. Como esperado, os resíduos variam em torno de zero sem tendência positiva ou negativa, o parâmetro ACF (fator de autocorrelação) mostra resultados positivos uma vez que os resíduos não apresentam autocorrelação (as linhas pretas não extrapolam os limites em azul) e os erros apresentam uma característica normal.
+
+
+```{r MO1401AM003, echo=FALSE, fig.align='center', fig.cap='Resíduos da previsão para o produto MO1401 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig3, dpi = NA)
+```
+
+A Tabela \@ref(tab:TABMO1401AM002) apresenta os valores previstos para o ano de 2021.
+
+
+
+```{r TABMO1401AM002, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame(T01 = round(previsao1401AM$mean[1],2),
+                         T02 = round(previsao1401AM$mean[2],2),
+                         T03 = round(previsao1401AM$mean[3],2),
+                         T04 = round(previsao1401AM$mean[4],2),
+                         T05 = round(previsao1401AM$mean[5],2),
+                         T06 = round(previsao1401AM$mean[6],2),
+                         T07 = round(previsao1401AM$mean[7],2),
+                         T08 = round(previsao1401AM$mean[8],2),
+                         T09 = round(previsao1401AM$mean[9],2),
+                         T10 = round(previsao1401AM$mean[10],2))
+colnames(resultados) <- c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda do produto MO1401 para Amazonas")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico da previsão está apresentado na Figura \@ref(fig:MO1401AM004).
+
+```{r MO1401AM004, echo=FALSE, fig.align='center', fig.cap='Previsão para o produto MO1401 no Amazonas', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics(fig4, dpi = NA)
+```
+
+
+
+
+## Resultado Final
+
+A Tabela \@ref(tab:DEMANDASFINAIS0021) presenta um resumo das demandas finais para o produto MO0021.
+
+```{r DEMANDASFINAIS0021, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame( T0 = c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21"),
+                          T1 = c(round(previsao0021SP$mean[1],2), round(previsao0021SP$mean[2],2), round(previsao0021SP$mean[3],2), round(previsao0021SP$mean[4],2), round(previsao0021SP$mean[5],2), round(previsao0021SP$mean[6],2), round(previsao0021SP$mean[7],2), round(previsao0021SP$mean[8],2), round(previsao0021SP$mean[9],2), round(previsao0021SP$mean[10],2)),
+                          T2 = c(round(previsao0021TO$mean[1],2), round(previsao0021TO$mean[2],2), round(previsao0021TO$mean[3],2), round(previsao0021TO$mean[4],2), round(previsao0021TO$mean[5],2), round(previsao0021TO$mean[6],2), round(previsao0021TO$mean[7],2), round(previsao0021TO$mean[8],2), round(previsao0021TO$mean[9],2), round(previsao0021TO$mean[10],2)),
+                          T3 = c(round(previsao0021AM$mean[1],2), round(previsao0021AM$mean[2],2), round(previsao0021AM$mean[3],2), round(previsao0021AM$mean[4],2), round(previsao0021AM$mean[5],2), round(previsao0021AM$mean[6],2), round(previsao0021AM$mean[7],2), round(previsao0021AM$mean[8],2), round(previsao0021AM$mean[9],2), round(previsao0021AM$mean[10],2)))
+colnames(resultados) <- c("Data","São Paulo", "Tocantins", "Amazonas")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda final para o produto MO0021")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+A Tabela \@ref(tab:DEMANDASFINAIS0021) presenta um resumo das demandas finais para o produto MO0091.
+
+```{r DEMANDASFINAIS0091, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame( T0 = c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21"),
+                          T4 = c(round(previsao0091SP$mean[1],2), round(previsao0091SP$mean[2],2), round(previsao0091SP$mean[3],2), round(previsao0091SP$mean[4],2), round(previsao0091SP$mean[5],2), round(previsao0091SP$mean[6],2), round(previsao0091SP$mean[7],2), round(previsao0091SP$mean[8],2), round(previsao0091SP$mean[9],2), round(previsao0091SP$mean[10],2)),
+                          T5 = c(round(previsao0091TO$mean[1],2), round(previsao0091TO$mean[2],2), round(previsao0091TO$mean[3],2), round(previsao0091TO$mean[4],2), round(previsao0091TO$mean[5],2), round(previsao0091TO$mean[6],2), round(previsao0091TO$mean[7],2), round(previsao0091TO$mean[8],2), round(previsao0091TO$mean[9],2), round(previsao0091TO$mean[10],2)),
+                          T6 = c(round(previsao0091AM$mean[1],2), round(previsao0091AM$mean[2],2), round(previsao0091AM$mean[3],2), round(previsao0091AM$mean[4],2), round(previsao0091AM$mean[5],2), round(previsao0091AM$mean[6],2), round(previsao0091AM$mean[7],2), round(previsao0091AM$mean[8],2), round(previsao0091AM$mean[9],2), round(previsao0091AM$mean[10],2)))
+colnames(resultados) <- c("Data","São Paulo", "Tocantins", "Amazonas")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda final para o produto MO0091")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Por fim, a Tabela \@ref(tab:DEMANDASFINAIS1401) presenta um resumo das demandas finais para o produto MO1401.
+
+```{r DEMANDASFINAIS1401, echo=FALSE, tab.align='center'}
+
+resultados <- data.frame( T0 = c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21"),
+                          T7 = c(round(previsao1401SP$mean[1],2), round(previsao1401SP$mean[2],2), round(previsao1401SP$mean[3],2), round(previsao1401SP$mean[4],2), round(previsao1401SP$mean[5],2), round(previsao1401SP$mean[6],2), round(previsao1401SP$mean[7],2), round(previsao1401SP$mean[8],2), round(previsao1401SP$mean[9],2), round(previsao1401SP$mean[10],2)),
+                          T8 = c(round(previsao1401TO$mean[1],2), round(previsao1401TO$mean[2],2), round(previsao1401TO$mean[3],2), round(previsao1401TO$mean[4],2), round(previsao1401TO$mean[5],2), round(previsao1401TO$mean[6],2), round(previsao1401TO$mean[7],2), round(previsao1401TO$mean[8],2), round(previsao1401TO$mean[9],2), round(previsao1401TO$mean[10],2)),
+                          T9 = c(round(previsao1401AM$mean[1],2), round(previsao1401AM$mean[2],2), round(previsao1401AM$mean[3],2), round(previsao1401AM$mean[4],2), round(previsao1401AM$mean[5],2), round(previsao1401AM$mean[6],2), round(previsao1401AM$mean[7],2), round(previsao1401AM$mean[8],2), round(previsao1401AM$mean[9],2), round(previsao1401AM$mean[10],2)))
+colnames(resultados) <- c("Data","São Paulo", "Tocantins", "Amazonas")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda final para o produto MO1401")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```

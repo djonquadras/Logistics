@@ -1,0 +1,21 @@
+# Centro de Distribuição
+
+Nessa seção será definida a localização do Centro de Distribuição.
+
+## Modelagem Matemática
+
+A função objetivo para a definição do centro de distribuição será de minimizar os custos totais.
+
+\begin{equation} \label{eq:001}
+\min Z = c_{tr} + c_{es} + c_{lo}
+\end{equation}
+
+Sujeito a:
+
+\begin{equation} \label{eq:002}
+c_{tr} = \sum\limits_{i=1}^{N-1}{\sum\limits_{j=2}^{N}{ct_{i,j}}}
+\end{equation}
+
+
+
+Onde \@ref(eq:001) corresponde à função objetivo que visa minimizar o custo total $Z$, sendo esse a soma do Custo de Transporte ($c_{tr}$), Custo de Estocagem ($c_{es}$) e Custo de Localização ($c_{lo}$)

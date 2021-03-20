@@ -1,35 +1,69 @@
-# Libraries
-#source('library.R')
+source("library.R")
 
-# Importing datasets
+# Importação de Dados
 
-# MO0021 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO0021.xlsx"))
-# MO0091 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO0091.xlsx"))
-# MO1401 <- tibble(read_excel("D:/GoogleDrive/Academico/UFSC/11-Semestre(2020-2)/Logistica/Trabalho/Logistics/data/MO1401.xlsx"))
+dados <-  tibble(read_excel("data/MO0021.xlsx"))
+dados1 <- dados %>% mutate(Date = ymd(Date))
 
-# Adjusts date
+# Seleciona o Estado
 
-#MO0021 <- MO0021 %>% mutate(Date = ymd(Date))
-#MO0091 <- MO0091 %>% mutate(Date = ymd(Date))
-#MO0091 <- MO0091 %>% mutate(Date = ymd(Date))
-
-# Printing
+estado <- dados$SP
 
 
-graficoDemanda <- function(tabela){
-  tabela <- tabela %>% mutate(Date = ymd(Date))
-  p <- ggplot(tabela)+
-    geom_line(aes(x = Date, y = TO), color = "red") +
-    geom_line(aes(x = Date, y = SP), color = "blue") +
-    geom_line(aes(x = Date, y = AM), color = "green") +
-    geom_point(aes(x = Date, y = TO),size = 1, color = "red")+
-    geom_point(aes(x = Date, y = SP),size = 1, color = "blue")+
-    geom_point(aes(x = Date, y = AM),size = 1, color = "green")+
-    xlab("Data")+
-    ylab("Demanda")+
-    scale_x_date(date_breaks = "3 month", date_labels = "%m/%Y")
-  p
+# Cria série temporal
+serie <- ts(estado, start = c(2018, 3), frequency = 12)
+
+autoplot(decompose(serie))
+
+# --- Exponential smoothing
+modelo_ES <- ets(serie)
+
+# --- ARIMA
+modelo_ARIMA <- auto.arima(serie)
+
+# --- Neural network autoregression
+modelo_NNAR <- nnetar(serie)
+
+valor <-  c(accuracy(modelo_ES)[,"MAPE"],accuracy(modelo_ARIMA)[,"MAPE"],accuracy(modelo_NNAR)[,"MAPE"])
+valor
+
+# ---- Validação
+
+checkresiduals(modelo_NNAR)
+
+# ---- Previsão
+
+previsao <- forecast(modelo_NNAR , h = 10)
+previsao$mean[1]
+autoplot(previsao)
+
+
+
+
+MO0021 <-  tibble(read_excel("data/MO0021.xlsx"))
+MO00211 <- MO0021 %>% mutate(Date = ymd(Date))
+MO0021AM <- MO0021$AM
+MO0021SP <- MO0021$SP
+MO0021TO <- MO0021$TO
+
+estado <- MO0021AM
+
+serie <- ts(estado, start = c(2018, 3), frequency = 12)
+
+modelo_ES <- ets(serie)
+modelo_ARIMA <- auto.arima(serie)
+modelo_NNAR <- nnetar(serie)
+
+if (accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"] & accuracy(modelo_ES)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ES
 }
-
-#graficoDemanda(MO0021)
+if (accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_ARIMA)[,"MAPE"] < accuracy(modelo_NNAR)[,"MAPE"]){
+  bestModel <- modelo_ARIMA
+}
+if (accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ES)[,"MAPE"] & accuracy(modelo_NNAR)[,"MAPE"] < accuracy(modelo_ARIMA)[,"MAPE"]){
+  bestModel <- modelo_NNAR
+}
+bestModel
+previsao <- forecast(bestModel , h = 10)
+previsao
 

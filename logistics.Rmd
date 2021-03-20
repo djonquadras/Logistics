@@ -31,6 +31,7 @@ header-includes:
   - \usepackage{fancyhdr}
   - \usepackage{lastpage}
   - \usepackage[portuguese]{babel}
+  - \floatplacement{figure}{H}
 
 fontsize: 12pt
 ident: true
@@ -104,8 +105,19 @@ toc: false
 
 \newpage
 \pagestyle{plain}
-```{r echo=FALSE, child="Desenvolvimento.Rmd"}
+```{r echo=FALSE, child="forecasting.Rmd"}
 ```
+
+\clearpage
+
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="distributionCenter.Rmd"}
+```
+
+\clearpage
+
 
 \newpage
 \pagestyle{plain}

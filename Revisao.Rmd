@@ -1,3 +1,66 @@
 # Revisão da Literatura
 
-Working on it :)
+
+## Previsão de Demanda
+
+Dentro desta temática apresentaremos os métodos abordados para a realização do estudo de previsão de demanda para as 9 diferentes combinações existentes (Produtos x Localização). O estudo leva em consideração 3 métodos matemáticos diferentes para o modelo predictivo de demanda. São eles: Suavização Exponencial (SE), Arima e Redes Neurais Auto Regressivas (RNA).
+
+### Suavização Exponencial (SE)
+
+A suavização exponencial (SE) baseia os seus resultados de acordo com os acontecimentos passados, mas diferentemente de uma média móvel que considera os eventos passados isobáricos dentro do modelo preditivo, a SE não segue o mesmo efeito. A suavização passa a considerar que os eventos mais recentes e próximos têm maior peso dentro do modelo preditivo quando comparados com eventos mais distantes da série temporal, os quais decaem de forma exponencial da mais recente à mais distante observação (William J, 2011).
+
+O método é um dos mais utilizados dentro da indústria para a predição de produtos e as suas respectivas demandas e a razão para tal é o baixo custo e simplicidade (Teixeira, 2004). Quando utilizamos este método, devemos ter ciência que o mesmo tem melhores resultados, ou seja, possui melhor ajustamento para séries que não possuem tendência ou sazonalidade. 
+
+O modelo foi proposto primeiramente por Robert Goodell Brown e a expressão que suporta a suavização exponencial é dada por:
+
+
+$$
+\widehat{P}_{t+1} = \alpha\widehat{P}_t + (1-\alpha)\widehat{P}_t
+$$
+
+O ponto $\widehat{P}_{t+1}$ é a próxima observação da demanda,  é a constante que varia referente à suavização e seu valor está contido entre 0 e 1 e $\widehat{P}_t$ representa a mais recente observação da série. A Combinação dos valores dos referentes pesos de  com os valores observados atuais $\widehat{P}_t$ geram as previsões para as próximas observações. Note que o valor de $\alpha$ como constante é arbitrário e sua determinação pode ser realizada por diferentes métodos que minimizem os erros causados pela mesma (Métodos Estatísticos de Suavização Exponencial, 2012).
+
+### Modelos Autoregressivos Integrados e de Médias Móveis (ARIMA)
+
+Esta metodologia consiste em ajustar modelos autorregressivos integrados de médias móveis, ARIMA(p,d,q), a um conjunto de dados. Para a construção do modelo seguimos um algorítimo no qual a escolha da estrutura do modelo é baseado nos próprios dados. Podemos descrever o algorítimo através dos seguintes passos:
+
+1. Considerar uma classe geral de modelos para a análise;
+2. Identificar um modelo com base na análise de autocorrelações, autocorrelações parciais e outros critérios;
+3. Estimar os parâmetros do modelo identificado;
+Verificar se o modelo ajustado é adequado aos dados através de uma análise de resíduos.
+4. Caso o modelo não seja adequado o algoritmo é repetido, voltando à fase de identificação.
+5. Existem vários critérios para identificação de um modelo, por isso, é possível identificar modelos diferentes dependendo do critério que foi escolhido para identificação.
+
+#### Modelos Autorregressivos (AR)
+
+Dizemos que o modelo $X_t$, $t$ pertencente a $\mathbb{Z}$ é um modelo autoregressivo de ordem $p$ e escrevemos $X_t \cong AR(p)$ se pudermos escrever da forma:
+
+$$
+X_t = \phi_0 + \phi_1X_t-1 +\dots+ \phi_pX_t-p + \epsilon_t
+$$
+Onde  $\phi_0$,  $\phi_1$ e  $\phi_t$ são parâmetros reais, e $\epsilon_t$ são variáveis independentes aleatórias com $E(\epsilon_t) = 0$ e $VAR(\epsilon_t) = \sigma^2$.
+
+#### Modelos de médias móveis (MA).
+
+Consiste em um modelo de médias móveis de ordem p e q, representado por: 
+
+$$
+X_t = \phi_1X_t-1 + \dots + \phi_pX_t-p + \alpha_t - \theta_1\alpha_t-1 -\dots-\theta_q\alpha_t-q 
+$$
+
+Um processo de $MA(p,q)$ tem função de autocovariância infinita, decaindo de acordo com exponenciais ou senóides amortecidas após o lag $p-q$.   
+
+### Redes Neurais Artificiais (RNA)  
+
+Funcionam analogamente ao cérebro e neurônios, tentando entender padrões e regularidades.Uma de suas vantagens é a aproximação de séries temporais não lineares (Kashei ; Bijari 2010; Zhang 2003).
+
+Modelo descrito por três camadas, entrada, saída e escondida. Os neurônios nestas camadas só se conectam com as camadas subsequentes. A camada escondida necessita ser definida, se for muito grande estará memorizando os padrões assim perdendo capacidade de generalização, se muito pequena necessita de muitas interações, por consequência força computacional para chegar a precisão desejada. (FERNADES, L. G.; PORTUGAL, M. S.; NAVAUX, P. O).
+
+Para o sucesso da previsão é necessário dividir as amostras em pares de treinamento e teste e assim avaliar a camada oculta. 
+
+
+
+
+## Algoritmo Genético (GA)
+
+Revisão acerca de algoritmo genético.
