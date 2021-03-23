@@ -1033,7 +1033,6 @@ kableExtra::kable_styling(k, latex_options = "hold_position")
 A Tabela \@ref(tab:DEMANDASFINAIS0021) presenta um resumo das demandas finais para o produto MO0091.
 
 ```{r DEMANDASFINAIS0091, echo=FALSE, tab.align='center'}
-
 resultados <- data.frame( T0 = c("03/21", "04/21", "05/21", "06/21", "07/21", "08/21", "09/21", "10/21", "11/21", "12/21"),
                           T4 = c(round(previsao0091SP$mean[1],2), round(previsao0091SP$mean[2],2), round(previsao0091SP$mean[3],2), round(previsao0091SP$mean[4],2), round(previsao0091SP$mean[5],2), round(previsao0091SP$mean[6],2), round(previsao0091SP$mean[7],2), round(previsao0091SP$mean[8],2), round(previsao0091SP$mean[9],2), round(previsao0091SP$mean[10],2)),
                           T5 = c(round(previsao0091TO$mean[1],2), round(previsao0091TO$mean[2],2), round(previsao0091TO$mean[3],2), round(previsao0091TO$mean[4],2), round(previsao0091TO$mean[5],2), round(previsao0091TO$mean[6],2), round(previsao0091TO$mean[7],2), round(previsao0091TO$mean[8],2), round(previsao0091TO$mean[9],2), round(previsao0091TO$mean[10],2)),
@@ -1054,4 +1053,26 @@ resultados <- data.frame( T0 = c("03/21", "04/21", "05/21", "06/21", "07/21", "0
 colnames(resultados) <- c("Data","São Paulo", "Tocantins", "Amazonas")
 k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Previsão de demanda final para o produto MO1401")
 kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+
+
+<!-- Salva tudo pra um excel -->
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+
+library("xlsx")
+
+file.remove("forecasting.xlsx")
+toExport <- data.frame(T1 = c(previsao0021SP$mean[1], previsao0021SP$mean[2], previsao0021SP$mean[3], previsao0021SP$mean[4], previsao0021SP$mean[5], previsao0021SP$mean[6], previsao0021SP$mean[7], previsao0021SP$mean[8], previsao0021SP$mean[9], previsao0021SP$mean[10]),
+                          T2 = c(previsao0021TO$mean[1], previsao0021TO$mean[2], previsao0021TO$mean[3], previsao0021TO$mean[4], previsao0021TO$mean[5], previsao0021TO$mean[6], previsao0021TO$mean[7], previsao0021TO$mean[8], previsao0021TO$mean[9], previsao0021TO$mean[10]),
+                          T3 = c(previsao0021AM$mean[1], previsao0021AM$mean[2], previsao0021AM$mean[3], previsao0021AM$mean[4], previsao0021AM$mean[5], previsao0021AM$mean[6], previsao0021AM$mean[7], previsao0021AM$mean[8], previsao0021AM$mean[9], previsao0021AM$mean[10]),
+                         T4 = c(previsao0091SP$mean[1], previsao0091SP$mean[2], previsao0091SP$mean[3], previsao0091SP$mean[4], previsao0091SP$mean[5], previsao0091SP$mean[6], previsao0091SP$mean[7], previsao0091SP$mean[8], previsao0091SP$mean[9], previsao0091SP$mean[10]),
+                          T5 = c(previsao0091TO$mean[1], previsao0091TO$mean[2], previsao0091TO$mean[3], previsao0091TO$mean[4], previsao0091TO$mean[5], previsao0091TO$mean[6], previsao0091TO$mean[7], previsao0091TO$mean[8], previsao0091TO$mean[9], previsao0091TO$mean[10]),
+                          T6 = c(previsao0091AM$mean[1], previsao0091AM$mean[2], previsao0091AM$mean[3], previsao0091AM$mean[4], previsao0091AM$mean[5], previsao0091AM$mean[6], previsao0091AM$mean[7], previsao0091AM$mean[8], previsao0091AM$mean[9], previsao0091AM$mean[10]),
+                         T7 = c(previsao1401SP$mean[1], previsao1401SP$mean[2], previsao1401SP$mean[3], previsao1401SP$mean[4], previsao1401SP$mean[5], previsao1401SP$mean[6], previsao1401SP$mean[7], previsao1401SP$mean[8], previsao1401SP$mean[9], previsao1401SP$mean[10]),
+                          T8 = c(previsao1401TO$mean[1], previsao1401TO$mean[2], previsao1401TO$mean[3], previsao1401TO$mean[4], previsao1401TO$mean[5], previsao1401TO$mean[6], previsao1401TO$mean[7], previsao1401TO$mean[8], previsao1401TO$mean[9], previsao1401TO$mean[10]),
+                          T9 = c(previsao1401AM$mean[1], previsao1401AM$mean[2], previsao1401AM$mean[3], previsao1401AM$mean[4], previsao1401AM$mean[5], previsao1401AM$mean[6], previsao1401AM$mean[7], previsao1401AM$mean[8], previsao1401AM$mean[9], previsao1401AM$mean[10]))
+colnames(toExport) <- c("previsao0021SP", "previsao0021TO", "previsao0021AM", "previsao0091SP", "previsao0091TO", "previsao0091AM", "previsao1401SP", "previsao1401TO", "previsao1401AM")
+  write.xlsx(toExport, file = "forecasting.xlsx", sheetName="FORECASTING", append=FALSE, col.names = TRUE)
 ```

@@ -5,12 +5,10 @@ params:
   departamento: "DEPARTAMENTO DE ENGENHARIA DE PRODUÇÃO E SISTEMAS"
   autor1: "Djonathan Luiz de Oliveira Quadras"
   autor2: "Marcus Giovani Frighetto"
-  autor3: "Gabriel Garcia Nandi"
   autor4: "Lucca Magri Zaghi"
   autor5: "Rodrigo Clarindo da Silveira"
   cidade: "FLORIANÓPOLIS"
   ano: "2021"
-
   preambulo: "Preambulo"
   linha_pesquisa: "Logística e Cadeia de Suprimentos"
   orientador: "Carlos Manoel Taboada Rodrigues"

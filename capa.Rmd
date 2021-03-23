@@ -34,9 +34,10 @@
 
 &nbsp;
 
+&nbsp;
+
 \centerline{`r toupper(params$autor1)`}
 \centerline{`r toupper(params$autor2)`}
-\centerline{`r toupper(params$autor3)`}
 \centerline{`r toupper(params$autor4)`}
 \centerline{`r toupper(params$autor5)`}
 &nbsp;
@@ -45,7 +46,6 @@
 
 &nbsp;
 
-&nbsp;
 
 &nbsp;
 

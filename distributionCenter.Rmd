@@ -1,21 +1,126 @@
 # Centro de Distribuição
 
-Nessa seção será definida a localização do Centro de Distribuição.
+Esta seção será com base na previsão de demanda definida na entrega 1 para os produtos  MO0021, MO0091 e MO1401 que têm como centro de distribuição final (CDF) São Paulo - SP, Palmas - TO e Manaus - AM vamos definir o local do centro de distribuição intermediário (CDI) que é obrigatório para este projeto e as estratégias de rotas de distribuição sendo as cidades disponíveis para o CD intermediário:
 
-## Modelagem Matemática
+Serão considerados os seguintes Centros de Distribuição Intermediários:
 
-A função objetivo para a definição do centro de distribuição será de minimizar os custos totais.
-
-\begin{equation} \label{eq:001}
-\min Z = c_{tr} + c_{es} + c_{lo}
-\end{equation}
-
-Sujeito a:
-
-\begin{equation} \label{eq:002}
-c_{tr} = \sum\limits_{i=1}^{N-1}{\sum\limits_{j=2}^{N}{ct_{i,j}}}
-\end{equation}
+- Belém - PA;
+- Goiânia - GO;
+- Itajaí - SC;
+- Manaus - AM;
+- Palmas - TO;
+- Santos - SP;
+- Porto Belo - SC;
+- São Paulo - SP;
+- Suape - PE.
 
 
+## Escolha do Centro de Distribuição
 
-Onde \@ref(eq:001) corresponde à função objetivo que visa minimizar o custo total $Z$, sendo esse a soma do Custo de Transporte ($c_{tr}$), Custo de Estocagem ($c_{es}$) e Custo de Localização ($c_{lo}$)
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+library(readxl)
+forecasting <- read_excel("forecasting.xlsx")
+totalSP <- sum(forecasting[,"previsao0021SP"]) + sum(forecasting[,"previsao0091SP"])+ sum(forecasting[,"previsao1401SP"])
+totalTO <- sum(forecasting[,"previsao0021TO"]) + sum(forecasting[,"previsao0091TO"])+ sum(forecasting[,"previsao1401TO"])
+totalAM <- sum(forecasting[,"previsao0021AM"]) + sum(forecasting[,"previsao0091AM"])+ sum(forecasting[,"previsao1401AM"])
+vi <-  c(totalSP, totalTO, totalAM)
+xi <-  c(-46.646, -48.328, -60.025)
+yi <-  c(-23.548, -10.167, -3.102)
+
+xcd <- (sum(vi*xi))/(sum(vi))
+ycd <- sum(vi*yi)/sum(vi)
+```
+
+A Tabela \@ref(tab:CD001) apresenta os valores utilizados para a aplicação do método de Centro de Gravidade.
+
+```{r CD001, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("São Paulo","Tocantins","Amazonas"),
+                          T7 = c(totalSP, totalTO, totalAM),
+                          T8 = xi,
+                          T9 = yi)
+colnames(resultados) <- c("Localização","Demanda", "$x_i$", "$y_i$")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Dados Utilizados para Definição do Centro de Distribuição")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Com os dados acima é possível aplicar a equação característica para o Centro de Gravidade. Dessa forma, o resultado para a Localização do Centro de Distribuição é apresentado na Tabela \@ref(tab:CD002).
+
+```{r CD002, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("$x$","$y$","Coordenada Correspondente"),
+                          T7 = c(xcd, ycd, "São Félix do Araguaia - MT, 78670-000"))
+colnames(resultados) <- c("Parâmetro","Valor")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Resultado do Centro de Gravidade")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Para comparar as distâncias entre o ponto ideal e o CD, foi utilizada a ferramenta *Google maps*  a fim de identificar quais seriam os CD's mais próximos ao local. A Tabela \@ref(tab:CD003) apresenta o resultado dessa análise.
+
+```{r CD003, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("Belém", "Goiânia", "Itajaí", "Manaus", "Palmas", "Porto Belo", "Porto de Santos", "São Paulo", "Suape"),
+                          T1 = c(1578, 771, 2270, 2997, 425, 2305, 1766, 1692, 2308),
+                          T2 = c(3, 2, 6, 9, 1, 7, 5, 4, 8))
+colnames(resultados) <- c("CD", "Distância de São Félix do Araguaia", "Ranking")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Proximidade dos Centros de Distribuição ao Centro de Gravidade")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Em seguida, foi utilizado o método do P-Centro. Foram aplicadas as distâncias existentes entre os CD's e os mercados consumidores para, entam, ser escolhido o centro de distribuição com menor P-Centro. O resultado é apresentado na Tabela \@ref(tab:CD004).
+
+```{r CD004, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("Belém", "Goiânia", "Itajaí", "Manaus", "Palmas", "Porto Belo", "Porto de Santos", "São Paulo", "Suape"),
+                          T1 = c(1224, 861, 2393, 3892, 0, 2427, 1886, 1814, 2109),
+                          T2 = c(2880, 900, 606, 3872, 1816, 640, 78, 0, 2634),
+                          T3 = c(3049, 3249, 4262, 0, 3895, 4296, 3947, 3875, 4716),
+                          T4 = c(3049, 3249, 4262, 3892, 3895, 4296, 3947, 3875, 4716),
+                          T5 = c(1, 2, 7, 4, 5, 8, 6, 3, 9))
+colnames(resultados) <- c("CD", "Palmas", "são Paulo", "Manaus", "Máximo", "Ranking")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Resultados para o Método P-Centro")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O método da P-Mediana foi aplicado considerando as distâncias em função da demanda de cada localidade dos mercados consumidores. A Tabela \@ref(tab:CD005) apresenta os resultados obtidos.
+
+```{r CD005, echo=FALSE, tab.align='center'}
+TO <- c(1224, 861, 2393, 3892, 0, 2427, 1886, 1814, 2109)*totalTO
+SP = c(2880, 900, 606, 3872, 1816, 640, 78, 0, 2634)*totalSP
+AM = c(3049, 3249, 4262, 0, 3895, 4296, 3947, 3875, 4716)*totalAM
+total <- TO + SP + AM
+resultados <- data.frame( T0 = c("Belém", "Goiânia", "Itajaí", "Manaus", "Palmas", "Porto Belo", "Porto de Santos", "São Paulo", "Suape"),
+                          T1 = TO,
+                          T2 = SP,
+                          T3 = AM,
+                          T4 = total,
+                          T5 = c(5,2,6,8,1,7,4,3,9))
+colnames(resultados) <- c("CD", "Palmas", "são Paulo", "Manaus", "Máxima demanda", "Ranking")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Resultados para o Método P-Mediana")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+A Tabela \@ref(tab:CD006) apresenta os critérios e seus respectivos pesos. Os pesos variam 1 a 5. Para esta classificação, quanto maior a pontuação, melhor em seu respectivo critério este atributo está.
+
+```{r CD006, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("C1", "C2", "C3", "C4", "C5", "C6", "C7"),
+                          T1 = c("Aluguel", "Energia/Água/Manutenção", "IPTU", "Manutenção/Depreciação Equipamentos/Operações", "salários", "Custo de Capital", "Manutenção"),
+                          T2 = c(3,3,2,2,5,2,1))
+colnames(resultados) <- c("Código", "Critérios", "Pesos")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Pesos")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+A Tabela \@ref(tab:CD007) apresenta as notas para os critérios. As notas variam de 1 a 3.
+
+```{r CD007, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("Belém", "Goiânia", "Itajaí", "Manaus", "Palmas", "Porto de Santos", "Porto Belo", "São Paulo", "Suape"),
+                          T1 = c(3,2,1,2,3,2,1,1,3),
+                          T2 = c(3,2,1,2,3,2,1,2,3),
+                          T3 = c(3,2,2,3,3,2,1,2,3),
+                          T4 = c(3,2,1,2,2,2,1,1,3),
+                          T5 = c(3,2,1,2,3,2,1,1,3),
+                          T6 = c(3,2,2,2,3,2,1,2,3),
+                          T7 = c(3,2,1,2,3,2,1,1,3))
+colnames(resultados) <- c("CD", "C1", "C2", "C3", "C4", "C5", "C6", "C7")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Notas dos critérios")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+
