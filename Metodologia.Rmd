@@ -1,5 +1,0 @@
-# Metodologia
-
-## Definição do Centro de Distribuição
-
-Para a realização da escolha do CD foram utilizados um conjunto de dados e métodos para atingirmos um ranking final que nos permitiu priorizar qual o CD mais adequado para a nossa demanda. Utilizando o método de centro de gravidade, foram coletadas as demandas dos 3 estados para os meses de 2021 obtidas como resultado da previsão de demanda.

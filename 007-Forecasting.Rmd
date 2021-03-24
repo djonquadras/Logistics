@@ -36,7 +36,7 @@ plot <- function(dados1, estado){
 
 Será realizada uma previsão para cada um dos centros de distribuição: São Paulo, Tocantins e Amazonas.
 
-### Centro de São Paulo
+### Centro de São Paulo {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -141,7 +141,7 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO0021SP004).
   knitr::include_graphics(fig4, dpi = NA)
 ```
 
-### Centro de Tocantins
+### Centro de Tocantins {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -248,7 +248,7 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO0021TO004).
   knitr::include_graphics(fig4, dpi = NA)
 ```
 
-### Centro do Amazonas
+### Centro do Amazonas {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -358,7 +358,7 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO0021AM004).
 
 Será realizada uma previsão para cada um dos centros de distribuição: São Paulo, Tocantins e Amazonas.
 
-### Centro de São Paulo
+### Centro de São Paulo {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -466,7 +466,7 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO0091SP004).
   knitr::include_graphics(fig4, dpi = NA)
 ```
 
-### Centro de Tocantins
+### Centro de Tocantins {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -574,7 +574,7 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO0091TO004).
   knitr::include_graphics(fig4, dpi = NA)
 ```
 
-### Centro do Amazonas
+### Centro do Amazonas {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -684,11 +684,11 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO0091AM004).
 ```
 
 
-## Produto MO1401
+## Produto MO1401 
 
 Será realizada uma previsão para cada um dos centros de distribuição: São Paulo, Tocantins e Amazonas.
 
-### Centro de São Paulo
+### Centro de São Paulo {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -796,7 +796,7 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO1401SP004).
   knitr::include_graphics(fig4, dpi = NA)
 ```
 
-### Centro de Tocantins
+### Centro de Tocantins {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
@@ -903,7 +903,7 @@ O gráfico da previsão está apresentado na Figura \@ref(fig:MO1401TO004).
   knitr::include_graphics(fig4, dpi = NA)
 ```
 
-### Centro do Amazonas
+### Centro do Amazonas {.unlisted .unnumbered}
 
 <!-- Cálculos  -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}

@@ -9,12 +9,10 @@ params:
   autor5: "Rodrigo Clarindo da Silveira"
   cidade: "FLORIANÓPOLIS"
   ano: "2021"
-  preambulo: "Preambulo"
-  linha_pesquisa: "Logística e Cadeia de Suprimentos"
   orientador: "Carlos Manoel Taboada Rodrigues"
   titulo: "Projeto de Canal Logístico"
-  resumo: "Resumo"
-  palavras_chave: "Logística"
+  resumo: "A logística empresarial tem se tornado um desafio cada vez maior para as empresas, principalmente depois da ascenção da Indústria 4.0. Assim, um bom planejamento e controle da logística e da cadeia de suprimentos se tornou, além de uma preocupação, uma necessidade e uma estratégia competitiva. O bom dimensionamento de estoques, rotas e transporte podem trazer benefícios significativos no âmbito empresarial. O presente trabalho tem como objetivo realizar o projeto logístico para uma empresa da indústria de cerâmicas. O projeto é dividido em: (1) previsão de demanda para os diferentes produtos; e (2) definição das rotas e modais de transporte de produtos."
+  palavras_chave: "Logística Empresarial, Cadeia de Suprimentos, Previsão de Demanda, Centro de Distribuição, Roteirização"
 number_sections: true
 header-includes:
   - \usepackage{indentfirst} # Indenta o primeiro parágrafo de cada seção.
@@ -32,6 +30,9 @@ header-includes:
   - \floatplacement{figure}{H}
 
 fontsize: 12pt
+bibliography: references.bib
+biblio-style: apalike
+link-citations: yes
 ident: true
 mainfont: Arial
 geometry: "paperheight=29.7cm,paperwidth=21cm,left=3cm,right=2cm,top=4cm,bottom=2cm"
@@ -41,7 +42,7 @@ toc: false
 
 \clearpage\thispagestyle{empty}\addtocounter{page}{-1} 
 
-```{r echo=FALSE, child="capa.Rmd"}
+```{r echo=FALSE, child="002-Capa.Rmd"}
 ```
 
 \clearpage
@@ -51,7 +52,7 @@ toc: false
 \newpage
 
 
-```{r echo=FALSE, child="resumo.Rmd"}
+```{r echo=FALSE, child="003-Resumo.Rmd"}
 ```
 
 \newpage
@@ -88,22 +89,22 @@ toc: false
 
 
 \pagestyle{plain}
-```{r echo=FALSE, child="introdução.Rmd"}
+```{r echo=FALSE, child="004-Introducao.Rmd"}
 ```
 
 \newpage
 \pagestyle{plain}
-```{r echo=FALSE, child="Revisao.Rmd"}
+```{r echo=FALSE, child="005-Revisao.Rmd"}
 ```
 
 \newpage
 \pagestyle{plain}
-```{r echo=FALSE, child="Metodologia.Rmd"}
+```{r echo=FALSE, child="006-Metodologia.Rmd"}
 ```
 
 \newpage
 \pagestyle{plain}
-```{r echo=FALSE, child="forecasting.Rmd"}
+```{r echo=FALSE, child="007-Forecasting.Rmd"}
 ```
 
 \clearpage
@@ -111,14 +112,14 @@ toc: false
 
 \newpage
 \pagestyle{plain}
-```{r echo=FALSE, child="distributionCenter.Rmd"}
+```{r echo=FALSE, child="008-DistributionCenter.Rmd"}
 ```
 
 \clearpage
 
 \newpage
 \pagestyle{plain}
-```{r echo=FALSE, child="chargeDimensionAndRouting.Rmd"}
+```{r echo=FALSE, child="009-ChargeDimensionAndRouting.Rmd"}
 ```
 
 \clearpage
@@ -126,7 +127,13 @@ toc: false
 
 \newpage
 \pagestyle{plain}
-```{r echo=FALSE, child="Conclusao.Rmd"}
+```{r echo=FALSE, child="030-Conclusao.Rmd"}
 ```
 
+\clearpage
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="031-References.Rmd"}
+```
 

@@ -1,0 +1,7 @@
+# Conclusão
+
+O presente trabalho teve como objetivo desenvolver um Projeto Logístico para a empresa Catarina Cerâmicas, defindo o melhor Centro de Distribuição, roteirização e modais de transporte por meio da definição da previsão de demanda dos diferentes produtos para diferentes mercados.
+
+Como resultado final, foi definido que o melhor Centro de Distribuição para o cenário proposto é localizado em Palmas, tendo como melhor rota de entrega a saída dos produtos de Porto Belo até Itajaí por transporte rodoviário, de Itajaí até Santos por cabotem, e, finalmente, de Santos até Palmas por meio rodoviário. O Para o transporte foi definido que será utilizado o cointainer Dry box 20 pés.
+
+A solução apresentada apresenta satisfatórios para a metodologia proposta, uma vez que visa a diminuição do custo total para a definição dos parâmetros requisitados. Entretanto, compreende-se que os resultados obtidos podem não ser resultados ótimos. Para que esse resultado fosse obtido, recomenda-se a aplicação de uma metodologia mais encorpada e robusta por meio do desenvolvimento de modelos matemáticos e a aplicação direta de Pesquisa Operacional. Por outro lado, a solução encontrada apresenta resultados adequados para o problema proposto.

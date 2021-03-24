@@ -1,0 +1,17 @@
+# Metodologia
+
+Nessa seção serão apresentadas as metodologias utilizadas para a realização deste projeto logístico. Ela é dividida em: (1) Previsão de demanda, (2) Definição do Centro de Distribuição e (3) Roteirização.
+
+## Previsão de Demanda {.unlisted .unnumbered}
+
+Para a previsão de demanda foram considerados três modelos principais: (1) Suavização Exponencial, (2) ARIMA e (3) Redes Neurais Artificiais. Cada um dos modelos foi alimentado com os históricos de vendas de cada um dos produtos para cada uma das regiões. A comparação dos modelos foi feita considerando o Erro Percentual Médio Absoluto (MAPE), sendo escolhido como modelo preditivo aquele que tivesse o menor MAPE. Ademais, também foi considerada a análise de resíduos para avaliar o quão precisa é a previsão encontrada.
+
+## Definição do Centro de Distribuição {.unlisted .unnumbered}
+
+Para a realização da escolha do CD foram utilizados um conjunto de dados e métodos para atingirmos um ranking final que nos permitiu priorizar qual o CD mais adequado para a nossa demanda. Foram considerados os critérios: (1) Centro de Gravidade, (2) P-Centro, (3) P-Mediana, (4) Custos e (5) *Lead Time*. Cada um dos critérios recebeu um peso específico, sendo escolhido o Centro de Distribuição que retornasse a melhor nota geral considerando todos os critérios e respectivos pesos estabelecidos
+
+## Roteirização {.unlisted .unnumbered}
+
+Para a definição das melhores rotas e modais, inicialmente foi definido o Dimensionamento de Carga. Para o dimensionamento de carga foram realizadas interações a fim de se otimizar o carregamento, respeitando a área da superfície plana, altura e capacidade de carga dos paletes e modais de transporte.
+
+Com as cargas dimensionadas para cada um dos modais previstos, foi calculado a quantidade de modais necessária para enviar cada um dos produtos. Após estabelecida a quantidade necessária, foi considerado um conjunto de possíveis rotas para avaliação. A avaliação foi feita com base no custo total de cada rota, considerando os diferentes modais disponívels. Como resultado, foi escolhida a rota e o modal que apresentassem o menor custo logístico para a empresa.

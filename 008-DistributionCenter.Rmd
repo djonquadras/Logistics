@@ -17,7 +17,7 @@ xcd <- (sum(vi*xi))/(sum(vi))
 ycd <- sum(vi*yi)/sum(vi)
 ```
 
-## Centro de Gravidade
+## Centro de Gravidade {.unlisted .unnumbered}
 
 A Tabela \@ref(tab:CD001) apresenta a demanda total para cada mercado consumidor e as suas localizações (latitudes e longitudes).
 
@@ -53,7 +53,7 @@ k <- kableExtra::kbl(resultados, booktabs = T, escape = FALSE, caption = "Proxim
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-## P-Centro
+## P-Centro {.unlisted .unnumbered}
 
 Para o método P-Centro foram aplicadas as distâncias existentes entre os CD's e os mercados consumidores para, então, ser escolhido o centro de distribuição com menor valor. O resultado é apresentado na Tabela \@ref(tab:CD004).
 
@@ -69,7 +69,7 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Resul
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-## P-Mediana
+## P-Mediana {.unlisted .unnumbered}
 
 O método da P-Mediana foi aplicado considerando as distâncias em função da demanda de cada localidade dos mercados consumidores. A Tabela \@ref(tab:CD005) apresenta os resultados obtidos.
 
@@ -89,9 +89,9 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Resul
 kableExtra::kable_styling(k, latex_options = "hold_position",)
 ```
 
-## Custos
+## Custos {.unlisted .unnumbered}
 
-A Tabela \@ref(tab:CD006) apresenta os critérios e seus respectivos pesos. Os pesos variam 1 a 5. Para esta classificação, quanto maior a pontuação, melhor em seu respectivo critério este atributo está.
+A Tabela \@ref(tab:CD006) apresenta os critérios e seus respectivos pesos. Os pesos variam 1 a 5. Para esta classificação, quanto maior a pontuação, melhor em seu respectivo critério este atributo está. A Tabela \@ref(tab:CD007) apresenta as notas para os critérios. As notas variam de 1 a 3.
 
 ```{r CD006, echo=FALSE, tab.align='center'}
 resultados <- data.frame( T0 = c("C1", "C2", "C3", "C4", "C5", "C6", "C7"),
@@ -102,7 +102,7 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Pesos
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-A Tabela \@ref(tab:CD007) apresenta as notas para os critérios. As notas variam de 1 a 3.
+
 
 ```{r CD007, echo=FALSE, tab.align='center'}
 resultados <- data.frame( T0 = c("Belém", "Goiânia", "Itajaí", "Manaus", "Palmas", "Porto de Santos", "Porto Belo", "São Paulo", "Suape"),
@@ -129,7 +129,7 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Ranki
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-## *Lead Time*
+## *Lead Time* {.unlisted .unnumbered}
 
 Os últimos critérios utilizados para a escolha de CD envolviam o *Lead Time*, tanto rodoviário quanto de cabotagem. Os *lead times* são importantes para interpretarmos quantos dias em média cada um dos CD's levaria para entregar em cada uma das localidades demandadas, impactando diretamente no critério de escolha. Os *Lead Times* médios para transporte rodoviário e os respectivos rankings de cada CD podem ser vistos na Tabela \@ref(tab:CD009).
 
@@ -153,7 +153,7 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Ranki
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-## Definição do Centro de Distribuição
+## Definição do Centro de Distribuição {.unlisted .unnumbered}
 
 Para a clusterização final e para que fosse possível conceder uma nota que pudesse demonstrar qual poderia ser o melhor CD, outra parametrização foi realizada. Como foram utilizadas diversas classificações (centro de gravidade, P-centro, P-mediana, Análise de Custos e Análise de Lead time) é importante conceder os devidos pesos para cada um dos métodos. Dessa forma, ao efetuar a multiplicação das notas  dos ranking (1 à 9) pelos respectivos pesos, teremos uma nota, e a somatória dessas notas possibilitará rankear novamente os CD's, mas desta vez com a classificação final. Os pesos concedidos para um dos métodos utilizados pode ser visto na Tabela \@ref(tab:CD011).
 

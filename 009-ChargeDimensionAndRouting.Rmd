@@ -137,7 +137,7 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Quant
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-### Definição da Rota e Modais
+### Definição da Rota e Modais {.unlisted .unnumbered}
 
 
 Para a roteirização e consequente escolha dos modais foram estabelecidos seguintes cenários:
@@ -203,9 +203,14 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custo
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-Com base nos resultados obtidos é possível definir qual a melhor rota e melhor modal a ser utilizado. Obtendo o menor custo, no valor total de R`r scales::dollar_format()(freteTotal3[1])` opta-se então pela rota **Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas**, utilizando o *container*  **Dry Box 20 Pés**, nos modais: rodoviário de Porto Belo até Itajái, cabotagem de Itajaí até Santos, rodoviário de Santos até Palmas.
+Com base nos resultados obtidos é possível definir qual a melhor rota e melhor modal a ser utilizado. Obtendo o menor custo, no valor total de R`r scales::dollar_format()(freteTotal3[1])` opta-se então pela rota **Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas**, utilizando o *container*  **Dry Box 20 Pés**, nos modais: rodoviário de Porto Belo até Itajái, cabotagem de Itajaí até Santos, rodoviário de Santos até Palmas. As rotas são apresentadas na Figura \@ref(fig:FIGROT001)
 
-Com a definição das retas, também é possível determinar o *Lead Time* de entrega de produtos até os mercados consumidores (Manaus, Palmas e São Paulo). Os resultados estão apresentados na tabela \@ref(TOR006).
+```{r FIGROT001, echo=FALSE, fig.align='center', fig.cap='Rotas Definidas', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE}
+  knitr::include_graphics("images/routes/mapaRotas.png", dpi = NA)
+```
+
+
+Com a definição das retas, também é possível determinar o *Lead Time* de entrega de produtos até os mercados consumidores (Manaus, Palmas e São Paulo). Os resultados estão apresentados na tabela \@ref(tab:ROT006).
 
 ```{r ROT006, echo=FALSE, tab.align='center'}
 CDF <- c("Palmas", "Manaus", "São Paulo")
@@ -216,3 +221,5 @@ colnames(resultados) <- c("Destino", "Lead Time (dias)")
 k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Lead Times")
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
+
+
