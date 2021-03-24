@@ -1,0 +1,218 @@
+# Dimensionamento de Carga e Roteirização
+
+Nessa seção serão apresentados o dimensionamento de carga e roteirização de veículos parao caso estudado.
+
+## Dimensionamento de Carga
+
+O dimensionamento foi feito com objetivo de otimizar a quantidade de produtos nos paletes por camada (bem como o número de camadas) respeitando capacidade de peso e área da superfície do mesmo. Foram utilizados paletes recicláveis de 1 metro por 1,2 metro, com altura em relação a base de 0,145 metros, peso 20 kg e capacidade de carregamento de 1200 kg. Posteriormente foi dimensionada a capacidade de cada modal de transporte sendo:
+
+- **Caminhão Toco**: Capacidade de 6 toneladas, 14 metros de comprimento, 2,6 metros de largura e 4,4 metros de altura;
+- **Caminhão Truck**: Capacidade de 14 toneladas, 14 metros de comprimento, 2,6 metros de largura e 4,4 metros de altura;
+- **Dry box 40 pés**: Capacidade de 27 toneladas, 12,032 metros de comprimento, 2,438 metros de largura e 2,591 metros de altura;
+- **Dry box 20 pés**: Capacidade de 21 toneladas, 6,058 metros de comprimento, 2,438 metros de largura e 2,591 metros de altura.
+
+
+Os resultados para os caminhões do tipo **Toco** são apresentados na Tabela \@ref(tab:CHARGE001), para os caminhões do tipo **Truck** são apresentados na Tabela \@ref(tab:CHARGE002), para Dry Box **20 pés** são apresentados na Tabela \@ref(tab:CHARGE003) e, finalmente, para Dry Box **40 pés** são apresentados na Tabela \@ref(tab:CHARGE004).
+
+```{r CHARGE001, echo=FALSE, tab.align='center'}
+library(readxl)
+resultados <- data.frame( T0 = c("Produtos por camada no palete",
+                                 "Quantidade de camadas no palete",
+                                 "Quantidade de paletes em área",
+                                 "Quantidade de paletes no segundo andar",
+                                 "Quantidade de produtos (un)",
+                                 "Peso carga (kg)",
+                                 "Altura (cm)"),
+                          T1 = c(4,8,5,0,160,5284,95.61),
+                          T2 = c(4,4,5,0,80,5084,37.93),
+                          T3 = c(4,7,5,0,140,5095.2,83.84))
+colnames(resultados) <- c("Parâmetros", "MO0021", "MO0091", "MO1401")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Dimensionamento de Carga - Toco")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+
+```{r CHARGE002, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("Produtos por camada no palete",
+                                 "Quantidade de camadas no palete",
+                                 "Quantidade de paletes em área",
+                                 "Quantidade de paletes no segundo andar",
+                                 "Quantidade de produtos (un)",
+                                 "Peso carga (kg)",
+                                 "Altura (cm)"),
+                          T1 = c(4,8,11,0,352,11624.8,95.61),
+                          T2 = c(4,4,11,0,176,11184.8,37.93),
+                          T3 = c(4,7,11,0,308,11209.44,83.84))
+colnames(resultados) <- c("Parâmetros", "MO0021", "MO0091", "MO1401")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Dimensionamento de Carga - Truck")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+
+```{r CHARGE003, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("Produtos por camada no palete",
+                                 "Quantidade de camadas no palete",
+                                 "Quantidade de paletes em área",
+                                 "Quantidade de paletes no segundo andar",
+                                 "Quantidade de produtos (un)",
+                                 "Peso carga (kg)",
+                                 "Altura (cm)"),
+                          T1 = c(4,8,12,7,608,20079.2,191.22),
+                          T2 = c(4,4,12,8,320,20336,75.86),
+                          T3 = c(4,7,12,8,560,20380.8,167.68))
+colnames(resultados) <- c("Parâmetros", "MO0021", "MO0091", "MO1401")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Dimensionamento de Carga - Dry Box 20 pés")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+
+```{r CHARGE004, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("Produtos por camada no palete",
+                                 "Quantidade de camadas no palete",
+                                 "Quantidade de paletes em área",
+                                 "Quantidade de paletes no segundo andar",
+                                 "Quantidade de produtos (un)",
+                                 "Peso carga (kg)",
+                                 "Altura (cm)"),
+                          T1 = c(4,8,24,0,768,25363.2,95.61),
+                          T2 = c(4,4,24,1,400,25420,75.86),
+                          T3 = c(4,7,24,1,700,25476,167.68))
+colnames(resultados) <- c("Parâmetros", "MO0021", "MO0091", "MO1401")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Dimensionamento de Carga - Dry Box 40 pés")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+library(tibble)
+forecasting <- read_excel("forecasting.xlsx")
+media21 <- mean(forecasting[["previsao0021SP"]] + forecasting[["previsao0021TO"]] + forecasting[["previsao0021AM"]])
+media91 <- mean(forecasting[["previsao0091SP"]] + forecasting[["previsao0091TO"]] + forecasting[["previsao0091AM"]])
+media14 <- mean(forecasting[["previsao1401SP"]] + forecasting[["previsao1401TO"]] + forecasting[["previsao1401AM"]])
+
+q21TOCO <- 160
+q21TRUCK <- 352
+q2120 <- 608
+q2140 <- 768
+q91TOCO <- 80
+q91TRUCK <- 176
+q9120 <- 320
+q9140 <- 400
+q14TOCO <- 140
+q14TRUCK <- 308
+q1420 <- 560
+q1440 <- 700
+
+mediaq21TOCO <- ceiling(media21/q21TOCO)
+mediaq21TRUCK <- ceiling(media21/q21TRUCK)
+mediaq2120 <- ceiling(media21/q2120)
+mediaq2140 <- ceiling(media21/q2140)
+
+mediaq91TOCO <- ceiling(media91/q21TOCO)
+mediaq91TRUCK <- ceiling(media91/q21TRUCK)
+mediaq9120 <- ceiling(media91/q2120)
+mediaq9140 <- ceiling(media91/q2140)
+
+mediaq14TOCO <- ceiling(media14/q21TOCO)
+mediaq14TRUCK <- ceiling(media14/q21TRUCK)
+mediaq1420 <- ceiling(media14/q2120)
+mediaq1440 <- ceiling(media14/q2140)
+
+TOTALTOCO <- mediaq21TOCO + mediaq91TOCO + mediaq14TOCO
+TOTALTRUCK <- mediaq21TRUCK + mediaq91TRUCK + mediaq14TRUCK
+TOTAL20 <-  mediaq2120 + mediaq9120 + mediaq1420
+TOTAL40 <- mediaq2140 + mediaq9140 +mediaq1440
+```
+
+## Roteirização
+
+A Tabela \@ref(tab:ROT001) apresenta a quantidade média de cada modal necessário para entregar todos os produtos necessários.
+
+```{r ROT001, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("Toco", "Truck", "Dry Box 20 pés", "Dry Box 40 pés"),
+                          T1 = c(mediaq21TOCO, mediaq21TRUCK, mediaq2120, mediaq2140),
+                          T2 = c(mediaq91TOCO, mediaq91TRUCK, mediaq9120, mediaq9140),
+                          T3 = c(mediaq14TOCO, mediaq14TRUCK, mediaq1420, mediaq1440 ))
+colnames(resultados) <- c("Modal", "MO0021", "MO0091", "MO1401")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Quantidade média necessária de cada modal")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+### Definição da Rota e Modais
+
+
+Para a roteirização e consequente escolha dos modais foram estabelecidos seguintes cenários:
+
+1. Porto Belo $\to$ Palmas;
+2. Porto Belo $\to$ Itajaí $\to$ Belém $\to$ Palmas;
+3. Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas;
+4. Porto Belo $\to$ Itajaí $\to$ Suape $\to$ Palmas.
+
+A Tabela \@ref(tab:ROT002) apresenta os resultados para o primeiro cenário, considerando os diferentes modais.
+
+```{r ROT002, echo=FALSE, tab.align='center'}
+modais <- c("Toco", "Truck", "Dry Box 20 pés", "Dry Box 40 pés")
+quantidades <- c(TOTALTOCO, TOTALTRUCK, TOTAL20, TOTAL40)
+frete1 <- c(18280, 27800, 25420, 33120)
+freteTotal1 = quantidades*frete1
+
+resultados <- data.frame( T1 = modais, T2 = quantidades, T3 = frete1, T4 = freteTotal1)
+colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 1")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+A Tabela \@ref(tab:ROT003) apresenta os resultados para o segundo cenário, considerando os diferentes modais.
+
+```{r ROT003, echo=FALSE, tab.align='center'}
+modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
+quantidades <- c(TOTAL20, TOTAL40)
+frete2 <- c(30580,38855)
+freteTotal2 = quantidades*frete2
+
+resultados <- data.frame( T1 = modais, T2 = quantidades, T3 = frete2, T4 = freteTotal2)
+colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 2")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+A Tabela \@ref(tab:ROT004) apresenta os resultados para o terceiro cenário, considerando os diferentes modais.
+
+```{r ROT004, echo=FALSE, tab.align='center'}
+modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
+quantidades <- c(TOTAL20, TOTAL40)
+frete3 <- c(24145,32485)
+freteTotal3 = quantidades*frete3
+
+resultados <- data.frame( T1 = modais, T2 = quantidades, T3 = frete3, T4 = freteTotal3)
+colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 3")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Por fim, a Tabela \@ref(tab:ROT005) apresenta os resultados para o quarto cenário, considerando os diferentes modais.
+
+```{r ROT005, echo=FALSE, tab.align='center'}
+modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
+quantidades <- c(TOTAL20, TOTAL40)
+frete4 <- c(31770,41845)
+freteTotal4 = quantidades*frete4
+
+resultados <- data.frame( T1 = modais,T2 = quantidades, T3 = frete4, T4 = freteTotal4)
+colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 4")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Com base nos resultados obtidos é possível definir qual a melhor rota e melhor modal a ser utilizado. Obtendo o menor custo, no valor total de R`r scales::dollar_format()(freteTotal3[1])` opta-se então pela rota **Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas**, utilizando o *container*  **Dry Box 20 Pés**, nos modais: rodoviário de Porto Belo até Itajái, cabotagem de Itajaí até Santos, rodoviário de Santos até Palmas.
+
+Com a definição das retas, também é possível determinar o *Lead Time* de entrega de produtos até os mercados consumidores (Manaus, Palmas e São Paulo). Os resultados estão apresentados na tabela \@ref(TOR006).
+
+```{r ROT006, echo=FALSE, tab.align='center'}
+CDF <- c("Palmas", "Manaus", "São Paulo")
+LEAD <- c(15,30,21)
+
+resultados <- data.frame( T1 = CDF,T2 = LEAD)
+colnames(resultados) <- c("Destino", "Lead Time (dias)")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Lead Times")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```

@@ -116,6 +116,13 @@ toc: false
 
 \clearpage
 
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="chargeDimensionAndRouting.Rmd"}
+```
+
+\clearpage
+
 
 \newpage
 \pagestyle{plain}

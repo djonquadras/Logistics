@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.3.1)  23 MAR 2021 08:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.3.1)  24 MAR 2021 00:37
 entering extended mode
 **./logistics.tex
 (logistics.tex
@@ -739,25 +739,13 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 \tf@lof=\write3
 \openout3 = `logistics.lof'.
 
-[2] [3] (logistics.lot)
+[2] [3] (logistics.lot [4])
 \tf@lot=\write4
 \openout4 = `logistics.lot'.
 
-[4] (logistics.toc)
+[5] (logistics.toc [6])
 \tf@toc=\write5
 \openout5 = `logistics.toc'.
-
-[5]
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 4.35004pt, for example:
-(fancyhdr)                \setlength{\footskip}{4.35004pt}.
-
-[6]
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 4.35004pt, for example:
-(fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
 [7]
 
@@ -767,15 +755,27 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [8]
 
-LaTeX Warning: Reference `eq:004' on page 9 undefined on input line 294.
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[9]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[10]
+
+LaTeX Warning: Reference `eq:004' on page 11 undefined on input line 294.
 
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[9pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
-as been already used, duplicate ignored
+[11pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
+has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 l.327 
@@ -785,19 +785,19 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[10]
+[12]
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[11]
-<images/P1/SP001.jpg, id=274, 481.8pt x 481.8pt>
+[13]
+<images/P1/SP001.jpg, id=332, 481.8pt x 481.8pt>
 File: images/P1/SP001.jpg Graphic file (type jpg)
 <use images/P1/SP001.jpg>
 Package pdftex.def Info: images/P1/SP001.jpg  used on input line 359.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P1/SP002.jpg, id=276, 481.8pt x 481.8pt>
+<images/P1/SP002.jpg, id=334, 481.8pt x 481.8pt>
 File: images/P1/SP002.jpg Graphic file (type jpg)
 <use images/P1/SP002.jpg>
 Package pdftex.def Info: images/P1/SP002.jpg  used on input line 370.
@@ -807,13 +807,13 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 l.376 
        <./images/P1/SP001.jpg>]
-<images/P1/SP003.jpg, id=287, 481.8pt x 481.8pt>
+<images/P1/SP003.jpg, id=344, 481.8pt x 481.8pt>
 File: images/P1/SP003.jpg Graphic file (type jpg)
 <use images/P1/SP003.jpg>
 Package pdftex.def Info: images/P1/SP003.jpg  used on input line 396.
@@ -823,7 +823,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[13pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
+[15pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -834,7 +834,7 @@ l.402
                                                   
 l.402 
        <./images/P1/SP002.jpg>]
-<images/P1/SP004.jpg, id=294, 481.8pt x 481.8pt>
+<images/P1/SP004.jpg, id=351, 481.8pt x 481.8pt>
 File: images/P1/SP004.jpg Graphic file (type jpg)
 <use images/P1/SP004.jpg>
 Package pdftex.def Info: images/P1/SP004.jpg  used on input line 422.
@@ -844,7 +844,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[14pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
+[16pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -855,12 +855,12 @@ l.428
                                                   
 l.428 
        <./images/P1/SP003.jpg>]
-<images/P1/TO001.jpg, id=300, 481.8pt x 481.8pt>
+<images/P1/TO001.jpg, id=357, 481.8pt x 481.8pt>
 File: images/P1/TO001.jpg Graphic file (type jpg)
 <use images/P1/TO001.jpg>
 Package pdftex.def Info: images/P1/TO001.jpg  used on input line 436.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P1/TO002.jpg, id=302, 481.8pt x 481.8pt>
+<images/P1/TO002.jpg, id=359, 481.8pt x 481.8pt>
 File: images/P1/TO002.jpg Graphic file (type jpg)
 <use images/P1/TO002.jpg>
 Package pdftex.def Info: images/P1/TO002.jpg  used on input line 447.
@@ -870,7 +870,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[15pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
+[17pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -881,7 +881,7 @@ l.453
                                                   
 l.453 
        <./images/P1/SP004.jpg> <./images/P1/TO001.jpg>]
-<images/P1/TO003.jpg, id=310, 481.8pt x 481.8pt>
+<images/P1/TO003.jpg, id=367, 481.8pt x 481.8pt>
 File: images/P1/TO003.jpg Graphic file (type jpg)
 <use images/P1/TO003.jpg>
 Package pdftex.def Info: images/P1/TO003.jpg  used on input line 473.
@@ -891,7 +891,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[16pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
+[18pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -902,11 +902,11 @@ l.479
                                                   
 l.479 
        <./images/P1/TO002.jpg>]
-Overfull \hbox (14.64499pt too wide) in paragraph at lines 486--493
+Overfull \hbox (23.13097pt too wide) in paragraph at lines 486--493
  [][] 
  []
 
-<images/P1/TO004.jpg, id=317, 481.8pt x 481.8pt>
+<images/P1/TO004.jpg, id=375, 481.8pt x 481.8pt>
 File: images/P1/TO004.jpg Graphic file (type jpg)
 <use images/P1/TO004.jpg>
 Package pdftex.def Info: images/P1/TO004.jpg  used on input line 499.
@@ -916,7 +916,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[17pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+[19pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -927,12 +927,12 @@ l.505
                                                   
 l.505 
        <./images/P1/TO003.jpg>]
-<images/P1/AM001.jpg, id=323, 481.8pt x 481.8pt>
+<images/P1/AM001.jpg, id=381, 481.8pt x 481.8pt>
 File: images/P1/AM001.jpg Graphic file (type jpg)
 <use images/P1/AM001.jpg>
 Package pdftex.def Info: images/P1/AM001.jpg  used on input line 513.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P1/AM002.jpg, id=325, 481.8pt x 481.8pt>
+<images/P1/AM002.jpg, id=383, 481.8pt x 481.8pt>
 File: images/P1/AM002.jpg Graphic file (type jpg)
 <use images/P1/AM002.jpg>
 Package pdftex.def Info: images/P1/AM002.jpg  used on input line 524.
@@ -942,7 +942,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[18pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
+[20pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -953,7 +953,7 @@ l.530
                                                   
 l.530 
        <./images/P1/TO004.jpg> <./images/P1/AM001.jpg>]
-<images/P1/AM003.jpg, id=334, 481.8pt x 481.8pt>
+<images/P1/AM003.jpg, id=391, 481.8pt x 481.8pt>
 File: images/P1/AM003.jpg Graphic file (type jpg)
 <use images/P1/AM003.jpg>
 Package pdftex.def Info: images/P1/AM003.jpg  used on input line 550.
@@ -963,7 +963,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[19pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
+[21pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -978,7 +978,7 @@ Overfull \hbox (14.64499pt too wide) in paragraph at lines 563--570
  [][] 
  []
 
-<images/P1/AM004.jpg, id=341, 481.8pt x 481.8pt>
+<images/P1/AM004.jpg, id=398, 481.8pt x 481.8pt>
 File: images/P1/AM004.jpg Graphic file (type jpg)
 <use images/P1/AM004.jpg>
 Package pdftex.def Info: images/P1/AM004.jpg  used on input line 576.
@@ -988,7 +988,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[20pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
+[22pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -999,7 +999,7 @@ l.582
                                                   
 l.582 
        <./images/P1/AM003.jpg>]
-<images/P2/SP001.jpg, id=347, 481.8pt x 481.8pt>
+<images/P2/SP001.jpg, id=404, 481.8pt x 481.8pt>
 File: images/P2/SP001.jpg Graphic file (type jpg)
 <use images/P2/SP001.jpg>
 Package pdftex.def Info: images/P2/SP001.jpg  used on input line 595.
@@ -1009,7 +1009,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[21pdfTeX warning (ext4): destination with the same identifier (name{figure.12}
+[23pdfTeX warning (ext4): destination with the same identifier (name{figure.12}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1020,12 +1020,12 @@ l.603
                                                   
 l.603 
        <./images/P1/AM004.jpg> <./images/P2/SP001.jpg>]
-<images/P2/SP002.jpg, id=355, 481.8pt x 481.8pt>
+<images/P2/SP002.jpg, id=412, 481.8pt x 481.8pt>
 File: images/P2/SP002.jpg Graphic file (type jpg)
 <use images/P2/SP002.jpg>
 Package pdftex.def Info: images/P2/SP002.jpg  used on input line 606.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P2/SP003.jpg, id=358, 481.8pt x 481.8pt>
+<images/P2/SP003.jpg, id=415, 481.8pt x 481.8pt>
 File: images/P2/SP003.jpg Graphic file (type jpg)
 <use images/P2/SP003.jpg>
 Package pdftex.def Info: images/P2/SP003.jpg  used on input line 632.
@@ -1035,7 +1035,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[22pdfTeX warning (ext4): destination with the same identifier (name{figure.14}
+[24pdfTeX warning (ext4): destination with the same identifier (name{figure.14}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1046,11 +1046,11 @@ l.638
                                                   
 l.638 
        <./images/P2/SP002.jpg>]
-Overfull \hbox (44.01991pt too wide) in paragraph at lines 645--652
+Overfull \hbox (40.75592pt too wide) in paragraph at lines 645--652
  [][] 
  []
 
-<images/P2/SP004.jpg, id=365, 481.8pt x 481.8pt>
+<images/P2/SP004.jpg, id=423, 481.8pt x 481.8pt>
 File: images/P2/SP004.jpg Graphic file (type jpg)
 <use images/P2/SP004.jpg>
 Package pdftex.def Info: images/P2/SP004.jpg  used on input line 658.
@@ -1060,7 +1060,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[23pdfTeX warning (ext4): destination with the same identifier (name{figure.15}
+[25pdfTeX warning (ext4): destination with the same identifier (name{figure.15}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1071,12 +1071,12 @@ l.664
                                                   
 l.664 
        <./images/P2/SP003.jpg>]
-<images/P2/TO001.jpg, id=371, 481.8pt x 481.8pt>
+<images/P2/TO001.jpg, id=429, 481.8pt x 481.8pt>
 File: images/P2/TO001.jpg Graphic file (type jpg)
 <use images/P2/TO001.jpg>
 Package pdftex.def Info: images/P2/TO001.jpg  used on input line 672.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P2/TO002.jpg, id=373, 481.8pt x 481.8pt>
+<images/P2/TO002.jpg, id=431, 481.8pt x 481.8pt>
 File: images/P2/TO002.jpg Graphic file (type jpg)
 <use images/P2/TO002.jpg>
 Package pdftex.def Info: images/P2/TO002.jpg  used on input line 683.
@@ -1086,7 +1086,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[24pdfTeX warning (ext4): destination with the same identifier (name{figure.16}
+[26pdfTeX warning (ext4): destination with the same identifier (name{figure.16}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1097,7 +1097,7 @@ name{figure.17}) has been already used, duplicate ignored
                                                   
 l.688 \end{figure}
                    <./images/P2/SP004.jpg> <./images/P2/TO001.jpg>]
-<images/P2/TO003.jpg, id=382, 481.8pt x 481.8pt>
+<images/P2/TO003.jpg, id=439, 481.8pt x 481.8pt>
 File: images/P2/TO003.jpg Graphic file (type jpg)
 <use images/P2/TO003.jpg>
 Package pdftex.def Info: images/P2/TO003.jpg  used on input line 709.
@@ -1107,7 +1107,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[25pdfTeX warning (ext4): destination with the same identifier (name{figure.18}
+[27pdfTeX warning (ext4): destination with the same identifier (name{figure.18}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1122,7 +1122,7 @@ Overfull \hbox (20.51997pt too wide) in paragraph at lines 722--729
  [][] 
  []
 
-<images/P2/TO004.jpg, id=389, 481.8pt x 481.8pt>
+<images/P2/TO004.jpg, id=446, 481.8pt x 481.8pt>
 File: images/P2/TO004.jpg Graphic file (type jpg)
 <use images/P2/TO004.jpg>
 Package pdftex.def Info: images/P2/TO004.jpg  used on input line 735.
@@ -1132,7 +1132,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[26pdfTeX warning (ext4): destination with the same identifier (name{figure.19}
+[28pdfTeX warning (ext4): destination with the same identifier (name{figure.19}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1143,12 +1143,12 @@ l.741
                                                   
 l.741 
        <./images/P2/TO003.jpg>]
-<images/P2/AM001.jpg, id=395, 481.8pt x 481.8pt>
+<images/P2/AM001.jpg, id=452, 481.8pt x 481.8pt>
 File: images/P2/AM001.jpg Graphic file (type jpg)
 <use images/P2/AM001.jpg>
 Package pdftex.def Info: images/P2/AM001.jpg  used on input line 749.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P2/AM002.jpg, id=397, 481.8pt x 481.8pt>
+<images/P2/AM002.jpg, id=454, 481.8pt x 481.8pt>
 File: images/P2/AM002.jpg Graphic file (type jpg)
 <use images/P2/AM002.jpg>
 Package pdftex.def Info: images/P2/AM002.jpg  used on input line 760.
@@ -1158,7 +1158,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[27pdfTeX warning (ext4): destination with the same identifier (name{figure.20}
+[29pdfTeX warning (ext4): destination with the same identifier (name{figure.20}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1169,7 +1169,7 @@ l.766
                                                   
 l.766 
        <./images/P2/TO004.jpg> <./images/P2/AM001.jpg>]
-<images/P2/AM003.jpg, id=405, 481.8pt x 481.8pt>
+<images/P2/AM003.jpg, id=462, 481.8pt x 481.8pt>
 File: images/P2/AM003.jpg Graphic file (type jpg)
 <use images/P2/AM003.jpg>
 Package pdftex.def Info: images/P2/AM003.jpg  used on input line 786.
@@ -1179,7 +1179,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[28pdfTeX warning (ext4): destination with the same identifier (name{figure.22}
+[30pdfTeX warning (ext4): destination with the same identifier (name{figure.22}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1190,7 +1190,11 @@ l.792
                                                   
 l.792 
        <./images/P2/AM002.jpg>]
-<images/P2/AM004.jpg, id=412, 481.8pt x 481.8pt>
+Overfull \hbox (5.50601pt too wide) in paragraph at lines 799--806
+ [][] 
+ []
+
+<images/P2/AM004.jpg, id=470, 481.8pt x 481.8pt>
 File: images/P2/AM004.jpg Graphic file (type jpg)
 <use images/P2/AM004.jpg>
 Package pdftex.def Info: images/P2/AM004.jpg  used on input line 812.
@@ -1200,7 +1204,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[29pdfTeX warning (ext4): destination with the same identifier (name{figure.23}
+[31pdfTeX warning (ext4): destination with the same identifier (name{figure.23}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1211,7 +1215,7 @@ l.818
                                                   
 l.818 
        <./images/P2/AM003.jpg>]
-<images/P3/SP001.jpg, id=418, 481.8pt x 481.8pt>
+<images/P3/SP001.jpg, id=476, 481.8pt x 481.8pt>
 File: images/P3/SP001.jpg Graphic file (type jpg)
 <use images/P3/SP001.jpg>
 Package pdftex.def Info: images/P3/SP001.jpg  used on input line 831.
@@ -1221,7 +1225,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[30pdfTeX warning (ext4): destination with the same identifier (name{figure.24}
+[32pdfTeX warning (ext4): destination with the same identifier (name{figure.24}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1232,12 +1236,12 @@ l.839
                                                   
 l.839 
        <./images/P2/AM004.jpg> <./images/P3/SP001.jpg>]
-<images/P3/SP002.jpg, id=427, 481.8pt x 481.8pt>
+<images/P3/SP002.jpg, id=484, 481.8pt x 481.8pt>
 File: images/P3/SP002.jpg Graphic file (type jpg)
 <use images/P3/SP002.jpg>
 Package pdftex.def Info: images/P3/SP002.jpg  used on input line 842.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P3/SP003.jpg, id=430, 481.8pt x 481.8pt>
+<images/P3/SP003.jpg, id=487, 481.8pt x 481.8pt>
 File: images/P3/SP003.jpg Graphic file (type jpg)
 <use images/P3/SP003.jpg>
 Package pdftex.def Info: images/P3/SP003.jpg  used on input line 868.
@@ -1247,7 +1251,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[31pdfTeX warning (ext4): destination with the same identifier (name{figure.26}
+[33pdfTeX warning (ext4): destination with the same identifier (name{figure.26}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1258,7 +1262,7 @@ l.874
                                                   
 l.874 
        <./images/P3/SP002.jpg>]
-<images/P3/SP004.jpg, id=437, 481.8pt x 481.8pt>
+<images/P3/SP004.jpg, id=494, 481.8pt x 481.8pt>
 File: images/P3/SP004.jpg Graphic file (type jpg)
 <use images/P3/SP004.jpg>
 Package pdftex.def Info: images/P3/SP004.jpg  used on input line 894.
@@ -1268,7 +1272,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[32pdfTeX warning (ext4): destination with the same identifier (name{figure.27}
+[34pdfTeX warning (ext4): destination with the same identifier (name{figure.27}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1279,12 +1283,12 @@ l.900
                                                   
 l.900 
        <./images/P3/SP003.jpg>]
-<images/P3/TO001.jpg, id=443, 481.8pt x 481.8pt>
+<images/P3/TO001.jpg, id=500, 481.8pt x 481.8pt>
 File: images/P3/TO001.jpg Graphic file (type jpg)
 <use images/P3/TO001.jpg>
 Package pdftex.def Info: images/P3/TO001.jpg  used on input line 908.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P3/TO002.jpg, id=445, 481.8pt x 481.8pt>
+<images/P3/TO002.jpg, id=502, 481.8pt x 481.8pt>
 File: images/P3/TO002.jpg Graphic file (type jpg)
 <use images/P3/TO002.jpg>
 Package pdftex.def Info: images/P3/TO002.jpg  used on input line 919.
@@ -1294,7 +1298,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[33pdfTeX warning (ext4): destination with the same identifier (name{figure.28}
+[35pdfTeX warning (ext4): destination with the same identifier (name{figure.28}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1305,7 +1309,7 @@ l.925
                                                   
 l.925 
        <./images/P3/SP004.jpg> <./images/P3/TO001.jpg>]
-<images/P3/TO003.jpg, id=453, 481.8pt x 481.8pt>
+<images/P3/TO003.jpg, id=510, 481.8pt x 481.8pt>
 File: images/P3/TO003.jpg Graphic file (type jpg)
 <use images/P3/TO003.jpg>
 Package pdftex.def Info: images/P3/TO003.jpg  used on input line 945.
@@ -1315,7 +1319,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[34pdfTeX warning (ext4): destination with the same identifier (name{figure.30}
+[36pdfTeX warning (ext4): destination with the same identifier (name{figure.30}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1326,7 +1330,7 @@ l.951
                                                   
 l.951 
        <./images/P3/TO002.jpg>]
-<images/P3/TO004.jpg, id=460, 481.8pt x 481.8pt>
+<images/P3/TO004.jpg, id=518, 481.8pt x 481.8pt>
 File: images/P3/TO004.jpg Graphic file (type jpg)
 <use images/P3/TO004.jpg>
 Package pdftex.def Info: images/P3/TO004.jpg  used on input line 971.
@@ -1336,7 +1340,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[35pdfTeX warning (ext4): destination with the same identifier (name{figure.31}
+[37pdfTeX warning (ext4): destination with the same identifier (name{figure.31}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1347,7 +1351,7 @@ l.977
                                                   
 l.977 
        <./images/P3/TO003.jpg>]
-<images/P3/AM001.jpg, id=466, 481.8pt x 481.8pt>
+<images/P3/AM001.jpg, id=524, 481.8pt x 481.8pt>
 File: images/P3/AM001.jpg Graphic file (type jpg)
 <use images/P3/AM001.jpg>
 Package pdftex.def Info: images/P3/AM001.jpg  used on input line 985.
@@ -1357,7 +1361,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[36pdfTeX warning (ext4): destination with the same identifier (name{figure.32}
+[38pdfTeX warning (ext4): destination with the same identifier (name{figure.32}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1368,12 +1372,12 @@ l.993
                                                   
 l.993 
        <./images/P3/TO004.jpg> <./images/P3/AM001.jpg>]
-<images/P3/AM002.jpg, id=474, 481.8pt x 481.8pt>
+<images/P3/AM002.jpg, id=531, 481.8pt x 481.8pt>
 File: images/P3/AM002.jpg Graphic file (type jpg)
 <use images/P3/AM002.jpg>
 Package pdftex.def Info: images/P3/AM002.jpg  used on input line 996.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P3/AM003.jpg, id=477, 481.8pt x 481.8pt>
+<images/P3/AM003.jpg, id=534, 481.8pt x 481.8pt>
 File: images/P3/AM003.jpg Graphic file (type jpg)
 <use images/P3/AM003.jpg>
 Package pdftex.def Info: images/P3/AM003.jpg  used on input line 1022.
@@ -1383,7 +1387,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[37pdfTeX warning (ext4): destination with the same identifier (name{figure.34}
+[39pdfTeX warning (ext4): destination with the same identifier (name{figure.34}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1394,7 +1398,7 @@ l.1028
                                                   
 l.1028 
         <./images/P3/AM002.jpg>]
-<images/P3/AM004.jpg, id=484, 481.8pt x 481.8pt>
+<images/P3/AM004.jpg, id=541, 481.8pt x 481.8pt>
 File: images/P3/AM004.jpg Graphic file (type jpg)
 <use images/P3/AM004.jpg>
 Package pdftex.def Info: images/P3/AM004.jpg  used on input line 1048.
@@ -1404,7 +1408,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[38pdfTeX warning (ext4): destination with the same identifier (name{figure.35}
+[40pdfTeX warning (ext4): destination with the same identifier (name{figure.35}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1426,7 +1430,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[39pdfTeX warning (ext4): destination with the same identifier (name{figure.36}
+[41pdfTeX warning (ext4): destination with the same identifier (name{figure.36}
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1442,7 +1446,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[40pdfTeX warning (ext4): destination with the same identifier (name{table.21})
+[42pdfTeX warning (ext4): destination with the same identifier (name{table.21})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
@@ -1453,11 +1457,6 @@ ame{table.22}) has been already used, duplicate ignored
                                                   
 l.1133 \clearpage
                  ]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-148.
-(D:\ProgramFiles\MiKTeX\tex/latex/lm\ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1469,14 +1468,25 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[41
+[43
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.23}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.1250 \end{table}
-                  ]
+l.1235 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.
+24}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1235 
+       ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1485,21 +1495,16 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[42pdfTeX warning (ext4): destination with the same identifier (name{table.24})
+[44pdfTeX warning (ext4): destination with the same identifier (name{table.25})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.1277 
-       pdfTeX warning (ext4): destination with the same identifier (name{table.
-25}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.1277 
+l.1308 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 26}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.1277 
+l.1308 
        ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1509,27 +1514,169 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[43pdfTeX warning (ext4): destination with the same identifier (name{table.27})
+[45pdfTeX warning (ext4): destination with the same identifier (name{table.27})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.1322 \clearpage
-                 pdfTeX warning (ext4): destination with the same identifier (n
-ame{table.28}) has been already used, duplicate ignored
+l.1335 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.
+28}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.1322 \clearpage
-                 ]
+l.1335 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.
+29}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1335 
+       ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[44pdfTeX warning (ext4): destination with the same identifier (name{table.29})
+[46pdfTeX warning (ext4): destination with the same identifier (name{table.30})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.1322 \clearpage
+l.1386 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.
+31}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1386 
+       ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+430.
+(D:\ProgramFiles\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[47pdfTeX warning (ext4): destination with the same identifier (name{table.32})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1431 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.
+33}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1431 
+       ]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[48pdfTeX warning (ext4): destination with the same identifier (name{table.34})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1436 \clearpage
+                 ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[49
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.35}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1564 \end{table}
+                  ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[50pdfTeX warning (ext4): destination with the same identifier (name{table.36})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1575   P
+          orto Belo \(\to\) Palmas;pdfTeX warning (ext4): destination with the 
+same identifier (name{table.37}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1575   P
+          orto Belo \(\to\) Palmas;pdfTeX warning (ext4): destination with the 
+same identifier (name{table.38}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1575   P
+          orto Belo \(\to\) Palmas;]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[51pdfTeX warning (ext4): destination with the same identifier (name{table.39})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1648 \end{table}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{table.40}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1648 \end{table}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{table.41}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1648 \end{table}
+                  ]
+
+LaTeX Warning: Reference `TOR006' on page 52 undefined on input line 1652.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 4.35004pt, for example:
+(fancyhdr)                \setlength{\footskip}{4.35004pt}.
+
+[52pdfTeX warning (ext4): destination with the same identifier (name{table.42})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1669 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (n
+ame{table.43}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1669 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (n
+ame{table.44}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.1669 \clearpage
                  ] 
 AED: lastpage setting LastPage
 
@@ -1537,7 +1684,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[45
+[53
 
 ] (logistics.aux)
 
@@ -1545,28 +1692,29 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17248 strings out of 479618
- 253129 string characters out of 2875411
- 619878 words of memory out of 3000000
- 33778 multiletter control sequences out of 15000+200000
- 452668 words of font info for 109 fonts, out of 3000000 for 9000
+ 17365 strings out of 479618
+ 254534 string characters out of 2875411
+ 627128 words of memory out of 3000000
+ 33815 multiletter control sequences out of 15000+200000
+ 458671 words of font info for 127 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,12n,88p,821b,386s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{D:/ProgramFiles/MiKTeX/
-fonts/enc/dvips/lm/lm-ts1.enc}{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/lm/lm-mat
+ 85i,12n,88p,966b,467s stack positions out of 5000i,500n,10000p,200000b,50000s
+{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{D:/ProgramFiles/MiKTeX
+/fonts/enc/dvips/lm/lm-ec.enc}{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/lm/lm-mat
 hsy.enc}{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{D:/ProgramFiles/M
 iKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{D:/ProgramFiles/MiKTeX/fonts/enc/dvips/
 lm/lm-mathex.enc}<D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><D:/P
-rogramFiles/MiKTeX/fonts/type1/public/lm/lmex10.pfb><D:/ProgramFiles/MiKTeX/fon
-ts/type1/public/lm/lmmi12.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmm
-i8.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/ProgramFiles
-/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/pub
-lic/lm/lmr8.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmri12.pfb><D:/Pr
-ogramFiles/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><D:/ProgramFiles/MiKTeX/font
-s/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on logistics.pdf (46 pages, 1343452 bytes).
+rogramFiles/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><D:/ProgramFiles/MiKTeX/fo
+nts/type1/public/lm/lmex10.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lm
+mi12.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><D:/ProgramFil
+es/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/p
+ublic/lm/lmr12.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/lm/lmr8.pfb><D:/P
+rogramFiles/MiKTeX/fonts/type1/public/lm/lmri12.pfb><D:/ProgramFiles/MiKTeX/fon
+ts/type1/public/lm/lmsy10.pfb><D:/ProgramFiles/MiKTeX/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb>
+Output written on logistics.pdf (54 pages, 1390672 bytes).
 PDF statistics:
- 700 PDF objects out of 1000 (max. 8388607)
- 181 named destinations out of 1000 (max. 500000)
- 29077 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 849 PDF objects out of 1000 (max. 8388607)
+ 226 named destinations out of 1000 (max. 500000)
+ 31197 words of extra memory for PDF output out of 35830 (max. 10000000)
 
