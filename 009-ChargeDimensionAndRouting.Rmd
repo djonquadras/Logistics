@@ -214,7 +214,7 @@ Com a definição das retas, também é possível determinar o *Lead Time* de en
 
 ```{r ROT006, echo=FALSE, tab.align='center'}
 CDF <- c("Palmas", "Manaus", "São Paulo")
-LEAD <- c(15,30,21)
+LEAD <- c(16,30,21)
 
 resultados <- data.frame( T1 = CDF,T2 = LEAD)
 colnames(resultados) <- c("Destino", "Lead Time (dias)")

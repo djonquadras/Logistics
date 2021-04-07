@@ -15,3 +15,7 @@ Para a realização da escolha do CD foram utilizados um conjunto de dados e mé
 Para a definição das melhores rotas e modais, inicialmente foi definido o Dimensionamento de Carga. Para o dimensionamento de carga foram realizadas interações a fim de se otimizar o carregamento, respeitando a área da superfície plana, altura e capacidade de carga dos paletes e modais de transporte.
 
 Com as cargas dimensionadas para cada um dos modais previstos, foi calculado a quantidade de modais necessária para enviar cada um dos produtos. Após estabelecida a quantidade necessária, foi considerado um conjunto de possíveis rotas para avaliação. A avaliação foi feita com base no custo total de cada rota, considerando os diferentes modais disponívels. Como resultado, foi escolhida a rota e o modal que apresentassem o menor custo logístico para a empresa.
+
+## Nível de Serviço e Estoques {.unlisted .unnumbered}
+
+Para a definição de Nível de Serviço foram considerados os *lead times* e a representatividade das demandas em cada um dos mercados consumidores. A definição dos parâmetros de estoque foi feita utilizando as equações \@ref(eq:EST01)-\@ref(eq:EST05), os dados fornececidos pelo problema proposto e um valor de taxa para manter estoque "$i = 0.2$".

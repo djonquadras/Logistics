@@ -83,3 +83,61 @@ Este método também considera outros dois parâmetros:
 
 - **Método P-Centro**: Método que ranqueia as cidades pré-definidas como CDI pela distância máxima entre o CDI até o CDF. Para isto é analisado todas as distâncias do CDI até todos os CDF e com base na distância máxima é ranqueado como melhor opção o CDI que possuir a menor distância máxima;
 - **Método P-Mediana**: Utiliza os pontos de demanda definidas, os locais pré-definidos como potenciais para CDI, a distância entre os CDI e CDF e o número p de facilidades a serem instaladas o método que tem como objetivo localizar P CDI para entregar nos centros de demanda com a objetivo de minimizar as distâncias médias ponderadas entre os CDF e os CDI.
+
+
+## Nível de Serviço e Estoques
+
+Nessa seção será apresentada a literatura referente ao nível de serviço e gerenciamento de estoques.
+
+### Nível de Serviço {.unlisted .unnumbered}
+
+De acordo com Marchesini (2012) pode-se de forma geral utilizar a definição de nível de serviço de Christopher (1997). Em seus estudos, Christopher afirma que o serviço ao cliente é determinado pelos elementos de disponibilidade, frequência e confiabilidade de entrega, níveis de estoque e tempo consumido no ciclo dos pedidos, que juntos resultam tornar disponíveis ao comprador o processo de fabricação dos produtos e a prestação de serviços. 
+
+Segundo o autor, os elementos críticos de serviço ao cliente são: ciclo do pedido, disponibilidade de estoque, restrições do tamanho do pedido (flexibilidade para atender entregas JIT), facilidade na colocação do pedido, frequência de entrega, confiabilidade de entrega, qualidade da documentação (faturas, notas fiscais e outras comunicações com os clientes), procedimentos para reclamações, pedidos entregues completos, suporte técnico, informação sobre a posição dos pedidos. A confiabilidade de entrega e pedidos entregues completos são os elementos cruciais à conquista e manutenção dos clientes.
+
+Portanto, é possível afirmar que dentro de um estudo logístico a variável de nível de serviço deve ser considerada de extrema importância dado o seu impacto na cadeia global de suprimentos.
+
+### Estoques {.unlisted .unnumbered}
+
+Waters (2019) e Bowerson, Class e Cooper (2005) definem as seguintes equações como as principais equações para determinação e controle de estoque.
+
+Quantidade de Suprimento:
+
+\begin{equation} \label{eq:EST01}
+Q = \sqrt\frac{2C_OD}{iU}
+\end{equation}
+
+Estoque de Segurança:
+
+\begin{equation} \label{eq:EST02}
+E_s = (Z)(\sigma_D)(\sqrt{T_A})
+\end{equation}
+
+Estoque Máximo:
+
+\begin{equation} \label{eq:EST03}
+E_{máx} = E_s + Q
+\end{equation}
+
+Estoque Médio:
+
+\begin{equation} \label{eq:EST04}
+E_{méd} = E_s + \frac{Q}{2}
+\end{equation}
+
+Ponto de Pedido:
+
+\begin{equation} \label{eq:EST05}
+PP = (D)(T_a) + E_s
+\end{equation}
+
+Onde
+
+```{r echo=FALSE, tab.align='center'}
+
+resultados <- data.frame( T1 = c("$D$","$C_o$", "$i$", "$U$", "$T_a$", "$\\sigma_D$"),
+                          T2 = c("Demanda Anual", "Custo por Pedido", "Taxa para Manter Estoque", "Custo por Unidade", "Tempo de Atendimento", "Desvio Padrão da Demanda"))
+colnames(resultados) <- c("Parâmetro","Descrição")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE)
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```

@@ -1,0 +1,267 @@
+# Nível de Serviço e Estoques
+
+Nessa seção serão apresentados o Nível de Serviço e Estoques para o caso estudado.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+library(readxl)
+library(tibble)
+forecasting <- read_excel("forecasting.xlsx")
+SP <- list(P0021 = c(c(322.2, 273.6), forecasting[["previsao0021SP"]]),
+           P0091 = c(c(322.2, 273.6), forecasting[["previsao0091SP"]]),
+           P1401 = c(c(235.6, 372.4), forecasting[["previsao1401SP"]]),
+           ta = 15, ns = 0.98, q = NULL, es = NULL, pp = NULL)
+AM <- list(P0021 = c(c(839.5,1163.8), forecasting[["previsao0021AM"]]),
+           P0091 = c(c(706.8,742.9), forecasting[["previsao0091AM"]]),
+           P1401 = c(c(1012.7,775.2), forecasting[["previsao1401AM"]]),
+           ta = 15, ns = 0.95, q = NULL, es = NULL, pp = NULL)
+TO <- list(P0021 = c(c(1444.6,1928.2), forecasting[["previsao0021TO"]]),
+           P0091 = c(c(598.3,744), forecasting[["previsao0091TO"]]),
+           P1401 = c(c(1190.4,1747.2), forecasting[["previsao1401TO"]]),
+           ta = 15, ns = 0.99, q = NULL, es = NULL, pp = NULL)
+P0021 <- list(custoCaixa = 115.80, precoCaixa = 172.65, custoPedido = 804)
+P0091 <- list(custoCaixa = 197.45, precoCaixa = 275.80, custoPedido = 2231)
+P1401 <- list(custoCaixa = 104.16, precoCaixa = 122.82, custoPedido = 914)
+CI = 0.2
+totalSP <- sum(SP$P0021) + sum(SP$P0091)+ sum(SP$P1401)
+totalTO <- sum(TO$P0021) + sum(TO$P0091)+ sum(TO$P1401)
+totalAM <- sum(AM$P0021) + sum(AM$P0091)+ sum(AM$P1401)
+demandas <-  c(totalSP, totalTO, totalAM)
+total = totalAM + totalTO + totalSP
+repre = (100/total)*demandas
+```
+
+<!-- Equações -->
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+qSup <- function(CO, D, CI, U) {
+  return(ceiling(sqrt((2*CO*D)/(CI*U))))
+}
+es <- function(z, sigma, ta){
+  return(ceiling(z*sigma*sqrt(ta)))
+}
+emax <- function(es, q){
+  return(ceiling(es + q))
+}
+emedio <- function(es, q){
+  return(ceiling(es + q/2))
+}
+pp <- function(d,ta,es){
+  return(ceiling((d/365)*ta+es))
+}
+```
+
+## Nível de Serviço
+
+Para a escolha do nível de serviço ou também chamado Nível de Atendimento é importante considerar o trade-off logístico existente entre Custos Totais, Custos de Não serviço, Custos de Transporte, Processamento de pedidos e estoques. Dentro do estudo, 3 localidades diferentes puxam a demanda dos produtos da empresa, são eles: Tocantis, São Paulo e Amazonas. Para cada uma dessas localidades há uma demanda específica e isto impacta diretamente no cálculo de nível de serviço e na decisão do mesmo, pois estão atreladas diretamente com as variáveis de custo. As demandas totais destas localidades e as suas representatividades para os próximos períodos estipulados podem ser vistos na Tabela \@ref(tab:NS001).
+
+```{r NS001, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("SP", "TO", "AM"),
+                          T1 = demandas,
+                          T2 = round(repre,2))
+colnames(resultados) <- c("Localidade", "Demanda Total", "Representatividade (\\%)")
+k <- kableExtra::kbl(resultados, booktabs = T, escape = FALSE, caption = "Demandas")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Para o mercado localizado em Manaus é importante levar em consideração o lead time médio exigido para que as mercadorias cheguem até o seu destino. A média de tempo gasto para tal é de 15 dias saindo de Palmas, o que representa um tempo muito maior em comparação com os demais destinos. Essa métrica inviabiliza a manutenção de um nível de serviço superior à $95\%$ porque exigiria um gasto com transportes muito acima do necessário para suprir de maneira adequada a região. Além deste ponto é importante salientar que o Amazonas representa $`r round(repre[3],2)`\%$ da demanda total de produtos, o que viabiliza o trabalho com um nível de serviço de $95\%$.
+
+O mercado localizado em Tocantis é o mais representativo em termos de demanda ($`r round(repre[2],2)`\%$ da demanda total) e também é o mais próximo do CD escolhido. Por ser um grande consumidor e possuir uma distância muito próxima ao consumidor final é possível exigir um nível de serviço maior para esta região. Isso porque o trade-off logísitico entre os custos de transporte, estoque, emissão de pedidos e custo de não serviço são compensados pela facilidade no transporte e pela alta demanda, uma vez que o não serviço de Tocantis é o mais representativo e o custo de transporte para o mesmo tende a ser o mais barato. Além dos pontos anteriores elencados é significante entender que o mercado com a maior demanda é o responsável pela maior parte das receitas, sendo considerável a interpretação do princípio de Pareto onde $20\%$ da energia alocada deve ser responsável por $80\%$ dos resultados que dentro deste caso é representado por manter um alto nível de serviço.Essas características permeiam a decisão de optar por um nível de serviço de $99\%$.
+
+Para São Paulo, mesmo sendo o mercado com a menor demanda dentro das análises preditivas ($`r round(repre[1],2)`\%$), ainda é possível exigir um nível de serviço relativamente alto. Essa justificativa é plausível por conta do lead time exigido para a entrega na localidade, 6 dias em média, o que permite maior transitabilidade e facilidade de escoar o produto para esta região em comparação com o estado do Amanzonas. Por ser um importante polo e o maior mercado consumidor brasileiro é de suma importância considerar o potencial de expansão que a empresa pode ter em São Paulo se for capaz de manter um bom nível de serviço para a região. Por conta destas variáveis o nível de serviço escolhido é de $98\%$. Na Tabela \@ref(tab:NS002) é possível identificar os níveis de serviço escolhidos para cada um dos mercados consumidores
+
+```{r NS002, echo=FALSE, tab.align='center'}
+resultados <- data.frame( T0 = c("TO", "SP", "AM"),
+                          T1 = c("$99\\%$", "$98\\%$", "$95\\%$"))
+colnames(resultados) <- c("Localidade", "Nível de Serviço")
+k <- kableExtra::kbl(resultados, booktabs = T, escape = FALSE, caption = "Nível de Serviço")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O tempo de atendimento médio pode ser obtido através da análise de rotas e os seus respectivos lead times que estão dispostos no banco de dados. Dentro do estudo existem 3 rotas distintas, que ligam as 3 regiões a serem atendidas pela empresa, sendo algumas etapas do transporte logísticos compartilhadas (todas englobadas no caminho entre Porto Belo e o CD). A Tabela \@ref(tab:ROT006) apresenta os *lead times*.
+
+
+## Estoques
+
+Nessa seção será dimensioado o estoque necessário para alimentar os três estados. Para tanto, será analisada a necessidade de cada estado individulamente, determinando assim a quantidade de suprimento ($Q$), estoque de segurança ($E_s$) e ponto de pedido ($PP$) para cada um. Posteriormente será calculado $Q$, $E_{máx}$, $E_{méd}$ e $E_s$ para o centro de distriuição.
+
+### Amazonas {.unlisted .unnumbered}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+AM$q <- list(MO0021 = ceiling(qSup(P0021$custoPedido, sum(AM$P0021), CI, P0021$custoCaixa)),
+             MO0091 = ceiling(qSup(P0091$custoPedido, sum(AM$P0091), CI, P0091$custoCaixa)),
+             MO1401 = ceiling(qSup(P1401$custoPedido, sum(AM$P1401), CI, P1401$custoCaixa)))
+
+AM$es <- list(MO0021 = ceiling(es(qnorm(AM$ns), sd((AM$P0021)), AM$ta)),
+              MO0091 = ceiling(es(qnorm(AM$ns), sd((AM$P0091)), AM$ta)),
+              MO1401 = ceiling(es(qnorm(AM$ns), sd((AM$P1401)), AM$ta)))
+
+AM$pp <- list(MO0021 = ceiling(pp(sum(AM$P0021), AM$ta, AM$es$MO0021)),
+              MO0091 = ceiling(pp(sum(AM$P0091), AM$ta, AM$es$MO0091)),
+              MO1401 = ceiling(pp(sum(AM$P1401), AM$ta, AM$es$MO1401)))
+```
+
+A análise para o estado do Amazonas será dividida entre os produtos MO0021, MO0091 e MO1401. Os dados individuais para cada um dos produtos estão apresentados na Tabela \@ref(tab:EST001).
+
+```{r EST001, echo=FALSE}
+
+resultados <- data.frame(T1 = c("$Q$", "$E_s$", "$PP$"),
+                         T2 = c(AM$q$MO0021, AM$es$MO0021, AM$pp$MO0021),
+                         T3 = c(AM$q$MO0091, AM$es$MO0091, AM$pp$MO0091 ),
+                         T4 = c(AM$q$MO1401, AM$es$MO1401, AM$pp$MO1401))
+colnames(resultados) <- c("Parâmetro", "MO0021", "MO0091", "MO1401")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Cálculos para o Amazonas")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+### São Paulo {.unlisted .unnumbered}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+SP$q <- list(MO0021 = ceiling(qSup(P0021$custoPedido, sum(SP$P0021), CI, P0021$custoCaixa)),
+             MO0091 = ceiling(qSup(P0091$custoPedido, sum(SP$P0091), CI, P0091$custoCaixa)),
+             MO1401 = ceiling(qSup(P1401$custoPedido, sum(SP$P1401), CI, P1401$custoCaixa)))
+
+SP$es <- list(MO0021 = ceiling(es(qnorm(SP$ns), sd((SP$P0021)), SP$ta)),
+              MO0091 = ceiling(es(qnorm(SP$ns), sd((SP$P0091)), SP$ta)),
+              MO1401 = ceiling(es(qnorm(SP$ns), sd((SP$P1401)), SP$ta)))
+
+SP$pp <- list(MO0021 = ceiling(pp(sum(SP$P0021), SP$ta, SP$es$MO0021)),
+              MO0091 = ceiling(pp(sum(SP$P0091), SP$ta, SP$es$MO0091)),
+              MO1401 = ceiling(pp(sum(SP$P1401), SP$ta, SP$es$MO1401)))
+```
+
+A análise para o estado do Amazonas será dividida entre os produtos MO0021, MO0091 e MO1401. Os dados individuais para cada um dos produtos estão apresentados na Tabela \@ref(tab:EST002).
+
+```{r EST002, echo=FALSE}
+
+resultados <- data.frame(T1 = c("$Q$", "$E_s$", "$PP$"),
+                         T2 = c(SP$q$MO0021, SP$es$MO0021, SP$pp$MO0021),
+                         T3 = c(SP$q$MO0091, SP$es$MO0091, SP$pp$MO0091 ),
+                         T4 = c(SP$q$MO1401, SP$es$MO1401, SP$pp$MO1401))
+colnames(resultados) <- c("Parâmetro", "MO0021", "MO0091", "MO1401")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Cálculos para São Paulo")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+### Tocantins {.unlisted .unnumbered}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+TO$q <- list(MO0021 = ceiling(qSup(P0021$custoPedido, sum(TO$P0021), CI, P0021$custoCaixa)),
+             MO0091 = ceiling(qSup(P0091$custoPedido, sum(TO$P0091), CI, P0091$custoCaixa)),
+             MO1401 = ceiling(qSup(P1401$custoPedido, sum(TO$P1401), CI, P1401$custoCaixa)))
+
+TO$es <- list(MO0021 = ceiling(es(qnorm(TO$ns), sd((TO$P0021)), TO$ta)),
+              MO0091 = ceiling(es(qnorm(TO$ns), sd((TO$P0091)), TO$ta)),
+              MO1401 = ceiling(es(qnorm(TO$ns), sd((TO$P1401)), TO$ta)))
+
+TO$pp <- list(MO0021 = ceiling(pp(sum(TO$P0021), TO$ta, TO$es$MO0021)),
+              MO0091 = ceiling(pp(sum(TO$P0091), TO$ta, TO$es$MO0091)),
+              MO1401 = ceiling(pp(sum(TO$P1401), TO$ta, TO$es$MO1401)))
+```
+
+A análise para o estado do Amazonas será dividida entre os produtos MO0021, MO0091 e MO1401. Os dados individuais para cada um dos produtos estão apresentados na Tabela \@ref(tab:EST003).
+
+```{r EST003, echo=FALSE}
+
+resultados <- data.frame(T1 = c("$Q$", "$E_s$", "$PP$"),
+                         T2 = c(TO$q$MO0021, TO$es$MO0021, TO$pp$MO0021),
+                         T3 = c(TO$q$MO0091, TO$es$MO0091, TO$pp$MO0091 ),
+                         T4 = c(TO$q$MO1401, TO$es$MO1401, TO$pp$MO1401))
+colnames(resultados) <- c("Parâmetro", "MO0021", "MO0091", "MO1401")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Cálculos para Tocantins")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+### Parâmetros para o Centro de Distribuição {.unlisted .unnumbered}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
+MO0021 <- list(q = ceiling((TO$q$MO0021 + AM$q$MO0021 + SP$q$MO0021)),
+               es = ceiling((TO$es$MO0021 + AM$es$MO0021 + SP$es$MO0021)),
+               PP = ceiling((TO$pp$MO0021 + AM$pp$MO0021 + SP$pp$MO0021)),
+               emed = ceiling((TO$es$MO0021 + AM$es$MO0021 + SP$es$MO0021) + (TO$q$MO0021 + AM$q$MO0021 + SP$q$MO0021)/2),
+               emax = ceiling((TO$es$MO0021 + AM$es$MO0021 + SP$es$MO0021) + (TO$q$MO0021 + AM$q$MO0021 + SP$q$MO0021)))
+
+MO0091 <- list(q = ceiling((TO$q$MO0091 + AM$q$MO0091 + SP$q$MO0091)),
+               es = ceiling((TO$es$MO0091 + AM$es$MO0091 + SP$es$MO0091)),
+               PP = ceiling((TO$pp$MO0091 + AM$pp$MO0091 + SP$pp$MO0091)),
+               emed = ceiling((TO$es$MO0091 + AM$es$MO0091 + SP$es$MO0091) + (TO$q$MO0091 + AM$q$MO0091 + SP$q$MO0091)/2),
+               emax = ceiling((TO$es$MO0091 + AM$es$MO0091 + SP$es$MO0091) + (TO$q$MO0091 + AM$q$MO0091 + SP$q$MO0091)))
+
+MO1401 <- list(q = ceiling((TO$q$MO1401 + AM$q$MO1401 + SP$q$MO1401)),
+               es = ceiling((TO$es$MO1401 + AM$es$MO1401 + SP$es$MO1401)),
+               PP = ceiling((TO$pp$MO1401 + AM$pp$MO1401 + SP$pp$MO1401)),
+               emed = ceiling((TO$es$MO1401 + AM$es$MO1401 + SP$es$MO1401) + (TO$q$MO1401 + AM$q$MO1401 + SP$q$MO1401)/2),
+               emax = ceiling((TO$es$MO1401 + AM$es$MO1401 + SP$es$MO1401) + (TO$q$MO1401 + AM$q$MO1401 + SP$q$MO1401)))
+
+plotMO0021 <- data.frame(Tempo=rep(1:2, 6),
+                   Param=c(0,0,
+                           MO0021$q,MO0021$q,
+                           MO0021$es,MO0021$es,
+                           MO0021$PP,MO0021$PP,
+                           MO0021$emax,MO0021$emax,
+                           MO0021$emed,MO0021$emed), 
+                   variable=c("Zero","Zero","Q","Q","Es","Es","PP","PP", "Emax", "Emax", "Emed", "Emed"))
+plotMO0091 <- data.frame(Tempo=rep(1:2, 6),
+                   Param=c(0,0,
+                           MO0091$q,MO0091$q,
+                           MO0091$es,MO0091$es,
+                           MO0091$PP,MO0091$PP,
+                           MO0091$emax,MO0091$emax,
+                           MO0091$emed,MO0091$emed), 
+                   variable=c("Zero","Zero","Q","Q","Es","Es","PP","PP", "Emax", "Emax", "Emed", "Emed"))
+plotMO1401 <- data.frame(Tempo=rep(1:2, 6),
+                   Param=c(0,0,
+                           MO1401$q,MO1401$q,
+                           MO1401$es,MO1401$es,
+                           MO1401$PP,MO1401$PP,
+                           MO1401$emax,MO1401$emax,
+                           MO1401$emed,MO1401$emed), 
+                   variable=c("Zero","Zero","Q","Q","Es","Es","PP","PP", "Emax", "Emax", "Emed", "Emed"))
+  
+jpeg(filename= "images/inventory/MO0021Inventory.jpg")
+ggplot(data = plotMO0021, aes(x=Tempo, y=Param)) + geom_line(aes(colour=variable))
+dev.off()
+
+jpeg(filename= "images/inventory/MO0091Inventory.jpg")
+ggplot(data = plotMO0091, aes(x=Tempo, y=Param)) + geom_line(aes(colour=variable))
+dev.off()
+
+jpeg(filename= "images/inventory/MO1401Inventory.jpg")
+ggplot(data = plotMO1401, aes(x=Tempo, y=Param)) + geom_line(aes(colour=variable))
+dev.off()
+```
+
+Tendo todos os parâmetros de Quantidade de Suprimento, Estoque de Segurança e Ponto de Pedido definidos para as três regiões, pode-se determinar os valores necessários para o Centro de Distribuição pela soma simples de todos os parâmetros. Dessa forma, tem-se os valores de estoque apresentados na Tabela \@ref(tab:EST004).
+
+
+
+```{r EST004, echo=FALSE}
+
+resultados <- data.frame(T1 = c("$Q$", "$E_s$","$PP$","$E_{máx}$", "$E_{méd}$"),
+                         T2 = c(MO0021$q,MO0021$es,MO0021$PP,MO0021$emax, MO0021$emed),
+                         T3 = c(MO0091$q,MO0091$es,MO0091$PP,MO0091$emax, MO0091$emed),
+                         T4 = c(MO1401$q,MO1401$es,MO1401$PP,MO1401$emax, MO1401$emed))
+colnames(resultados) <- c("Parâmetro", "MO0021", "MO0091", "MO1401")
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Parâmetros para o Centro de Distribuição")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+O gráfico que apresenta os parâmetros de estoque para o produto MO0021 está apresentado na Figura \@ref(fig:MO0021Inventory)
+
+```{r MO0021Inventory, echo=FALSE, fig.align='center', fig.cap='Parâmetros de Inventário do Produto MO0021', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics("images/inventory/MO0021Inventory.jpg", dpi = NA)
+```
+
+O gráfico que apresenta os parâmetros de estoque para o produto MO0091 está apresentado na Figura \@ref(fig:MO0091Inventory)
+
+```{r MO0091Inventory, echo=FALSE, fig.align='center', fig.cap='Parâmetros de Inventário do Produto MO0091', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics("images/inventory/MO0091Inventory.jpg", dpi = NA)
+```
+
+O gráfico que apresenta os parâmetros de estoque para o produto MO1401 está apresentado na Figura \@ref(fig:MO1401Inventory)
+
+```{r MO1401Inventory, echo=FALSE, fig.align='center', fig.cap='Parâmetros de Inventário do Produto MO1401', message=FALSE, warning=FALSE, out.width='50%', paged.print=FALSE}
+  knitr::include_graphics("images/inventory/MO1401Inventory.jpg", dpi = NA)
+```
+
+

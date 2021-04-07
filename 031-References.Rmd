@@ -1,10 +1,19 @@
 # Referências Bibliográficas {-}
 
-JONAS , Andrey; ALVES, Custodia; HENNING, Elisa; EMÍLIO, Claiton. Métodos Estatísticos de suavização Exponencial Holt-Winters para Previsão de Demanda em uma Empresa do Setor Metal Mecânico.Revista Gestão Industrial, p. 1-14, 1 fev. 2012.
+BOWERSOX, Donald J.; CLOSS, David J.; BIXBY COOPER, M. Administración y logística en la cadena de suministros. McGraw Hill, 2005.
+
+
+CHRISTOPHER, M. Logística e Gerenciamento da Cadeia de Suprimentos: estratégias para a redução de custos e melhoria dos serviços. São Paulo: Pioneira, 1997
 
 KASHEI, BIJARI e ZHANG.  An artificial neural network (p,q,d) Model for Times Forecasting, 2003.
 
 JACOBS, William. Modelos de Suavização Exponencial, ARIMA e Redes Neurais Artificiais: Um estudo comparativo para previsão de demanda de produtos. UNIVATES, p. 1-110, 1 fev. 2011.
 
+JONAS , Andrey; ALVES, Custodia; HENNING, Elisa; EMÍLIO, Claiton. Métodos Estatísticos de suavização Exponencial Holt-Winters para Previsão de Demanda em uma Empresa do Setor Metal Mecânico.Revista Gestão Industrial, p. 1-14, 1 fev. 2012.
+
+MARCHESINI, Márcia; ALC NTARA, Rosane. Conceituando o serviço logístico e seus elementos. Revista de Ciência & Tecnologia, [S. l.], p. 1-4, 7 fev. 2012
+
 TEIXEIRA, João. Metodologia para implementação de um sistema de gestão de estoques baseado em previsão de demanda. UFRGS, p. 30-36, 1 fev. 2004.
+
+WATERS, C. Donald J. Logistics: an introduction to supply chain management. Red Globe Press, 2019.
 

@@ -9,9 +9,9 @@ params:
   autor5: "Rodrigo Clarindo da Silveira"
   cidade: "FLORIANÓPOLIS"
   ano: "2021"
-  orientador: "Carlos Manoel Taboada Rodrigues"
+  orientador: "Carlos Manoel Taboada Rodriguez"
   titulo: "Projeto de Canal Logístico"
-  resumo: "A logística empresarial tem se tornado um desafio cada vez maior para as empresas, principalmente depois da ascenção da Indústria 4.0. Assim, um bom planejamento e controle da logística e da cadeia de suprimentos se tornou, além de uma preocupação, uma necessidade e uma estratégia competitiva. O bom dimensionamento de estoques, rotas e transporte podem trazer benefícios significativos no âmbito empresarial. O presente trabalho tem como objetivo realizar o projeto logístico para uma empresa da indústria de cerâmicas. O projeto é dividido em: (1) previsão de demanda para os diferentes produtos; e (2) definição das rotas e modais de transporte de produtos."
+  resumo: "A logística empresarial tem se tornado um desafio cada vez maior para as empresas, principalmente depois da ascenção da Indústria 4.0. Assim, um bom planejamento e controle da logística e da cadeia de suprimentos se tornou, além de uma preocupação, uma necessidade e uma estratégia competitiva. O bom dimensionamento de estoques, rotas e transporte podem trazer benefícios significativos no âmbito empresarial. O presente trabalho tem como objetivo realizar o projeto logístico para uma empresa da indústria de cerâmicas. O projeto é dividido em: (1) previsão de demanda para os diferentes produtos; (2) definição de centro de distribuição, rotas e modais de transporte de produtos; e (3) definição de nível de serviço e parâmetros de estoque"
   palavras_chave: "Logística Empresarial, Cadeia de Suprimentos, Previsão de Demanda, Centro de Distribuição, Roteirização"
 number_sections: true
 header-includes:
@@ -120,6 +120,13 @@ toc: false
 \newpage
 \pagestyle{plain}
 ```{r echo=FALSE, child="009-ChargeDimensionAndRouting.Rmd"}
+```
+
+\clearpage
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="010-NSeEstoque.Rmd"}
 ```
 
 \clearpage
