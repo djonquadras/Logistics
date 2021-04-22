@@ -4,16 +4,75 @@ Aqui serão apresentados os custos logísticos: (1) de frete; (2) de estoque; (3
 
 ### Custo de Frete {.unlisted .unnumbered}
 
-O custo de frete foi previamente calculado para determinar a rota utilizada para as entregas. Desse modo, o valor do custo de frete é de R`r scales::dollar_format()(melhorRota$freteTotalPC)` ao mês.
+O custo de frete foi previamente calculado para determinar a rota utilizada para as entregas. Desse modo, o valor do custo de frete é de R`r scales::dollar_format(decimal.mark=",", big.mark = "." )(melhorRota$freteTotalPC)` ao mês.
 
 ### Custo de Estoque {.unlisted .unnumbered}
 
-Working on it :)
+```{r, echo=FALSE, tab.align='center'}
+custoUnitarioSP <- melhorRota$freteAteSP/(mean(forecasting[["previsao0021SP"]]) + mean(forecasting[["previsao0091SP"]]) + mean(forecasting[["previsao1401SP"]]))
+
+custoUnitarioPalmas <- melhorRota$fretePalmas/(mean(forecasting[["previsao0021TO"]]) + mean(forecasting[["previsao0091TO"]]) + mean(forecasting[["previsao1401TO"]]) + mean(forecasting[["previsao0021AM"]]) + mean(forecasting[["previsao0091AM"]]) + mean(forecasting[["previsao1401AM"]]))
+
+custoUnitarioAM <- (melhorRota$freteAM/(mean(forecasting[["previsao0021AM"]]) + mean(forecasting[["previsao0091AM"]]) + mean(forecasting[["previsao1401AM"]])))
+custoUnitario <- custoUnitarioAM + custoUnitarioPalmas + custoUnitarioSP
+tma <- 0.053
+
+custoEstoque <- emed*tma*((custoUnitarioPalmas + custoUnitarioAM))
+```
+
+Inicialmente, determina-se o custo uniário. Considerando o custo de frete total e as demandas, tem-se um custo unitário de `r round(custoUnitario,2)` (`r round(custoUnitarioSP,2)` do trajeto para São Paulo, `r round(custoUnitarioPalmas,2)` do trajeto para Palmas e `r round(custoUnitarioAM,2)` do trajeto para Manaus). Considera-se uma taxa TMA de `r tma*100`\% e um estoque médio para o CD de `r emed`. Assim, o custo de estoque para o centro de distribuição é de R`r scales::dollar_format(decimal.mark=",", big.mark = ".")(custoEstoque)`
+
+
 
 ### Custo de Estoque em Trânsito {.unlisted .unnumbered}
 
-Working on it :)
+```{r, echo=FALSE, tab.align='center'}
+custoEstoqueTransito <- ((mean(forecasting[["previsao0021SP"]]) + mean(forecasting[["previsao0091SP"]]) + mean(forecasting[["previsao1401SP"]])))*(tma/365)*(custoUnitarioSP + (172.65 + 275.80 + 122.82))*2 + ((mean(forecasting[["previsao0021TO"]]) + mean(forecasting[["previsao0091TO"]]) + mean(forecasting[["previsao1401TO"]]) + mean(forecasting[["previsao0021AM"]]) + mean(forecasting[["previsao0091AM"]]) + mean(forecasting[["previsao1401AM"]])))*(tma/365)*(custoUnitarioPalmas +(172.65 + 275.80 + 122.82))*15 + ((mean(forecasting[["previsao0021AM"]]) + mean(forecasting[["previsao0091AM"]]) + mean(forecasting[["previsao1401AM"]])))*(tma/365)*(custoUnitarioAM + (172.65 + 275.80 + 122.82))*16
+```
+
+Para o custo de estoque em trânsito é considerado o valor TMA corrigido para valores diários (`r tma/365*100`\%), o custo unitário por percurso, a quantidade transportada e o *lead time* de cada percurso. Assim, tem-se um custo de estoque em trânsito de R`r scales::dollar_format(decimal.mark=",", big.mark = ".")(custoEstoqueTransito)`
 
 ### Custo de Armazenagem {.unlisted .unnumbered}
 
-Working on it :)
+O CD sediado na cidade de Palmas possui o segundo menor custo de operação para o armazenamento dentre as 9 opções disponíveis sendo os custos envolvidos no CD divididos em quatro grandes áreas (Armazém, Estoques, Recursos Humanos e Tecnologia da Informação). Os custos fornecidos tem como base a quantidade de pallet disponíveis no CD (350 pallets) onde 100% da demanda média é suprida com 85% da utilização do espaço disponível do CD. A tabela \@ref(tab:armazenagem) apresenta a relação de custos e o seu total para a quantidade armazenada. 
+
+```{r armazenagem, echo=FALSE, tab.align='center'}
+tipo <- c("Aluguel", "Energia/Água/Manutenção", "IPTU", "Estoque (Manutenção...)", "Salários", "Ti (Custo de Captal)", "TI (Manutenção)")
+valor <- c(39.37,33.24,18.04,21.91,74.06,13.69,2.35)
+custo <- valor*350
+custoArmazenagem <- sum(custo)
+
+resultados <- data.frame( Tipo = tipo, Custo = valor, Total = custo)
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos de Armazenagem")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Assim, o custo total de armazenagem é de R`r scales::dollar_format(decimal.mark=",", big.mark = ".")(custoArmazenagem)` por mês.
+
+
+
+
+
+### Faturamento {.unlisted .unnumbered}
+
+O faturamento foi feito multiplicando os valores previstos pelo preço de caixa de cada produto. Considerando u preço de $R\$172.65$ para o produto MO0021, $R\$275.80$ para o produto MO0091 e $R\$122.82$ para o produto MO1401, tem-se o faturamento previsto de R`r scales::dollar_format(decimal.mark=",", big.mark = ".")(172.65*media21 + 275.80*media91 + 122.82*media14)`.
+
+### Custo Logístico por Real Faturado {.unlisted .unnumbered}
+
+Por fim, após realizar todas as análises, é possível determinar o custo logístico por real faturado. A tabela \@ref(tab:custoFinal) apresenta o custo total, o faturamento e o custo logístico.
+
+
+```{r custoFinal, echo=FALSE, tab.align='center'}
+tipo <- c("Custo Logístico", "Faturamento", "Custo por real faturado")
+custoLogistico <- custoArmazenagem + melhorRota$freteTotalPC + custoEstoque + custoEstoqueTransito
+faturamento <- 172.65*media21 + 275.80*media91 + 122.82*media14 
+custoPorReal <<- custoLogistico/faturamento
+
+resultados <- data.frame( T1 = tipo, T2 = round(c(custoLogistico, faturamento, custoPorReal),2))
+colnames(resultados) <- c("Parâmetro", "Valor")
+
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Valores Finais")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Dessa forma, com todos os parâmetros calculados e estabelecidos nas seções anteriores, é estimado um custo logístico de R`r scales::dollar_format(decimal.mark=",", big.mark = ".")(custoPorReal)` por real faturado.

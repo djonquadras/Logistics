@@ -231,7 +231,7 @@ Tendo todos os parâmetros de Quantidade de Suprimento, Estoque de Segurança e 
 
 
 ```{r EST004, echo=FALSE}
-
+emed <<- MO0021$emed + MO0091$emed + MO1401$emed
 resultados <- data.frame(T1 = c("$Q$", "$E_s$","$PP$","$E_{máx}$", "$E_{méd}$"),
                          T2 = c(MO0021$q,MO0021$es,MO0021$PP,MO0021$emax, MO0021$emed),
                          T3 = c(MO0091$q,MO0091$es,MO0091$PP,MO0091$emax, MO0091$emed),

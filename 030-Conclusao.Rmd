@@ -6,4 +6,6 @@ Como resultado final, foi definido que o melhor Centro de Distribuição para o 
 
 Também foram encontrados os níveis de serviço e parâmetros de estoque de forma independente para cada mercado consumidor e de forma unificada para o Centro de Distribuição. Os resultados obtidos se mostram coerentes para atender a demanda necessária com o nível de serviço exigido.
 
+O custo logístico por real faturado de R`r scales::dollar_format(decimal.mark=",", big.mark = ".")(custoPorReal)` mostra que o projeto apresentado é economicamente viável e se mostra competitivo no mercado, se apresentando como uma ótima opção para a empresa.
+
 A solução apresentada apresenta satisfatórios para a metodologia proposta, uma vez que visa a diminuição do custo total para a definição dos parâmetros requisitados. Entretanto, compreende-se que os resultados obtidos podem não ser resultados ótimos. Para que esse resultado fosse obtido, recomenda-se a aplicação de uma metodologia mais encorpada e robusta por meio do desenvolvimento de modelos matemáticos e a aplicação direta de Pesquisa Operacional. Por outro lado, a solução encontrada apresenta resultados adequados para o problema proposto.

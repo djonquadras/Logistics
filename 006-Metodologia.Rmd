@@ -19,3 +19,21 @@ Com as cargas dimensionadas para cada um dos modais previstos, foi calculado a q
 ## Nível de Serviço e Estoques {.unlisted .unnumbered}
 
 Para a definição de Nível de Serviço foram considerados os *lead times* e a representatividade das demandas em cada um dos mercados consumidores. A definição dos parâmetros de estoque foi feita utilizando as equações \@ref(eq:EST01)-\@ref(eq:EST05), os dados fornececidos pelo problema proposto e um valor de taxa para manter estoque "$i = 0.2$".
+
+## Custo de Estoque {.unlisted .unnumbered}
+
+Para o cálculo de valor de estoque é importante considerar o valor unitário total de cada um dos produtos para os seus respectivos destinos, assim teremos o valor total real de custo do produto. Aliado a este valor temos que adicionar os valores de estoque médio para cada produto e a uma taxa de atrativiadde (TMA). A TMA estabelecida foi de 200% do CDI, contabilizando ao todo 5,3% a.a.
+
+## Custo de Estoque em Trânsito {.unlisted .unnumbered}
+
+Para este custo não foram consideradas perdas durante o trajeto, apenas o custo do capital no tempo do deslocamento. 
+Considerado o lead time de entrega até o CD  e o mercado consumidor, para o estado de São Paulo a mercadoria não passa pelo CD em Palmas. Foi adotada a taxa de imobilização de capital  0,015% ao dia e valor de estoque unitário, calculado em valor de estoque.
+
+## Custo de Armazenamento {.unlisted .unnumbered}
+
+O CD de armazenamento sediado na cidade de Palmas possui o segundo menor custo de operação para o armazenamento dentre as 9 opções disponíveis sendo os custos envolvidos no CD divididos em quatro grandes áreas (Armazém, Estoques, Recursos Humanos e Tecnologia da Informação). Os custos fornecidos tem como base a quantidade de pallet disponíveis no CD (350 pallets) onde 100% da demanda média é suprida com 85% da utilização do espaço disponível do CD.
+
+## Faturamento {.unlisted .unnumbered}
+
+O faturamento é calculado pelo valor do “preço caixa” dos produtos MO0021, MO0091 e M01401 multiplicado pela previsão mensal de cada produto. Com isto se obtêm um valor médio dos valores de faturamento dos produtos e da empresa durante os 10 meses. 
+

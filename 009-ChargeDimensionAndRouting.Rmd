@@ -86,10 +86,10 @@ kableExtra::kable_styling(k, latex_options = "hold_position")
 library(tibble)
 
 #Parte A
-forecasting <- read_excel("forecasting.xlsx")
-media21 <- mean(forecasting[["previsao0021SP"]] + forecasting[["previsao0021TO"]] + forecasting[["previsao0021AM"]])
-media91 <- mean(forecasting[["previsao0091SP"]] + forecasting[["previsao0091TO"]] + forecasting[["previsao0091AM"]])
-media14 <- mean(forecasting[["previsao1401SP"]] + forecasting[["previsao1401TO"]] + forecasting[["previsao1401AM"]])
+forecasting <<- read_excel("forecasting.xlsx")
+media21 <<- mean(forecasting[["previsao0021SP"]] + forecasting[["previsao0021TO"]] + forecasting[["previsao0021AM"]])
+media91 <<- mean(forecasting[["previsao0091SP"]] + forecasting[["previsao0091TO"]] + forecasting[["previsao0091AM"]])
+media14 <<- mean(forecasting[["previsao1401SP"]] + forecasting[["previsao1401TO"]] + forecasting[["previsao1401AM"]])
 
 q21TOCO <- 160
 q21TRUCK <- 352
@@ -351,7 +351,8 @@ freteTotal02 = quantidades02*frete02
 
 melhorRota <<- list(quantidadesPC1 = quantidadesPC1[1], quantidadesPC2 = quantidadesPC2[1], quantidadesPC = quantidadePC[1],
                    freteTotalPC = freteTotalPC[1] + freteTotal02[3],
-                   quantidadesAM = quantidades02[3], freteAM = freteTotal02[3])
+                   quantidadesAM = quantidades02[3], freteAM = freteTotal02[3], freteAteSP = freteTotalPC1[1],
+                   fretePalmas = freteTotalPC2[1])
 
 resultados <- data.frame( T1 = modais,T2 = quantidades02, T3 = frete02, T4 = freteTotal02)
 colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
@@ -376,7 +377,7 @@ k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custo
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-Com base nos resultados obtidos é possível definir qual a melhor rota e melhor modal a ser utilizado. Obtendo o menor custo, no valor total de R`r scales::dollar_format()(melhorRota$freteTotalPC)` opta-se então pela rota **Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas** com os carregamentos de São Paulo e Manaus e **Porto Belo $\to$ São Paulo** com o carregamento de São Paulo, utilizando o *container*  **Dry Box 20 Pés**, nos modais: cabotagem de Itajaí até Santos e rodoviário nos demais. Para tanto, serão utilizados `r melhorRota$quantidadesPC1` Dry Box 20 Pés de Porto Belo até São Paulo, `r melhorRota$quantidadesPC2` Dry Box 20 Pés de Porto Belo até Palmas  e `r melhorRota$quantidadesAM` Dry Box 20 Pés de Palmas Até Manaus. As rotas são apresentadas na Figura \@ref(fig:FIGROT001)
+Com base nos resultados obtidos é possível definir qual a melhor rota e melhor modal a ser utilizado. Obtendo o menor custo, no valor total de R`r scales::dollar_format(decimal.mark=",", big.mark = ".")(melhorRota$freteTotalPC)` opta-se então pela rota **Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas** com os carregamentos de São Paulo e Manaus e **Porto Belo $\to$ São Paulo** com o carregamento de São Paulo, utilizando o *container*  **Dry Box 20 Pés**, nos modais: cabotagem de Itajaí até Santos e rodoviário nos demais. Para tanto, serão utilizados `r melhorRota$quantidadesPC1` Dry Box 20 Pés de Porto Belo até São Paulo, `r melhorRota$quantidadesPC2` Dry Box 20 Pés de Porto Belo até Palmas  e `r melhorRota$quantidadesAM` Dry Box 20 Pés de Palmas Até Manaus. As rotas são apresentadas na Figura \@ref(fig:FIGROT001)
 
 ```{r FIGROT001, echo=FALSE, fig.align='center', fig.cap='Rotas Definidas', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE}
   knitr::include_graphics("images/routes/mapaRotas.png", dpi = NA)
