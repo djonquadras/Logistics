@@ -9,15 +9,15 @@ forecasting <- read_excel("forecasting.xlsx")
 SP <- list(P0021 = c(c(322.2, 273.6), forecasting[["previsao0021SP"]]),
            P0091 = c(c(322.2, 273.6), forecasting[["previsao0091SP"]]),
            P1401 = c(c(235.6, 372.4), forecasting[["previsao1401SP"]]),
-           ta = 15, ns = 0.98, q = NULL, es = NULL, pp = NULL)
+           ta = 10, ns = 0.98, q = NULL, es = NULL, pp = NULL)
 AM <- list(P0021 = c(c(839.5,1163.8), forecasting[["previsao0021AM"]]),
            P0091 = c(c(706.8,742.9), forecasting[["previsao0091AM"]]),
            P1401 = c(c(1012.7,775.2), forecasting[["previsao1401AM"]]),
-           ta = 15, ns = 0.95, q = NULL, es = NULL, pp = NULL)
+           ta = 31, ns = 0.95, q = NULL, es = NULL, pp = NULL)
 TO <- list(P0021 = c(c(1444.6,1928.2), forecasting[["previsao0021TO"]]),
            P0091 = c(c(598.3,744), forecasting[["previsao0091TO"]]),
            P1401 = c(c(1190.4,1747.2), forecasting[["previsao1401TO"]]),
-           ta = 15, ns = 0.99, q = NULL, es = NULL, pp = NULL)
+           ta = 16, ns = 0.99, q = NULL, es = NULL, pp = NULL)
 P0021 <- list(custoCaixa = 115.80, precoCaixa = 172.65, custoPedido = 804)
 P0091 <- list(custoCaixa = 197.45, precoCaixa = 275.80, custoPedido = 2231)
 P1401 <- list(custoCaixa = 104.16, precoCaixa = 122.82, custoPedido = 914)
@@ -121,25 +121,20 @@ SP$q <- list(MO0021 = ceiling(qSup(P0021$custoPedido, sum(SP$P0021), CI, P0021$c
              MO0091 = ceiling(qSup(P0091$custoPedido, sum(SP$P0091), CI, P0091$custoCaixa)),
              MO1401 = ceiling(qSup(P1401$custoPedido, sum(SP$P1401), CI, P1401$custoCaixa)))
 
-SP$es <- list(MO0021 = ceiling(es(qnorm(SP$ns), sd((SP$P0021)), SP$ta)),
-              MO0091 = ceiling(es(qnorm(SP$ns), sd((SP$P0091)), SP$ta)),
-              MO1401 = ceiling(es(qnorm(SP$ns), sd((SP$P1401)), SP$ta)))
+SP$es <- 0
 
-SP$pp <- list(MO0021 = ceiling(pp(sum(SP$P0021), SP$ta, SP$es$MO0021)),
-              MO0091 = ceiling(pp(sum(SP$P0091), SP$ta, SP$es$MO0091)),
-              MO1401 = ceiling(pp(sum(SP$P1401), SP$ta, SP$es$MO1401)))
+SP$pp <- 0
 ```
 
-A análise para o estado do Amazonas será dividida entre os produtos MO0021, MO0091 e MO1401. Os dados individuais para cada um dos produtos estão apresentados na Tabela \@ref(tab:EST002).
+A análise para o estado de São Paulo será dividida entre os produtos MO0021, MO0091 e MO1401. Como para São Paulo não será utilizado o Centro de Distribuição, será considerado apenas a quantidade de ressuprimento a ser enviada para o mercado, uma vez que não é necessário estóque de segurança e ponto de pedido para o centro de distribuiçãol. Os dados individuais para cada um dos produtos estão apresentados na Tabela \@ref(tab:EST002).
 
 ```{r EST002, echo=FALSE}
 
-resultados <- data.frame(T1 = c("$Q$", "$E_s$", "$PP$"),
-                         T2 = c(SP$q$MO0021, SP$es$MO0021, SP$pp$MO0021),
-                         T3 = c(SP$q$MO0091, SP$es$MO0091, SP$pp$MO0091 ),
-                         T4 = c(SP$q$MO1401, SP$es$MO1401, SP$pp$MO1401))
-colnames(resultados) <- c("Parâmetro", "MO0021", "MO0091", "MO1401")
-k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Cálculos para São Paulo")
+resultados <- data.frame(Parametro = "$Q$",
+                         MO0021 = SP$q$MO0021,
+                         MO0091 = SP$q$MO0091,
+                         MO1401 = SP$q$MO1401)
+k <- knitr::kable(resultados, booktabs = T, escape = FALSE, caption = "Quantidade de Ressuprimento para São Paulo")
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
@@ -159,7 +154,7 @@ TO$pp <- list(MO0021 = ceiling(pp(sum(TO$P0021), TO$ta, TO$es$MO0021)),
               MO1401 = ceiling(pp(sum(TO$P1401), TO$ta, TO$es$MO1401)))
 ```
 
-A análise para o estado do Amazonas será dividida entre os produtos MO0021, MO0091 e MO1401. Os dados individuais para cada um dos produtos estão apresentados na Tabela \@ref(tab:EST003).
+A análise para o estado do Tocantins será dividida entre os produtos MO0021, MO0091 e MO1401. Os dados individuais para cada um dos produtos estão apresentados na Tabela \@ref(tab:EST003).
 
 ```{r EST003, echo=FALSE}
 
@@ -175,23 +170,23 @@ kableExtra::kable_styling(k, latex_options = "hold_position")
 ### Parâmetros para o Centro de Distribuição {.unlisted .unnumbered}
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
-MO0021 <- list(q = ceiling((TO$q$MO0021 + AM$q$MO0021 + SP$q$MO0021)),
-               es = ceiling((TO$es$MO0021 + AM$es$MO0021 + SP$es$MO0021)),
-               PP = ceiling((TO$pp$MO0021 + AM$pp$MO0021 + SP$pp$MO0021)),
-               emed = ceiling((TO$es$MO0021 + AM$es$MO0021 + SP$es$MO0021) + (TO$q$MO0021 + AM$q$MO0021 + SP$q$MO0021)/2),
-               emax = ceiling((TO$es$MO0021 + AM$es$MO0021 + SP$es$MO0021) + (TO$q$MO0021 + AM$q$MO0021 + SP$q$MO0021)))
+MO0021 <- list(q = ceiling((TO$q$MO0021 + AM$q$MO0021)),
+               es = ceiling((TO$es$MO0021 + AM$es$MO0021)),
+               PP = ceiling((TO$pp$MO0021 + AM$pp$MO0021)),
+               emed = ceiling((TO$es$MO0021 + AM$es$MO0021) + (TO$q$MO0021 + AM$q$MO0021)/2),
+               emax = ceiling((TO$es$MO0021 + AM$es$MO0021) + (TO$q$MO0021 + AM$q$MO0021)))
 
-MO0091 <- list(q = ceiling((TO$q$MO0091 + AM$q$MO0091 + SP$q$MO0091)),
-               es = ceiling((TO$es$MO0091 + AM$es$MO0091 + SP$es$MO0091)),
-               PP = ceiling((TO$pp$MO0091 + AM$pp$MO0091 + SP$pp$MO0091)),
-               emed = ceiling((TO$es$MO0091 + AM$es$MO0091 + SP$es$MO0091) + (TO$q$MO0091 + AM$q$MO0091 + SP$q$MO0091)/2),
-               emax = ceiling((TO$es$MO0091 + AM$es$MO0091 + SP$es$MO0091) + (TO$q$MO0091 + AM$q$MO0091 + SP$q$MO0091)))
+MO0091 <- list(q = ceiling((TO$q$MO0091 + AM$q$MO0091)),
+               es = ceiling((TO$es$MO0091 + AM$es$MO0091)),
+               PP = ceiling((TO$pp$MO0091 + AM$pp$MO0091)),
+               emed = ceiling((TO$es$MO0091 + AM$es$MO0091) + (TO$q$MO0091 + AM$q$MO0091)/2),
+               emax = ceiling((TO$es$MO0091 + AM$es$MO0091) + (TO$q$MO0091 + AM$q$MO0091)))
 
-MO1401 <- list(q = ceiling((TO$q$MO1401 + AM$q$MO1401 + SP$q$MO1401)),
-               es = ceiling((TO$es$MO1401 + AM$es$MO1401 + SP$es$MO1401)),
-               PP = ceiling((TO$pp$MO1401 + AM$pp$MO1401 + SP$pp$MO1401)),
-               emed = ceiling((TO$es$MO1401 + AM$es$MO1401 + SP$es$MO1401) + (TO$q$MO1401 + AM$q$MO1401 + SP$q$MO1401)/2),
-               emax = ceiling((TO$es$MO1401 + AM$es$MO1401 + SP$es$MO1401) + (TO$q$MO1401 + AM$q$MO1401 + SP$q$MO1401)))
+MO1401 <- list(q = ceiling((TO$q$MO1401 + AM$q$MO1401)),
+               es = ceiling((TO$es$MO1401 + AM$es$MO1401)),
+               PP = ceiling((TO$pp$MO1401 + AM$pp$MO1401)),
+               emed = ceiling((TO$es$MO1401 + AM$es$MO1401) + (TO$q$MO1401 + AM$q$MO1401)/2),
+               emax = ceiling((TO$es$MO1401 + AM$es$MO1401) + (TO$q$MO1401 + AM$q$MO1401)))
 
 plotMO0021 <- data.frame(Tempo=rep(1:2, 6),
                    Param=c(0,0,

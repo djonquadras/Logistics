@@ -1,0 +1,19 @@
+# Custos Logísticos
+
+Aqui serão apresentados os custos logísticos: (1) de frete; (2) de estoque; (3) de estoque em trânsito; e (4) de armazenagem. Juntamente, será calculado o faturamento previsto e, por fim, quanto o custo logístico representa deste total.
+
+### Custo de Frete {.unlisted .unnumbered}
+
+O custo de frete foi previamente calculado para determinar a rota utilizada para as entregas. Desse modo, o valor do custo de frete é de R`r scales::dollar_format()(melhorRota$freteTotalPC)` ao mês.
+
+### Custo de Estoque {.unlisted .unnumbered}
+
+Working on it :)
+
+### Custo de Estoque em Trânsito {.unlisted .unnumbered}
+
+Working on it :)
+
+### Custo de Armazenagem {.unlisted .unnumbered}
+
+Working on it :)

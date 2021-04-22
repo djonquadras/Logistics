@@ -28,10 +28,12 @@ header-includes:
   - \usepackage{lastpage}
   - \usepackage[portuguese]{babel}
   - \floatplacement{figure}{H}
+  - \usepackage{icomma}
 
 fontsize: 12pt
-bibliography: references.bib
+bibliography: [book.bib]
 biblio-style: apalike
+csl: instituto-brasileiro-de-informacao-em-ciencia-e-tecnologia-abnt-initials.csl
 link-citations: yes
 ident: true
 mainfont: Arial
@@ -92,15 +94,21 @@ toc: false
 ```{r echo=FALSE, child="004-Introducao.Rmd"}
 ```
 
+\clearpage
+
 \newpage
 \pagestyle{plain}
 ```{r echo=FALSE, child="005-Revisao.Rmd"}
 ```
 
+\clearpage
+
 \newpage
 \pagestyle{plain}
 ```{r echo=FALSE, child="006-Metodologia.Rmd"}
 ```
+
+\clearpage
 
 \newpage
 \pagestyle{plain}
@@ -127,6 +135,13 @@ toc: false
 \newpage
 \pagestyle{plain}
 ```{r echo=FALSE, child="010-NSeEstoque.Rmd"}
+```
+
+\clearpage
+
+\newpage
+\pagestyle{plain}
+```{r echo=FALSE, child="011-Custos.Rmd"}
 ```
 
 \clearpage

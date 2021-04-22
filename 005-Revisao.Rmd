@@ -8,21 +8,21 @@ Serão  apresetados os métodos abordados para a realização do estudo de previ
 
 ### Suavização Exponencial (SE) {.unlisted .unnumbered}
 
-A Suavização Exponencial (SE) baseia os seus resultados de acordo com os acontecimentos passados, mas, diferentemente de uma média móvel (que considera os eventos passados isobáricos dentro do modelo preditivo), a SE não segue o mesmo efeito. A suavização passa a considerar que os eventos mais recentes e próximos têm maior peso dentro do modelo preditivo quando comparados com eventos mais distantes da série temporal, os quais decaem de forma exponencial da mais recente à mais distante observação (William J, 2011).
+A Suavização Exponencial (SE) baseia os seus resultados de acordo com os acontecimentos passados, mas, diferentemente de uma média móvel (que considera os eventos passados isobáricos dentro do modelo preditivo), a SE não segue o mesmo efeito. A suavização passa a considerar que os eventos mais recentes e próximos têm maior peso dentro do modelo preditivo quando comparados com eventos mais distantes da série temporal, os quais decaem de forma exponencial da mais recente à mais distante observação [@Jacobs2011].
 
-O método é um dos mais utilizados dentro da indústria para a predição de produtos e as suas respectivas demandas e a razão para tal é o baixo custo e simplicidade (Teixeira, 2004). Para a utilização deste método, deve-se considerar que o mesmo tem melhores resultados, ou seja, possui melhor ajustamento para séries que não possuem tendência ou sazonalidade. O modelo foi proposto primeiramente por Robert Goodell Brown e a expressão que suporta a suavização exponencial é dada por:
+O método é um dos mais utilizados dentro da indústria para a predição de produtos e as suas respectivas demandas e a razão para tal é o baixo custo e simplicidade [@Teixeira2004]. Para a utilização deste método, deve-se considerar que o mesmo tem melhores resultados, ou seja, possui melhor ajustamento para séries que não possuem tendência ou sazonalidade. O modelo foi proposto primeiramente por Robert Goodell Brown e a expressão que suporta a suavização exponencial é dada por:
 
 
 \begin{equation} \label{eq;001}
 \widehat{P}_{t+1} = \alpha\widehat{P}_t + (1-\alpha)\widehat{P}_t
 \end{equation}
 
-O ponto $\widehat{P}_{t+1}$ é a próxima observação da demanda,  é a constante que varia referente à suavização e seu valor está contido entre 0 e 1 e $\widehat{P}_t$ representa a mais recente observação da série. A Combinação dos valores dos referentes pesos de  com os valores observados atuais $\widehat{P}_t$ geram as previsões para as próximas observações. Note que o valor de $\alpha$ como constante é arbitrário e sua determinação pode ser realizada por diferentes métodos que minimizem os erros causados pela mesma (JONAS *et. al*, 2012).
+O ponto $\widehat{P}_{t+1}$ é a próxima observação da demanda,  é a constante que varia referente à suavização e seu valor está contido entre 0 e 1 e $\widehat{P}_t$ representa a mais recente observação da série. A Combinação dos valores dos referentes pesos de  com os valores observados atuais $\widehat{P}_t$ geram as previsões para as próximas observações. Note que o valor de $\alpha$ como constante é arbitrário e sua determinação pode ser realizada por diferentes métodos que minimizem os erros causados pela mesma [@Verissimo2013].
 
 ### Modelos Autoregressivos Integrados e de Médias Móveis (ARIMA) {.unlisted .unnumbered}
 
 
-Esta metodologia consiste em ajustar modelos autorregressivos integrados de médias móveis, ARIMA(p,d,q), a um conjunto de dados. Para a construção do modelo seguimos um algorítimo no qual a escolha da estrutura do modelo é baseado nos próprios dados. Podemos descrever o algorítimo através dos seguintes passos:
+De acordo com @Hyndman2018, esta metodologia consiste em ajustar modelos autorregressivos integrados de médias móveis, ARIMA(p,d,q), a um conjunto de dados. Para a construção do modelo seguimos um algorítimo no qual a escolha da estrutura do modelo é baseado nos próprios dados. Podemos descrever o algorítimo através dos seguintes passos:
 
 1. Considerar uma classe geral de modelos para a análise;
 2. Identificar um modelo com base na análise de autocorrelações, autocorrelações parciais e outros critérios;
@@ -31,18 +31,18 @@ Verificar se o modelo ajustado é adequado aos dados através de uma análise de
 4. Caso o modelo não seja adequado o algoritmo é repetido, voltando à fase de identificação.
 5. Existem vários critérios para identificação de um modelo, por isso, é possível identificar modelos diferentes dependendo do critério que foi escolhido para identificação.
 
-#### Modelos Autorregressivos (AR)
+#### Modelos Autorregressivos (AR) {.unlisted .unnumbered}
 
-Dizemos que o modelo $X_t$, $t$ pertencente a $\mathbb{Z}$ é um modelo autoregressivo de ordem $p$ e escrevemos $X_t \cong AR(p)$ se pudermos escrever da forma:
+De acordo com @Hyndman2018, modelo $X_t$, $t$ pertencente a $\mathbb{Z}$ é um modelo autoregressivo de ordem $p$ e escrevemos $X_t \cong AR(p)$ se pudermos escrever da forma:
 
 \begin{equation} \label{eq;002}
 X_t = \phi_0 + \phi_1X_t-1 +\dots+ \phi_pX_t-p + \epsilon_t
 \end{equation}
 Onde  $\phi_0$,  $\phi_1$ e  $\phi_t$ são parâmetros reais, e $\epsilon_t$ são variáveis independentes aleatórias com $E(\epsilon_t) = 0$ e $VAR(\epsilon_t) = \sigma^2$.
 
-#### Modelos de médias móveis (MA).
+#### Modelos de médias móveis (MA) {.unlisted .unnumbered}
 
-Consiste em um modelo de médias móveis de ordem p e q, representado por: 
+De acordo com @Hyndman2018, este consiste em um modelo de médias móveis de ordem p e q, representado por: 
 
 \begin{equation} \label{eq;003}
 X_t = \phi_1X_t-1 + \dots + \phi_pX_t-p + \alpha_t - \theta_1\alpha_t-1 -\dots-\theta_q\alpha_t-q 
@@ -52,9 +52,7 @@ Um processo de $MA(p,q)$ tem função de autocovariância infinita, decaindo de 
 
 ### Redes Neurais Artificiais (RNA)  {.unlisted .unnumbered}
 
-Funcionam analogamente ao cérebro e neurônios, tentando entender padrões e regularidades.Uma de suas vantagens é a aproximação de séries temporais não lineares (Kashei ; Bijari 2010; Zhang 2003).
-
-Modelo descrito por três camadas, entrada, saída e escondida. Os neurônios nestas camadas só se conectam com as camadas subsequentes. A camada escondida necessita ser definida, se for muito grande estará memorizando os padrões assim perdendo capacidade de generalização, se muito pequena necessita de muitas interações, por consequência força computacional para chegar a precisão desejada. (FERNADES, L. G.; PORTUGAL, M. S.; NAVAUX, P. O). Para o sucesso da previsão é necessário dividir as amostras em pares de treinamento e teste e assim avaliar a camada oculta. 
+Funcionam analogamente ao cérebro e neurônios, tentando entender padrões e regularidades.Uma de suas vantagens é a aproximação de séries temporais não lineares [@Khashei2010]. Modelo descrito por três camadas, entrada, saída e escondida. Os neurônios nestas camadas só se conectam com as camadas subsequentes. A camada escondida necessita ser definida, se for muito grande estará memorizando os padrões assim perdendo capacidade de generalização, se muito pequena necessita de muitas interações, por consequência força computacional para chegar a precisão desejada. Para o sucesso da previsão é necessário dividir as amostras em pares de treinamento e teste e assim avaliar a camada oculta [@Hyndman2018]. 
 
 ## Método do Centro de Gravidade
 
@@ -91,15 +89,15 @@ Nessa seção será apresentada a literatura referente ao nível de serviço e g
 
 ### Nível de Serviço {.unlisted .unnumbered}
 
-De acordo com Marchesini (2012) pode-se de forma geral utilizar a definição de nível de serviço de Christopher (1997). Em seus estudos, Christopher afirma que o serviço ao cliente é determinado pelos elementos de disponibilidade, frequência e confiabilidade de entrega, níveis de estoque e tempo consumido no ciclo dos pedidos, que juntos resultam tornar disponíveis ao comprador o processo de fabricação dos produtos e a prestação de serviços. 
+De acordo com @Marchesini2012 pode-se de forma geral utilizar a definição de nível de serviço de @Christopher1997. Em seus estudos, @Christopher1997 afirma que o serviço ao cliente é determinado pelos elementos de disponibilidade, frequência e confiabilidade de entrega, níveis de estoque e tempo consumido no ciclo dos pedidos, que juntos resultam tornar disponíveis ao comprador o processo de fabricação dos produtos e a prestação de serviços. 
 
-Segundo o autor, os elementos críticos de serviço ao cliente são: ciclo do pedido, disponibilidade de estoque, restrições do tamanho do pedido (flexibilidade para atender entregas JIT), facilidade na colocação do pedido, frequência de entrega, confiabilidade de entrega, qualidade da documentação (faturas, notas fiscais e outras comunicações com os clientes), procedimentos para reclamações, pedidos entregues completos, suporte técnico, informação sobre a posição dos pedidos. A confiabilidade de entrega e pedidos entregues completos são os elementos cruciais à conquista e manutenção dos clientes.
+Segundo @Christopher1997, os elementos críticos de serviço ao cliente são: ciclo do pedido, disponibilidade de estoque, restrições do tamanho do pedido (flexibilidade para atender entregas JIT), facilidade na colocação do pedido, frequência de entrega, confiabilidade de entrega, qualidade da documentação (faturas, notas fiscais e outras comunicações com os clientes), procedimentos para reclamações, pedidos entregues completos, suporte técnico, informação sobre a posição dos pedidos. A confiabilidade de entrega e pedidos entregues completos são os elementos cruciais à conquista e manutenção dos clientes.
 
 Portanto, é possível afirmar que dentro de um estudo logístico a variável de nível de serviço deve ser considerada de extrema importância dado o seu impacto na cadeia global de suprimentos.
 
 ### Estoques {.unlisted .unnumbered}
 
-Waters (2019) e Bowerson, Class e Cooper (2005) definem as seguintes equações como as principais equações para determinação e controle de estoque.
+@Waters2019 e @Bowersox2005 definem as seguintes equações como as principais equações para determinação e controle de estoque.
 
 Quantidade de Suprimento:
 

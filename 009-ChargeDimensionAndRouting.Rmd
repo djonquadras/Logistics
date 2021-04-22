@@ -84,6 +84,8 @@ kableExtra::kable_styling(k, latex_options = "hold_position")
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results = 'hide'}
 library(tibble)
+
+#Parte A
 forecasting <- read_excel("forecasting.xlsx")
 media21 <- mean(forecasting[["previsao0021SP"]] + forecasting[["previsao0021TO"]] + forecasting[["previsao0021AM"]])
 media91 <- mean(forecasting[["previsao0091SP"]] + forecasting[["previsao0091TO"]] + forecasting[["previsao0091AM"]])
@@ -121,6 +123,83 @@ TOTALTOCO <- mediaq21TOCO + mediaq91TOCO + mediaq14TOCO
 TOTALTRUCK <- mediaq21TRUCK + mediaq91TRUCK + mediaq14TRUCK
 TOTAL20 <-  mediaq2120 + mediaq9120 + mediaq1420
 TOTAL40 <- mediaq2140 + mediaq9140 +mediaq1440
+
+#Parte B
+
+media21SP <- mean(forecasting[["previsao0021SP"]])
+media91SP <- mean(forecasting[["previsao0091SP"]])
+media14SP <- mean(forecasting[["previsao1401SP"]])
+
+media21AM <- mean(forecasting[["previsao0021AM"]])
+media91AM <- mean(forecasting[["previsao0091AM"]])
+media14AM <- mean(forecasting[["previsao1401AM"]])
+
+mediaq21TOCOSP <- ceiling(media21SP/q21TOCO)
+mediaq21TRUCKSP <- ceiling(media21SP/q21TRUCK)
+mediaq2120SP <- ceiling(media21SP/q2120)
+mediaq2140SP <- ceiling(media21SP/q2140)
+
+mediaq21TOCOAM <- ceiling(media21AM/q21TOCO)
+mediaq21TRUCKAM <- ceiling(media21AM/q21TRUCK)
+mediaq2120AM <- ceiling(media21AM/q2120)
+mediaq2140AM <- ceiling(media21AM/q2140)
+
+mediaq91TOCOSP <- ceiling(media91SP/q21TOCO)
+mediaq91TRUCKSP <- ceiling(media91SP/q21TRUCK)
+mediaq9120SP <- ceiling(media91SP/q2120)
+mediaq9140SP <- ceiling(media91SP/q2140)
+
+mediaq91TOCOAM <- ceiling(media91AM/q21TOCO)
+mediaq91TRUCKAM <- ceiling(media91AM/q21TRUCK)
+mediaq9120AM <- ceiling(media91AM/q2120)
+mediaq9140AM <- ceiling(media91AM/q2140)
+
+mediaq14TOCOSP <- ceiling(media14SP/q21TOCO)
+mediaq14TRUCKSP <- ceiling(media14SP/q21TRUCK)
+mediaq1420SP <- ceiling(media14SP/q2120)
+mediaq1440SP <- ceiling(media14SP/q2140)
+
+mediaq14TOCOAM <- ceiling(media14AM/q21TOCO)
+mediaq14TRUCKAM <- ceiling(media14AM/q21TRUCK)
+mediaq1420AM <- ceiling(media14AM/q2120)
+mediaq1440AM <- ceiling(media14AM/q2140)
+
+TOTALTOCOSP <- mediaq21TOCOSP + mediaq91TOCOSP + mediaq14TOCOSP
+TOTALTRUCKSP <- mediaq21TRUCKSP + mediaq91TRUCKSP + mediaq14TRUCKSP
+TOTAL20SP <-  mediaq2120SP + mediaq9120SP + mediaq1420SP
+TOTAL40SP <- mediaq2140SP + mediaq9140SP + mediaq1440SP
+
+TOTALTOCOAM <- mediaq21TOCOAM + mediaq91TOCOAM + mediaq14TOCOAM
+TOTALTRUCKAM <- mediaq21TRUCKAM + mediaq91TRUCKAM + mediaq14TRUCKAM
+TOTAL20AM <-  mediaq2120AM + mediaq9120AM + mediaq1420AM
+TOTAL40AM <- mediaq2140AM + mediaq9140AM + mediaq1440AM
+
+#Parte C
+forecasting <- read_excel("forecasting.xlsx")
+media21PC <- mean(forecasting[["previsao0021TO"]] + forecasting[["previsao0021AM"]])
+media91PC <- mean(forecasting[["previsao0091TO"]] + forecasting[["previsao0091AM"]])
+media14PC <- mean(forecasting[["previsao1401TO"]] + forecasting[["previsao1401AM"]])
+
+
+mediaq21TOCOPC <- ceiling(media21PC/q21TOCO)
+mediaq21TRUCKPC <- ceiling(media21PC/q21TRUCK)
+mediaq2120PC <- ceiling(media21PC/q2120)
+mediaq2140PC <- ceiling(media21PC/q2140)
+
+mediaq91TOCOPC <- ceiling(media91PC/q21TOCO)
+mediaq91TRUCKPC <- ceiling(media91PC/q21TRUCK)
+mediaq9120PC <- ceiling(media91PC/q2120)
+mediaq9140PC <- ceiling(media91PC/q2140)
+
+mediaq14TOCOPC <- ceiling(media14PC/q21TOCO)
+mediaq14TRUCKPC <- ceiling(media14PC/q21TRUCK)
+mediaq1420PC <- ceiling(media14PC/q2120)
+mediaq1440PC <- ceiling(media14PC/q2140)
+
+TOTALTOCOPC <- mediaq21TOCOPC + mediaq91TOCOPC + mediaq14TOCOPC
+TOTALTRUCKPC <- mediaq21TRUCKPC + mediaq91TRUCKPC + mediaq14TRUCKPC
+TOTAL20PC <-  mediaq2120PC + mediaq9120PC + mediaq1420PC
+TOTAL40PC <- mediaq2140PC + mediaq9140PC + mediaq1440PC
 ```
 
 ## Roteirização
@@ -140,23 +219,30 @@ kableExtra::kable_styling(k, latex_options = "hold_position")
 ### Definição da Rota e Modais {.unlisted .unnumbered}
 
 
-Para a roteirização e consequente escolha dos modais foram estabelecidos seguintes cenários:
+A roteirização e consequente escolha dos modais será feita em duas partes: Estabelecida a rota até o Centro de Distribuição com base nos seguintes cenários:
 
 1. Porto Belo $\to$ Palmas;
 2. Porto Belo $\to$ Itajaí $\to$ Belém $\to$ Palmas;
 3. Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas;
-4. Porto Belo $\to$ Itajaí $\to$ Suape $\to$ Palmas.
+4. Porto Belo $\to$ Itajaí $\to$ Suape $\to$ Palmas;
+5. Porto Belo $\to$ Itajaí $\to$ Santos $\to$ São Paulo $\to$ Palmas.
+6. Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas (Manaus e Palmas) e Porto Belo $\to$ São Paulo
+
+E estabelecida a rota até os mercados com base nos seguintes cenários:
+
+1. Palmas $\to$ Manaus e São Paulo (para cenários 1-4)
+2. Palmas $\to$ Manaus (para cenário 5)
 
 A Tabela \@ref(tab:ROT002) apresenta os resultados para o primeiro cenário, considerando os diferentes modais.
 
 ```{r ROT002, echo=FALSE, tab.align='center'}
 modais <- c("Toco", "Truck", "Dry Box 20 pés", "Dry Box 40 pés")
-quantidades <- c(TOTALTOCO, TOTALTRUCK, TOTAL20, TOTAL40)
-frete1 <- c(18280, 27800, 25420, 33120)
-freteTotal1 = quantidades*frete1
+quantidades1 <- c(TOTALTOCO, TOTALTRUCK, TOTAL20, TOTAL40)
+frete1 <- c(4910, 7995, 6620, 9885)
+freteTotal1 = quantidades1*frete1
 
-resultados <- data.frame( T1 = modais, T2 = quantidades, T3 = frete1, T4 = freteTotal1)
-colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+resultados <- data.frame( T1 = modais, T2 = quantidades1, T3 = frete1, T4 = freteTotal1)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
 k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 1")
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
@@ -165,12 +251,12 @@ A Tabela \@ref(tab:ROT003) apresenta os resultados para o segundo cenário, cons
 
 ```{r ROT003, echo=FALSE, tab.align='center'}
 modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
-quantidades <- c(TOTAL20, TOTAL40)
-frete2 <- c(30580,38855)
-freteTotal2 = quantidades*frete2
+quantidades2 <- c(TOTAL20, TOTAL40)
+frete2 <- c(11780,15620)
+freteTotal2 = quantidades2*frete2
 
-resultados <- data.frame( T1 = modais, T2 = quantidades, T3 = frete2, T4 = freteTotal2)
-colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+resultados <- data.frame( T1 = modais, T2 = quantidades2, T3 = frete2, T4 = freteTotal2)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
 k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 2")
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
@@ -179,47 +265,136 @@ A Tabela \@ref(tab:ROT004) apresenta os resultados para o terceiro cenário, con
 
 ```{r ROT004, echo=FALSE, tab.align='center'}
 modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
-quantidades <- c(TOTAL20, TOTAL40)
-frete3 <- c(24145,32485)
-freteTotal3 = quantidades*frete3
+quantidades3 <- c(TOTAL20, TOTAL40)
+frete3 <- c(5345,9250)
+freteTotal3 = quantidades3*frete3
 
-resultados <- data.frame( T1 = modais, T2 = quantidades, T3 = frete3, T4 = freteTotal3)
-colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+resultados <- data.frame( T1 = modais, T2 = quantidades3, T3 = frete3, T4 = freteTotal3)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
 k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 3")
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-Por fim, a Tabela \@ref(tab:ROT005) apresenta os resultados para o quarto cenário, considerando os diferentes modais.
+A Tabela \@ref(tab:ROT005) apresenta os resultados para o quarto cenário, considerando os diferentes modais.
 
 ```{r ROT005, echo=FALSE, tab.align='center'}
 modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
-quantidades <- c(TOTAL20, TOTAL40)
-frete4 <- c(31770,41845)
-freteTotal4 = quantidades*frete4
+quantidades4 <- c(TOTAL20, TOTAL40)
+frete4 <- c(12970,18610)
+freteTotal4 = quantidades4*frete4
 
-resultados <- data.frame( T1 = modais,T2 = quantidades, T3 = frete4, T4 = freteTotal4)
-colnames(resultados) <- c("Modal", "Quantidade Utilizda", "Frete", "Valor Total")
+resultados <- data.frame( T1 = modais,T2 = quantidades4, T3 = frete4, T4 = freteTotal4)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
 k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 4")
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
 
-Com base nos resultados obtidos é possível definir qual a melhor rota e melhor modal a ser utilizado. Obtendo o menor custo, no valor total de R`r scales::dollar_format()(freteTotal3[1])` opta-se então pela rota **Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas**, utilizando o *container*  **Dry Box 20 Pés**, nos modais: rodoviário de Porto Belo até Itajái, cabotagem de Itajaí até Santos, rodoviário de Santos até Palmas. As rotas são apresentadas na Figura \@ref(fig:FIGROT001)
+A tabela \@ref(tab:ROT006) apresenta os resultados para o quinto cenário, considerando os diferentes modais.
+
+```{r ROT006, echo=FALSE, tab.align='center'}
+modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
+quantidades5 <- c(TOTAL20, TOTAL40)
+frete5 <- c(8570,12470)
+freteTotal5 = quantidades5*frete5
+
+resultados <- data.frame( T1 = modais,T2 = quantidades5, T3 = frete5, T4 = freteTotal5)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 5")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Por fim, a tabela \@ref(tab:ROT007) apresenta os resultados para o sexto cenário, considerando os diferentes modais.
+
+
+```{r ROT007, echo=FALSE, tab.align='center'}
+modais <- c("Dry Box 20 pés", "Dry Box 40 pés")
+quantidadesPC1 <- c(TOTAL20SP, TOTAL40SP)
+fretePC1 <- c(1200, 2995)
+freteTotalPC1 = quantidadesPC1*fretePC1
+
+quantidadesPC2 <- c(TOTAL20PC, TOTAL40PC)
+fretePC2 <- c(5345,9250)
+freteTotalPC2 <- quantidadesPC2*fretePC2
+
+quantidadePC <- quantidadesPC1 + quantidadesPC2
+fretePC <- fretePC2 + fretePC1
+freteTotalPC <- freteTotalPC1 + freteTotalPC2
+
+resultados <- data.frame( T1 = modais,T2 = quantidadePC, T3 = fretePC, T4 = freteTotalPC)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para cenário 6")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+
+A tabela \@ref(tab:ROT2001) apresenta os resultados para o primeiro cenário até os mercados, considerando os diferentes modais.
+
+```{r ROT2001, echo=FALSE, tab.align='center'}
+modais <- c("Toco", "Truck", "Dry Box 20 pés", "Dry Box 40 pés")
+quantidades01 <- c(TOTALTOCOSP + TOTALTOCOAM, TOTALTRUCKSP + TOTALTRUCKAM, TOTAL20SP + TOTAL20AM, TOTAL40SP + TOTAL40AM)
+frete01 <- c(13370, 19805, 18800, 23235)
+freteTotal01 = quantidades01*frete01
+
+resultados <- data.frame( T1 = modais,T2 = quantidades01, T3 = frete01, T4 = freteTotal01)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 1 para os mercados")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Finalmnete, a tabela \@ref(tab:ROT2002) apresenta os resultados para o segundo cenário até os mercados, considerando os diferentes modais.
+
+```{r ROT2002, echo=FALSE, tab.align='center'}
+modais <- c("Toco", "Truck", "Dry Box 20 pés", "Dry Box 40 pés")
+quantidades02 <- c(TOTALTOCOAM, TOTALTRUCKAM, TOTAL20AM, TOTAL40AM)
+frete02 <- c(9310, 13340, 13135, 16150)
+freteTotal02 = quantidades02*frete02
+
+melhorRota <<- list(quantidadesPC1 = quantidadesPC1[1], quantidadesPC2 = quantidadesPC2[1], quantidadesPC = quantidadePC[1],
+                   freteTotalPC = freteTotalPC[1] + freteTotal02[3],
+                   quantidadesAM = quantidades02[3], freteAM = freteTotal02[3])
+
+resultados <- data.frame( T1 = modais,T2 = quantidades02, T3 = frete02, T4 = freteTotal02)
+colnames(resultados) <- c("Modal", "QuantidadeUtilizada", "Frete", "Valor Total")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos para Cenário 2 para os mercados")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+a tabela \@ref(tab:ROTFINAL) apresenta os custos para todos os cenários, escolhendo os melhores modais
+
+```{r ROTFINAL, echo=FALSE, tab.align='center'}
+cenario <- c(1,2,3,4,5,6)
+modais <- c("Dry Box 20 pés", "Dry Box 20 pés", "Dry Box 20 pés", "Dry Box 20 pés", "Dry Box 20 pés", "Dry Box 20 pés")
+custo <- c(freteTotal1[3] + freteTotal01[3],
+           freteTotal2[1] + freteTotal01[3],
+           freteTotal3[1] + freteTotal01[3],
+           freteTotal4[1] + freteTotal01[3],
+           freteTotal5[1] + freteTotal02[3],
+           melhorRota$freteTotalPC)
+resultados <- data.frame( T0 = cenario, T1 = modais,T2 = custo)
+colnames(resultados) <- c("Cenário", "Modal", "Custo")
+k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Custos Rotas")
+kableExtra::kable_styling(k, latex_options = "hold_position")
+```
+
+Com base nos resultados obtidos é possível definir qual a melhor rota e melhor modal a ser utilizado. Obtendo o menor custo, no valor total de R`r scales::dollar_format()(melhorRota$freteTotalPC)` opta-se então pela rota **Porto Belo $\to$ Itajaí $\to$ Santos $\to$ Palmas** com os carregamentos de São Paulo e Manaus e **Porto Belo $\to$ São Paulo** com o carregamento de São Paulo, utilizando o *container*  **Dry Box 20 Pés**, nos modais: cabotagem de Itajaí até Santos e rodoviário nos demais. Para tanto, serão utilizados `r melhorRota$quantidadesPC1` Dry Box 20 Pés de Porto Belo até São Paulo, `r melhorRota$quantidadesPC2` Dry Box 20 Pés de Porto Belo até Palmas  e `r melhorRota$quantidadesAM` Dry Box 20 Pés de Palmas Até Manaus. As rotas são apresentadas na Figura \@ref(fig:FIGROT001)
 
 ```{r FIGROT001, echo=FALSE, fig.align='center', fig.cap='Rotas Definidas', message=FALSE, warning=FALSE, out.width='45%', paged.print=FALSE}
   knitr::include_graphics("images/routes/mapaRotas.png", dpi = NA)
 ```
 
 
-Com a definição das retas, também é possível determinar o *Lead Time* de entrega de produtos até os mercados consumidores (Manaus, Palmas e São Paulo). Os resultados estão apresentados na tabela \@ref(tab:ROT006).
+Com a definição das retas, também é possível determinar o *Lead Time* de entrega de produtos até os mercados consumidores (Manaus, Palmas e São Paulo). Os resultados estão apresentados na tabela \@ref(tab:ROTFIN001).
 
-```{r ROT006, echo=FALSE, tab.align='center'}
+```{r ROTFIN001, echo=FALSE, tab.align='center'}
 CDF <- c("Palmas", "Manaus", "São Paulo")
-LEAD <- c(16,30,21)
+LEAD <- c(16,31,2)
 
 resultados <- data.frame( T1 = CDF,T2 = LEAD)
 colnames(resultados) <- c("Destino", "Lead Time (dias)")
 k <- kableExtra::kbl(resultados, booktabs = T,  escape = FALSE, caption = "Lead Times")
 kableExtra::kable_styling(k, latex_options = "hold_position")
 ```
+
+
 
 
