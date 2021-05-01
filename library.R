@@ -1,6 +1,6 @@
 libraries <- c("chron", "openxlsx", "dplyr", "lubridate", "ggplot2",
                "readxl", "scales", "tibble", "magrittr", "stringr", "plotly", "forecast",
-               "colourpicker", "DT")
+               "colourpicker", "DT", "scales")
 for(i in 1:length(libraries)){
   if(libraries[i] %in% rownames(installed.packages()) == FALSE){
     install.packages(libraries[i])
@@ -24,5 +24,10 @@ library(plotly)
 library(forecast)
 library(colourpicker)
 library(DT)
+library(scales)
+
+paraReal <- function(x){
+  paste("R\\", dollar(x, big.mark = ".", decimal.mark = ","), sep="")
+}
 
 

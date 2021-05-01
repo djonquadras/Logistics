@@ -9,7 +9,7 @@ forecasting <- read_excel("forecasting.xlsx")
 SP <- list(P0021 = c(c(322.2, 273.6), forecasting[["previsao0021SP"]]),
            P0091 = c(c(322.2, 273.6), forecasting[["previsao0091SP"]]),
            P1401 = c(c(235.6, 372.4), forecasting[["previsao1401SP"]]),
-           ta = 10, ns = 0.98, q = NULL, es = NULL, pp = NULL)
+           ta = 2, ns = 0.98, q = NULL, es = NULL, pp = NULL)
 AM <- list(P0021 = c(c(839.5,1163.8), forecasting[["previsao0021AM"]]),
            P0091 = c(c(706.8,742.9), forecasting[["previsao0091AM"]]),
            P1401 = c(c(1012.7,775.2), forecasting[["previsao1401AM"]]),

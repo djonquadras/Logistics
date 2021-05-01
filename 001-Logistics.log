@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.6)  21 APR 2021 23:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.6)  1 MAY 2021 15:54
 entering extended mode
 **./001-Logistics.tex
 (001-Logistics.tex
@@ -884,12 +884,12 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
 [14]
-<images/P1/SP001.jpg, id=400, 481.8pt x 481.8pt>
+<images/P1/SP001.jpg, id=402, 481.8pt x 481.8pt>
 File: images/P1/SP001.jpg Graphic file (type jpg)
 <use images/P1/SP001.jpg>
 Package pdftex.def Info: images/P1/SP001.jpg  used on input line 493.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P1/SP002.jpg, id=402, 481.8pt x 481.8pt>
+<images/P1/SP002.jpg, id=404, 481.8pt x 481.8pt>
 File: images/P1/SP002.jpg Graphic file (type jpg)
 <use images/P1/SP002.jpg>
 Package pdftex.def Info: images/P1/SP002.jpg  used on input line 504.
@@ -907,7 +907,7 @@ s been already used, duplicate ignored
                                                   
 l.510 
        <./images/P1/SP001.jpg>]
-<images/P1/SP003.jpg, id=413, 481.8pt x 481.8pt>
+<images/P1/SP003.jpg, id=415, 481.8pt x 481.8pt>
 File: images/P1/SP003.jpg Graphic file (type jpg)
 <use images/P1/SP003.jpg>
 Package pdftex.def Info: images/P1/SP003.jpg  used on input line 530.
@@ -928,7 +928,7 @@ l.536
                                                   
 l.536 
        <./images/P1/SP002.jpg>]
-<images/P1/SP004.jpg, id=420, 481.8pt x 481.8pt>
+<images/P1/SP004.jpg, id=422, 481.8pt x 481.8pt>
 File: images/P1/SP004.jpg Graphic file (type jpg)
 <use images/P1/SP004.jpg>
 Package pdftex.def Info: images/P1/SP004.jpg  used on input line 556.
@@ -949,12 +949,12 @@ l.562
                                                   
 l.562 
        <./images/P1/SP003.jpg>]
-<images/P1/TO001.jpg, id=426, 481.8pt x 481.8pt>
+<images/P1/TO001.jpg, id=428, 481.8pt x 481.8pt>
 File: images/P1/TO001.jpg Graphic file (type jpg)
 <use images/P1/TO001.jpg>
 Package pdftex.def Info: images/P1/TO001.jpg  used on input line 570.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P1/TO002.jpg, id=428, 481.8pt x 481.8pt>
+<images/P1/TO002.jpg, id=430, 481.8pt x 481.8pt>
 File: images/P1/TO002.jpg Graphic file (type jpg)
 <use images/P1/TO002.jpg>
 Package pdftex.def Info: images/P1/TO002.jpg  used on input line 581.
@@ -975,7 +975,7 @@ l.587
                                                   
 l.587 
        <./images/P1/SP004.jpg> <./images/P1/TO001.jpg>]
-<images/P1/TO003.jpg, id=438, 481.8pt x 481.8pt>
+<images/P1/TO003.jpg, id=440, 481.8pt x 481.8pt>
 File: images/P1/TO003.jpg Graphic file (type jpg)
 <use images/P1/TO003.jpg>
 Package pdftex.def Info: images/P1/TO003.jpg  used on input line 607.
@@ -996,11 +996,11 @@ l.613
                                                   
 l.613 
        <./images/P1/TO002.jpg>]
-Overfull \hbox (26.39496pt too wide) in paragraph at lines 620--627
+Overfull \hbox (20.51997pt too wide) in paragraph at lines 620--627
  [][] 
  []
 
-<images/P1/TO004.jpg, id=445, 481.8pt x 481.8pt>
+<images/P1/TO004.jpg, id=447, 481.8pt x 481.8pt>
 File: images/P1/TO004.jpg Graphic file (type jpg)
 <use images/P1/TO004.jpg>
 Package pdftex.def Info: images/P1/TO004.jpg  used on input line 633.
@@ -1021,12 +1021,12 @@ l.639
                                                   
 l.639 
        <./images/P1/TO003.jpg>]
-<images/P1/AM001.jpg, id=451, 481.8pt x 481.8pt>
+<images/P1/AM001.jpg, id=453, 481.8pt x 481.8pt>
 File: images/P1/AM001.jpg Graphic file (type jpg)
 <use images/P1/AM001.jpg>
 Package pdftex.def Info: images/P1/AM001.jpg  used on input line 647.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P1/AM002.jpg, id=453, 481.8pt x 481.8pt>
+<images/P1/AM002.jpg, id=455, 481.8pt x 481.8pt>
 File: images/P1/AM002.jpg Graphic file (type jpg)
 <use images/P1/AM002.jpg>
 Package pdftex.def Info: images/P1/AM002.jpg  used on input line 658.
@@ -1047,7 +1047,7 @@ l.664
                                                   
 l.664 
        <./images/P1/TO004.jpg> <./images/P1/AM001.jpg>]
-<images/P1/AM003.jpg, id=462, 481.8pt x 481.8pt>
+<images/P1/AM003.jpg, id=464, 481.8pt x 481.8pt>
 File: images/P1/AM003.jpg Graphic file (type jpg)
 <use images/P1/AM003.jpg>
 Package pdftex.def Info: images/P1/AM003.jpg  used on input line 684.
@@ -1068,11 +1068,11 @@ l.690
                                                   
 l.690 
        <./images/P1/AM002.jpg>]
-Overfull \hbox (8.77pt too wide) in paragraph at lines 697--704
+Overfull \hbox (14.64499pt too wide) in paragraph at lines 697--704
  [][] 
  []
 
-<images/P1/AM004.jpg, id=469, 481.8pt x 481.8pt>
+<images/P1/AM004.jpg, id=471, 481.8pt x 481.8pt>
 File: images/P1/AM004.jpg Graphic file (type jpg)
 <use images/P1/AM004.jpg>
 Package pdftex.def Info: images/P1/AM004.jpg  used on input line 710.
@@ -1093,7 +1093,7 @@ l.716
                                                   
 l.716 
        <./images/P1/AM003.jpg>]
-<images/P2/SP001.jpg, id=475, 481.8pt x 481.8pt>
+<images/P2/SP001.jpg, id=477, 481.8pt x 481.8pt>
 File: images/P2/SP001.jpg Graphic file (type jpg)
 <use images/P2/SP001.jpg>
 Package pdftex.def Info: images/P2/SP001.jpg  used on input line 729.
@@ -1114,12 +1114,12 @@ l.737
                                                   
 l.737 
        <./images/P1/AM004.jpg> <./images/P2/SP001.jpg>]
-<images/P2/SP002.jpg, id=485, 481.8pt x 481.8pt>
+<images/P2/SP002.jpg, id=487, 481.8pt x 481.8pt>
 File: images/P2/SP002.jpg Graphic file (type jpg)
 <use images/P2/SP002.jpg>
 Package pdftex.def Info: images/P2/SP002.jpg  used on input line 740.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P2/SP003.jpg, id=488, 481.8pt x 481.8pt>
+<images/P2/SP003.jpg, id=490, 481.8pt x 481.8pt>
 File: images/P2/SP003.jpg Graphic file (type jpg)
 <use images/P2/SP003.jpg>
 Package pdftex.def Info: images/P2/SP003.jpg  used on input line 766.
@@ -1140,11 +1140,11 @@ l.772
                                                   
 l.772 
        <./images/P2/SP002.jpg>]
-Overfull \hbox (44.01991pt too wide) in paragraph at lines 779--786
+Overfull \hbox (32.26994pt too wide) in paragraph at lines 779--786
  [][] 
  []
 
-<images/P2/SP004.jpg, id=495, 481.8pt x 481.8pt>
+<images/P2/SP004.jpg, id=497, 481.8pt x 481.8pt>
 File: images/P2/SP004.jpg Graphic file (type jpg)
 <use images/P2/SP004.jpg>
 Package pdftex.def Info: images/P2/SP004.jpg  used on input line 792.
@@ -1165,12 +1165,12 @@ l.798
                                                   
 l.798 
        <./images/P2/SP003.jpg>]
-<images/P2/TO001.jpg, id=501, 481.8pt x 481.8pt>
+<images/P2/TO001.jpg, id=503, 481.8pt x 481.8pt>
 File: images/P2/TO001.jpg Graphic file (type jpg)
 <use images/P2/TO001.jpg>
 Package pdftex.def Info: images/P2/TO001.jpg  used on input line 806.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P2/TO002.jpg, id=503, 481.8pt x 481.8pt>
+<images/P2/TO002.jpg, id=505, 481.8pt x 481.8pt>
 File: images/P2/TO002.jpg Graphic file (type jpg)
 <use images/P2/TO002.jpg>
 Package pdftex.def Info: images/P2/TO002.jpg  used on input line 817.
@@ -1191,7 +1191,7 @@ name{figure.17}) has been already used, duplicate ignored
                                                   
 l.822 \end{figure}
                    <./images/P2/SP004.jpg> <./images/P2/TO001.jpg>]
-<images/P2/TO003.jpg, id=512, 481.8pt x 481.8pt>
+<images/P2/TO003.jpg, id=514, 481.8pt x 481.8pt>
 File: images/P2/TO003.jpg Graphic file (type jpg)
 <use images/P2/TO003.jpg>
 Package pdftex.def Info: images/P2/TO003.jpg  used on input line 843.
@@ -1216,7 +1216,7 @@ Overfull \hbox (20.51997pt too wide) in paragraph at lines 856--863
  [][] 
  []
 
-<images/P2/TO004.jpg, id=519, 481.8pt x 481.8pt>
+<images/P2/TO004.jpg, id=521, 481.8pt x 481.8pt>
 File: images/P2/TO004.jpg Graphic file (type jpg)
 <use images/P2/TO004.jpg>
 Package pdftex.def Info: images/P2/TO004.jpg  used on input line 869.
@@ -1237,12 +1237,12 @@ l.875
                                                   
 l.875 
        <./images/P2/TO003.jpg>]
-<images/P2/AM001.jpg, id=525, 481.8pt x 481.8pt>
+<images/P2/AM001.jpg, id=527, 481.8pt x 481.8pt>
 File: images/P2/AM001.jpg Graphic file (type jpg)
 <use images/P2/AM001.jpg>
 Package pdftex.def Info: images/P2/AM001.jpg  used on input line 883.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P2/AM002.jpg, id=527, 481.8pt x 481.8pt>
+<images/P2/AM002.jpg, id=529, 481.8pt x 481.8pt>
 File: images/P2/AM002.jpg Graphic file (type jpg)
 <use images/P2/AM002.jpg>
 Package pdftex.def Info: images/P2/AM002.jpg  used on input line 894.
@@ -1263,7 +1263,7 @@ l.900
                                                   
 l.900 
        <./images/P2/TO004.jpg> <./images/P2/AM001.jpg>]
-<images/P2/AM003.jpg, id=537, 481.8pt x 481.8pt>
+<images/P2/AM003.jpg, id=539, 481.8pt x 481.8pt>
 File: images/P2/AM003.jpg Graphic file (type jpg)
 <use images/P2/AM003.jpg>
 Package pdftex.def Info: images/P2/AM003.jpg  used on input line 920.
@@ -1288,7 +1288,7 @@ Overfull \hbox (5.50601pt too wide) in paragraph at lines 933--940
  [][] 
  []
 
-<images/P2/AM004.jpg, id=544, 481.8pt x 481.8pt>
+<images/P2/AM004.jpg, id=546, 481.8pt x 481.8pt>
 File: images/P2/AM004.jpg Graphic file (type jpg)
 <use images/P2/AM004.jpg>
 Package pdftex.def Info: images/P2/AM004.jpg  used on input line 946.
@@ -1309,7 +1309,7 @@ l.952
                                                   
 l.952 
        <./images/P2/AM003.jpg>]
-<images/P3/SP001.jpg, id=550, 481.8pt x 481.8pt>
+<images/P3/SP001.jpg, id=552, 481.8pt x 481.8pt>
 File: images/P3/SP001.jpg Graphic file (type jpg)
 <use images/P3/SP001.jpg>
 Package pdftex.def Info: images/P3/SP001.jpg  used on input line 965.
@@ -1330,12 +1330,12 @@ l.973
                                                   
 l.973 
        <./images/P2/AM004.jpg> <./images/P3/SP001.jpg>]
-<images/P3/SP002.jpg, id=559, 481.8pt x 481.8pt>
+<images/P3/SP002.jpg, id=561, 481.8pt x 481.8pt>
 File: images/P3/SP002.jpg Graphic file (type jpg)
 <use images/P3/SP002.jpg>
 Package pdftex.def Info: images/P3/SP002.jpg  used on input line 976.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P3/SP003.jpg, id=562, 481.8pt x 481.8pt>
+<images/P3/SP003.jpg, id=564, 481.8pt x 481.8pt>
 File: images/P3/SP003.jpg Graphic file (type jpg)
 <use images/P3/SP003.jpg>
 Package pdftex.def Info: images/P3/SP003.jpg  used on input line 1002.
@@ -1356,7 +1356,7 @@ l.1008
                                                   
 l.1008 
         <./images/P3/SP002.jpg>]
-<images/P3/SP004.jpg, id=569, 481.8pt x 481.8pt>
+<images/P3/SP004.jpg, id=571, 481.8pt x 481.8pt>
 File: images/P3/SP004.jpg Graphic file (type jpg)
 <use images/P3/SP004.jpg>
 Package pdftex.def Info: images/P3/SP004.jpg  used on input line 1028.
@@ -1377,12 +1377,12 @@ l.1034
                                                   
 l.1034 
         <./images/P3/SP003.jpg>]
-<images/P3/TO001.jpg, id=575, 481.8pt x 481.8pt>
+<images/P3/TO001.jpg, id=577, 481.8pt x 481.8pt>
 File: images/P3/TO001.jpg Graphic file (type jpg)
 <use images/P3/TO001.jpg>
 Package pdftex.def Info: images/P3/TO001.jpg  used on input line 1042.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P3/TO002.jpg, id=577, 481.8pt x 481.8pt>
+<images/P3/TO002.jpg, id=579, 481.8pt x 481.8pt>
 File: images/P3/TO002.jpg Graphic file (type jpg)
 <use images/P3/TO002.jpg>
 Package pdftex.def Info: images/P3/TO002.jpg  used on input line 1053.
@@ -1403,7 +1403,7 @@ l.1059
                                                   
 l.1059 
         <./images/P3/SP004.jpg> <./images/P3/TO001.jpg>]
-<images/P3/TO003.jpg, id=587, 481.8pt x 481.8pt>
+<images/P3/TO003.jpg, id=589, 481.8pt x 481.8pt>
 File: images/P3/TO003.jpg Graphic file (type jpg)
 <use images/P3/TO003.jpg>
 Package pdftex.def Info: images/P3/TO003.jpg  used on input line 1079.
@@ -1424,7 +1424,7 @@ l.1085
                                                   
 l.1085 
         <./images/P3/TO002.jpg>]
-<images/P3/TO004.jpg, id=594, 481.8pt x 481.8pt>
+<images/P3/TO004.jpg, id=596, 481.8pt x 481.8pt>
 File: images/P3/TO004.jpg Graphic file (type jpg)
 <use images/P3/TO004.jpg>
 Package pdftex.def Info: images/P3/TO004.jpg  used on input line 1105.
@@ -1445,7 +1445,7 @@ l.1111
                                                   
 l.1111 
         <./images/P3/TO003.jpg>]
-<images/P3/AM001.jpg, id=600, 481.8pt x 481.8pt>
+<images/P3/AM001.jpg, id=602, 481.8pt x 481.8pt>
 File: images/P3/AM001.jpg Graphic file (type jpg)
 <use images/P3/AM001.jpg>
 Package pdftex.def Info: images/P3/AM001.jpg  used on input line 1119.
@@ -1466,12 +1466,12 @@ l.1127
                                                   
 l.1127 
         <./images/P3/TO004.jpg> <./images/P3/AM001.jpg>]
-<images/P3/AM002.jpg, id=608, 481.8pt x 481.8pt>
+<images/P3/AM002.jpg, id=610, 481.8pt x 481.8pt>
 File: images/P3/AM002.jpg Graphic file (type jpg)
 <use images/P3/AM002.jpg>
 Package pdftex.def Info: images/P3/AM002.jpg  used on input line 1130.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/P3/AM003.jpg, id=611, 481.8pt x 481.8pt>
+<images/P3/AM003.jpg, id=613, 481.8pt x 481.8pt>
 File: images/P3/AM003.jpg Graphic file (type jpg)
 <use images/P3/AM003.jpg>
 Package pdftex.def Info: images/P3/AM003.jpg  used on input line 1156.
@@ -1492,7 +1492,7 @@ l.1162
                                                   
 l.1162 
         <./images/P3/AM002.jpg>]
-<images/P3/AM004.jpg, id=618, 481.8pt x 481.8pt>
+<images/P3/AM004.jpg, id=620, 481.8pt x 481.8pt>
 File: images/P3/AM004.jpg Graphic file (type jpg)
 <use images/P3/AM004.jpg>
 Package pdftex.def Info: images/P3/AM004.jpg  used on input line 1182.
@@ -1793,7 +1793,7 @@ l.1887
                                                   
 l.1887 
        ]
-<images/routes/mapaRotas.png, id=736, 1129.21875pt x 1505.625pt>
+<images/routes/mapaRotas.png, id=738, 1129.21875pt x 1505.625pt>
 File: images/routes/mapaRotas.png Graphic file (type png)
 <use images/routes/mapaRotas.png>
 Package pdftex.def Info: images/routes/mapaRotas.png  used on input line 1890.
@@ -1871,13 +1871,13 @@ LaTeX Warning: Command \' invalid in math mode on input line 2046.
 
 LaTeX Warning: Command \' invalid in math mode on input line 2047.
 
-<images/inventory/MO0021Inventory.jpg, id=774, 481.8pt x 481.8pt>
+<images/inventory/MO0021Inventory.jpg, id=776, 481.8pt x 481.8pt>
 File: images/inventory/MO0021Inventory.jpg Graphic file (type jpg)
 <use images/inventory/MO0021Inventory.jpg>
 Package pdftex.def Info: images/inventory/MO0021Inventory.jpg  used on input li
 ne 2056.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/inventory/MO0091Inventory.jpg, id=776, 481.8pt x 481.8pt>
+<images/inventory/MO0091Inventory.jpg, id=778, 481.8pt x 481.8pt>
 File: images/inventory/MO0091Inventory.jpg Graphic file (type jpg)
 <use images/inventory/MO0091Inventory.jpg>
 Package pdftex.def Info: images/inventory/MO0091Inventory.jpg  used on input li
@@ -1899,7 +1899,7 @@ l.2073
                                                   
 l.2073 
         <./images/inventory/MO0021Inventory.jpg>]
-<images/inventory/MO1401Inventory.jpg, id=783, 481.8pt x 481.8pt>
+<images/inventory/MO1401Inventory.jpg, id=785, 481.8pt x 481.8pt>
 File: images/inventory/MO1401Inventory.jpg Graphic file (type jpg)
 <use images/inventory/MO1401Inventory.jpg>
 Package pdftex.def Info: images/inventory/MO1401Inventory.jpg  used on input li
@@ -1932,22 +1932,27 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [61
 
-]
+pdfTeX warning (ext4): destination with the same identifier (name{table.56}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.2164 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.
+57}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.2164 
+       ]
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 4.35004pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.35004pt}.
 
-[62pdfTeX warning (ext4): destination with the same identifier (name{table.56})
+[62pdfTeX warning (ext4): destination with the same identifier (name{table.58})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.2164 \clearpage
-                 pdfTeX warning (ext4): destination with the same identifier (n
-ame{table.57}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.2164 \clearpage
+l.2191 \clearpage
                  ]
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
@@ -1968,10 +1973,10 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 ] (001-Logistics.aux) ) 
 Here is how much of TeX's memory you used:
  17062 strings out of 479334
- 258846 string characters out of 2857085
- 638395 words of memory out of 3000000
- 33663 multiletter control sequences out of 15000+200000
- 459935 words of font info for 139 fonts, out of 3000000 for 9000
+ 258848 string characters out of 2857085
+ 638435 words of memory out of 3000000
+ 33664 multiletter control sequences out of 15000+200000
+ 459848 words of font info for 138 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  85i,12n,88p,1118b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/djonq/AppData/Local/Programs/MiKTeX/fonts/enc/
@@ -1992,9 +1997,9 @@ mr8.pfb><C:/Users/djonq/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr
 i12.pfb><C:/Users/djonq/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lms
 y10.pfb><C:/Users/djonq/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/symbols/msbm10.pfb>
-Output written on 001-Logistics.pdf (65 pages, 2095207 bytes).
+Output written on 001-Logistics.pdf (65 pages, 2097925 bytes).
 PDF statistics:
- 999 PDF objects out of 1000 (max. 8388607)
- 319 named destinations out of 1000 (max. 500000)
+ 1002 PDF objects out of 1200 (max. 8388607)
+ 320 named destinations out of 1000 (max. 500000)
  31089 words of extra memory for PDF output out of 35830 (max. 10000000)
 
