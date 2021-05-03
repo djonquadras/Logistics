@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.6)  1 MAY 2021 15:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.6)  3 MAY 2021 09:45
 entering extended mode
 **./001-Logistics.tex
 (001-Logistics.tex
@@ -996,7 +996,7 @@ l.613
                                                   
 l.613 
        <./images/P1/TO002.jpg>]
-Overfull \hbox (20.51997pt too wide) in paragraph at lines 620--627
+Overfull \hbox (26.39496pt too wide) in paragraph at lines 620--627
  [][] 
  []
 
@@ -1140,7 +1140,7 @@ l.772
                                                   
 l.772 
        <./images/P2/SP002.jpg>]
-Overfull \hbox (32.26994pt too wide) in paragraph at lines 779--786
+Overfull \hbox (44.01991pt too wide) in paragraph at lines 779--786
  [][] 
  []
 
@@ -1793,11 +1793,11 @@ l.1887
                                                   
 l.1887 
        ]
-<images/routes/mapaRotas.png, id=738, 1129.21875pt x 1505.625pt>
+<images/routes/mapaRotas.png, id=738, 750.805pt x 770.88pt>
 File: images/routes/mapaRotas.png Graphic file (type png)
 <use images/routes/mapaRotas.png>
 Package pdftex.def Info: images/routes/mapaRotas.png  used on input line 1890.
-(pdftex.def)             Requested size: 204.85304pt x 273.13739pt.
+(pdftex.def)             Requested size: 204.85094pt x 210.32823pt.
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 4.35004pt, for example:
@@ -1871,13 +1871,13 @@ LaTeX Warning: Command \' invalid in math mode on input line 2046.
 
 LaTeX Warning: Command \' invalid in math mode on input line 2047.
 
-<images/inventory/MO0021Inventory.jpg, id=776, 481.8pt x 481.8pt>
+<images/inventory/MO0021Inventory.jpg, id=774, 481.8pt x 481.8pt>
 File: images/inventory/MO0021Inventory.jpg Graphic file (type jpg)
 <use images/inventory/MO0021Inventory.jpg>
 Package pdftex.def Info: images/inventory/MO0021Inventory.jpg  used on input li
 ne 2056.
 (pdftex.def)             Requested size: 227.62228pt x 227.62228pt.
-<images/inventory/MO0091Inventory.jpg, id=778, 481.8pt x 481.8pt>
+<images/inventory/MO0091Inventory.jpg, id=776, 481.8pt x 481.8pt>
 File: images/inventory/MO0091Inventory.jpg Graphic file (type jpg)
 <use images/inventory/MO0091Inventory.jpg>
 Package pdftex.def Info: images/inventory/MO0091Inventory.jpg  used on input li
@@ -1899,7 +1899,7 @@ l.2073
                                                   
 l.2073 
         <./images/inventory/MO0021Inventory.jpg>]
-<images/inventory/MO1401Inventory.jpg, id=785, 481.8pt x 481.8pt>
+<images/inventory/MO1401Inventory.jpg, id=783, 481.8pt x 481.8pt>
 File: images/inventory/MO1401Inventory.jpg Graphic file (type jpg)
 <use images/inventory/MO1401Inventory.jpg>
 Package pdftex.def Info: images/inventory/MO1401Inventory.jpg  used on input li
@@ -1997,9 +1997,9 @@ mr8.pfb><C:/Users/djonq/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr
 i12.pfb><C:/Users/djonq/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lms
 y10.pfb><C:/Users/djonq/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/symbols/msbm10.pfb>
-Output written on 001-Logistics.pdf (65 pages, 2097925 bytes).
+Output written on 001-Logistics.pdf (65 pages, 1555756 bytes).
 PDF statistics:
- 1002 PDF objects out of 1200 (max. 8388607)
+ 1000 PDF objects out of 1000 (max. 8388607)
  320 named destinations out of 1000 (max. 500000)
  31089 words of extra memory for PDF output out of 35830 (max. 10000000)
 
